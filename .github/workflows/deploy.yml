@@ -28,5 +28,4 @@ jobs:
         source: "./publish/*"
         target: "/var/www/jt_cms"
         strip_components: 1
-        script: |
-          sudo systemctl restart jt_cms.service
+        
