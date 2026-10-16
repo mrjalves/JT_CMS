@@ -1,0 +1,39 @@
+name: Build e Deploy JT_CMS
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout do código
+      uses: actions/checkout@v4
+
+    - name: Configurar .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x' # Ajuste conforme a versão utilizada no repositório
+
+    - name: Publish do Projeto
+      run: dotnet publish src/Backend/JT_CMS.Web.Api/JT_CMS.Web.Api.csproj -c Release -o ./publish
+
+    - name: Copiar arquivos para a VM via SCP
+      uses: appleboy/scp-action@v0.1.7
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}
+        source: "./publish/*"
+        target: "/var/www/jt_cms"
+        strip_components: 1
+
+    - name: Reiniciar o serviço na VM
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}
+        script: |
+          sudo systemctl restart jt_cms.service
