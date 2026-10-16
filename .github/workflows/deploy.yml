@@ -22,9 +22,9 @@ jobs:
     - name: Copiar arquivos para a VM via SCP
       uses: appleboy/scp-action@v0.1.7
       with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.KEY }}
+        host: ${{ secrets.HOST || secrets.SSH_HOST || secrets.VM_HOST }}
+        username: ${{ secrets.USERNAME || secrets.SSH_USERNAME || secrets.VM_USERNAME }}
+        key: ${{ secrets.KEY || secrets.SSH_PRIVATE_KEY || secrets.VM_SSH_PRIVATE_KEY }}
         source: "./publish/*"
         target: "/var/www/jt_cms"
         strip_components: 1
@@ -32,8 +32,8 @@ jobs:
     - name: Reiniciar o serviço na VM
       uses: appleboy/ssh-action@v1.0.3
       with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.KEY }}
+        host: ${{ secrets.HOST || secrets.SSH_HOST || secrets.VM_HOST }}
+        username: ${{ secrets.USERNAME || secrets.SSH_USERNAME || secrets.VM_USERNAME }}
+        key: ${{ secrets.KEY || secrets.SSH_PRIVATE_KEY || secrets.VM_SSH_PRIVATE_KEY }}
         script: |
           sudo systemctl restart jt_cms.service
