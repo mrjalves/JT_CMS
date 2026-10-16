@@ -1,0 +1,14 @@
+@namespace JT_CMS.Web.Plugins
+
+<GridItem Small="GridItemColumn.Twelve">
+    <Stack>
+        @ChildContent
+        <Button Visible="Submit" Color="Color.Primary" Type="ButtonType.Submit">
+            Salvar
+        </Button>
+        <!-- TODO: Only disable enhance nav for site builder -->
+        <Button data-enhance-nav="disabled" Visible="Cancel" Href="@GetBackUrl()">
+            Cancelar
+        </Button>
+    </Stack>
+</GridItem>

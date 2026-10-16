@@ -1,0 +1,18 @@
+@inherits BasePlugin
+
+<PluginForm Model="@Model" Name="@FORM_NAME" Title="Seu melhor trabalho começa aqui" OnSubmit="@OnSubmit">
+    <FormInput @bind-Value="Model!.Username" Label="Usuário" Placeholder="Digite seu usuário" Required />
+    <FormInput @bind-Value="Model!.Email" Label="E-mail" Placeholder="Digite seu e-mail" Required />
+    <FormInput @bind-Value="Model!.Password" Label="Senha" Placeholder="Digite sua senha" Required type="password" />
+    <FormInput @bind-Value="Model!.ConfirmPassword" Label="Confirmar senha" Placeholder="Digite sua senha novamente" Required type="password" />
+    <FormField>
+        <Spacer />
+        <Button Block Color="@Color.Primary" Type="ButtonType.Submit">Criar conta</Button>
+    </FormField>
+    <FormField Dense>
+        <Typography>
+            Já tem uma conta?
+            <Button Color="@Color.Primary" Href="/auth/login" Link>Entre aqui</Button>
+        </Typography>
+    </FormField>
+</PluginForm>

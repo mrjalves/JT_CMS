@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>JT_CMS.Web.Plugins.TextHTML</PackageId>
+    <Version>0.0.1</Version>
+    <Authors>Amir Pournasserian</Authors>
+    <Company>JT_CMS</Company>
+    <Description>TextHTML plugins.</Description>
+    <PackageTags>JT_CMS;cms;texthtml;plugin;core</PackageTags>
+    <RepositoryUrl>https://github.com/JT_CMS/JT_CMS</RepositoryUrl>
+    <PackageProjectUrl>https://JT_CMS.com</PackageProjectUrl>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JT_CMS.Web.Plugins.Base\JT_CMS.Web.Plugins.Base.csproj" />
+    <ProjectReference Include="..\..\JT_CMS.Web.ApiClients\JT_CMS.Web.ApiClients.csproj" />
+    <ProjectReference Include="..\..\..\Providers\MessageBusProviders\JT_CMS.Providers.MessageBusProviders.Abstractions\JT_CMS.Providers.MessageBusProviders.Abstractions.csproj" />
+    <ProjectReference Include="..\..\JT_CMS.Web.UI.Components\JT_CMS.Web.UI.Components.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\icon.png" Pack="true" PackagePath="icon.png" />
+    <None Include="README.md" Pack="true" PackagePath="README.md" />
+  </ItemGroup>
+</Project>

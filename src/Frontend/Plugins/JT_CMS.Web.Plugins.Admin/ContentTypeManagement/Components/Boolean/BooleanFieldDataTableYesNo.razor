@@ -1,0 +1,12 @@
+﻿@inherits BaseFieldValueComponent<bool, BooleanFieldModel>
+
+@namespace JT_CMS.Web.Plugins.Admin.ContentTypeManagement
+
+@if (FieldValue.Value)
+{
+    <text>Yes</text>
+}
+else
+{
+    <text>No</text>
+}

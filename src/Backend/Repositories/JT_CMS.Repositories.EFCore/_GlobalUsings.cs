@@ -1,0 +1,11 @@
+﻿global using AutoMapper;
+global using JT_CMS.Entities;
+global using JT_CMS.Repositories.Abstractions;
+global using JT_CMS.Repositories.EFCore.DbModels;
+global using Microsoft.EntityFrameworkCore;
+global using System;
+global using System.Collections.Generic;
+global using System.ComponentModel.DataAnnotations.Schema;
+global using System.Linq;
+global using System.Threading;
+global using System.Threading.Tasks;

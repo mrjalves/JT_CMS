@@ -1,0 +1,19 @@
+@inherits BasePlugin
+@namespace JT_CMS.Web.Plugins.ContactUs
+
+<EditForm Model="@Model" OnSubmit="OnSubmit" FormName="@CONTENT_TYPE_NAME">
+    <DataAnnotationsValidator />
+    <Spacer />
+    <Grid GutterX="GridGutter.Large">
+        <FormInput Placeholder="Digite seu e-mail" @bind-Value="@Model!.Email" Label="E-mail" />
+        <FormInput Placeholder="Diga-nos como podemos ajudá-lo" @bind-Value="@Model!.Subject" Label="Assunto" />
+        <FormTextarea Placeholder="Deixe um comentário..." @bind-Value="@Model!.Message" Label="Mensagem" />
+        <GridItem Small="GridItemColumn.Twelve">
+            <Stack>
+                <Button Color="Color.Primary" Type="ButtonType.Submit">
+                    Enviar Mensagem
+                </Button>
+            </Stack>
+        </GridItem>
+    </Grid>
+</EditForm>

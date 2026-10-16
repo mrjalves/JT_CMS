@@ -1,0 +1,47 @@
+@inherits BasePlugin
+@rendermode InteractiveServer
+
+<PluginBody Title="Lista de Usuários">
+    <ActionsFragment>
+        <ActionButtonCreate Href="@GetUrl("Create User")" Label="Adicionar Usuário" />
+    </ActionsFragment>
+    <ChildContent>
+        <DataTable Items="Users">
+            <DataTableItem Label="Usuário">@context.Username</DataTableItem>
+            <DataTableItem Label="Nome">@context.FirstName</DataTableItem>
+            <DataTableItem Label="Sobrenome">@context.LastName</DataTableItem>
+            <DataTableItem Label="E-mail">@context.Email</DataTableItem>
+            <DataTableItem Label="E-mail Confirmado">
+                <Indicator Color="Color.Success" Visible="@context.EmailConfirmed">SIM</Indicator>
+                <Indicator Color="Color.Danger" Visible="@(!context.EmailConfirmed)">NÃO</Indicator>
+            </DataTableItem>
+            <DataTableItem Label="Telefone">@context.PhoneNumber</DataTableItem>
+            <DataTableItem Label="Telefone Confirmado">
+                <Indicator Color="Color.Success" Visible="@context.PhoneConfirmed">SIM</Indicator>
+                <Indicator Color="Color.Danger" Visible="@(!context.PhoneConfirmed)">NÃO</Indicator>
+            </DataTableItem>
+            <DataTableItem Label="Ativo">
+                <Indicator Color="Color.Success" Visible="@context.Enabled">SIM</Indicator>
+                <Indicator Color="Color.Danger" Visible="@(!context.Enabled)">NÃO</Indicator>
+            </DataTableItem>
+            <DataTableItem Label="Nível">
+                <Indicator Color="Color.Success" Visible="@context.IsSuperAdmin">SuperAdmin</Indicator>
+            </DataTableItem>
+            <DataTableItem Label="Data de Criação">@context.CreatedAt</DataTableItem>
+            <DataTableItem Label="Último Login">@context.LoginAt</DataTableItem>
+            <DataTableItem Label="Qtd. de Logins">@context.LoginCount</DataTableItem>
+            <DataTableItem Label="Bloqueado">
+                <Indicator Color="Color.Success" Visible="@(!context.Locked)">NÃO</Indicator>
+                <Indicator Color="Color.Danger" Visible="@context.Locked">SIM</Indicator>
+            </DataTableItem>
+            <ActionButtons>
+                <ActionButtonDelete @onclick="() => OnConfirm(context)" Visible="@(!context.IsSuperAdmin)" />
+                <ActionButtonEdit Href="@GetUrl("Update User", new { id = @context.Id })" />
+            </ActionButtons>
+        </DataTable>
+    </ChildContent>
+</PluginBody>
+
+<Confirm OnConfirm="OnDelete" OnCancel="OnConfirmClose" Visible="SelectedUser != null">
+    Tem certeza que deseja excluir o usuário <b>"@SelectedUser!.Username"</b>?
+</Confirm>

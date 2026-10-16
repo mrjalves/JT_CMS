@@ -1,0 +1,6 @@
+@inherits BaseEditPlugin
+@namespace JT_CMS.Web.Plugins.ContactUs
+
+<PluginModalForm Open="Open" Model="@Model" Name="@PLUGIN_SETTINGS_FORM" OnSubmit="@HandleSubmit" OnCancel="OnCancel" Title="Configurações de Contato">
+    <FormInput Placeholder="Digite o endereço de e-mail do destinatário" @bind-Value="@Model!.EmailAddress" Label="Seu E-mail" />
+</PluginModalForm>

@@ -1,0 +1,956 @@
+{
+    "Name": "JT_CMS",
+    "Description": "Modelo de site de portfólio JT_CMS incluindo exemplos",
+    "Layout": "DefaultLayout",
+    "EditLayout": "EditLayout",
+    "DetailLayout": "SingleLayout",
+    "AdminRoles": ["Administrators"],
+    "ContributorRoles": ["Contributors"],
+    "Settings": {
+        "MetaTitle": "JT_CMS - CMS Blazor Impulsionado por IA",
+        "MetaDescription": "JT_CMS é um CMS Blazor de código aberto impulsionado por IA, projetado para simplificar o gerenciamento de conteúdo com flexibilidade e escalabilidade para sites modernos.",
+        "GoogleTagsId": "",
+        "Head": "",
+        "Robots": "index,follow",
+        "OgType": "website",
+        "Theme": ":root {\n            --f-primary-50: 151.8 81% 95.9%;\n            --f-primary-100: 149.3 80.4% 90%;\n            --f-primary-200: 152.4 76% 80.4%;\n            --f-primary-300: 156.2 71.6% 66.9%;\n            --f-primary-400: 158.1 64.4% 51.6%;\n            --f-primary-500: 160.1 84.1% 39.4%;\n            --f-primary-600: 161.4 93.5% 30.4%;\n            --f-primary-700: 162.9 93.5% 24.3%;\n            --f-primary-800: 163.1 88.1% 19.8%;\n            --f-primary-900: 164.2 85.7% 16.5%;\n        }\n\n            :root {\n        --f-surface: 240, 17%, 98%; \n        --f-surface-muted: 240, 10%, 96%; \n        --f-surface-accent: 0, 0%, 100%; \n        --f-content: 240, 10%, 38%; \n        --f-content-muted: 240, 8%, 55%; \n        --f-content-accent: 240, 17%, 15%; \n        --f-border: 240, 7%, 89%; \n        --f-border-muted: 240, 10%, 96%; \n        --f-border-accent: 240, 5%, 75%; \n    }\n\n    .dark {\n        --f-surface: 220.91, 39.29%, 10.98%; \n        --f-surface-muted: 240, 10%, 38%; \n        --f-surface-accent: 215, 28%, 17%; \n\n        --f-content: 240, 7%, 89%; \n        --f-content-muted: 240, 8%, 77%; \n        --f-content-accent: 0, 0%, 100%; \n\n        --f-border: 240, 10%, 38%; \n        --f-border-muted: 240, 10%, 38%; \n        --f-border-accent: 240, 8%, 55%; \n    }"
+    },
+    "Roles": [
+        {
+            "Name": "Administrators",
+            "Description": "Função padrão de administradores com acesso total ao site",
+            "Type": 1
+        },
+        {
+            "Name": "Authenticated Users",
+            "Description": "Função padrão de usuários autenticados",
+            "Type": 2
+        },
+        {
+            "Name": "Guests",
+            "Description": "Função padrão de usuários não autenticados (visitantes)",
+            "Type": 3
+        },
+        {
+            "Name": "All Users",
+            "Description": "Função padrão para todos os usuários (autenticados ou não)",
+            "Type": 4
+        },
+        {
+            "Name": "Contributors",
+            "Description": "Usuários colaboradores para gerenciar páginas, plugins, etc.",
+            "Type": 0
+        }
+    ],
+    "Layouts": [
+        {
+            "Name": "DefaultLayout"
+        },
+        {
+            "Name": "AdminLayout"
+        },
+        {
+            "Name": "AuthLayout"
+        },
+        {
+            "Name": "Columns-1-3"
+        },
+        {
+            "Name": "EditLayout"
+        },
+        {
+            "Name": "SingleLayout"
+        }
+    ],
+    "Pages": [
+        {
+            "Title": "Início",
+            "Path": "/",
+            "EditLayout": "EditLayout",
+            "ViewRoles": ["All Users"],
+            "Settings": {
+                "Index": "true",
+                "Follow": "true"
+            },
+            "Plugins": [
+                {
+                    "Definition": "TextHTML Plugin",
+                    "Section": "Main",
+                    "ContentPath": "001.html"
+                },
+                {
+                    "Definition": "TextHTML Plugin",
+                    "Section": "Main",
+                    "ContentPath": "002.html"
+                },
+                {
+                    "Definition": "TextHTML Plugin",
+                    "Section": "Main",
+                    "ContentPath": "003.html"
+                },
+                {
+                    "Definition": "TextHTML Plugin",
+                    "Section": "Main",
+                    "ContentPath": "004.html"
+                },
+                {
+                    "Definition": "Content List",
+                    "Section": "Main",
+                    "Settings": {
+                        "Template": "005.sbn",
+                        "ContentTypeSlug": "project"
+                    }
+                }
+            ]
+        },
+        {
+            "Title": "Projetos",
+            "Path": "/projects",
+            "EditLayout": "EditLayout",
+            "ViewRoles": ["All Users"],
+            "Settings": {
+                "Index": "true",
+                "Follow": "true"
+            },
+            "Plugins": [
+                {
+                    "Definition": "TextHTML Plugin",
+                    "Section": "Main",
+                    "ContentPath": "projects/001.html"
+                },
+                {
+                    "Definition": "Content List",
+                    "Section": "Main",
+                    "Settings": {
+                        "Template": "projects/002.sbn",
+                        "ContentTypeSlug": "project"
+                    }
+                }
+            ],
+            "Children": [
+                {
+                    "Title": "Detalhes do Projeto",
+                    "Path": "/detail",
+                    "Layout": "SingleLayout",
+                    "ViewRoles": ["All Users"],
+                    "Settings": {
+                        "Index": "true",
+                        "Follow": "true"
+                    },
+                    "Plugins": [
+                        {
+                            "Definition": "Content Detail",
+                            "Section": "Main",
+                            "Cols": 12,
+                            "Settings": {
+                                "Template": "projects/detail/001.sbn",
+                                "ContentTypeSlug": "project"
+                            }
+                        },
+                        {
+                            "Definition": "Content Detail",
+                            "Section": "Main",
+                            "Cols": 12,
+                            "Settings": {
+                                "Template": "projects/detail/002.sbn",
+                                "ContentTypeSlug": "project"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "Title": "Sobre Mim",
+            "Path": "/about",
+            "Layout": "Columns-1-3",
+            "ViewRoles": [ "All Users"],
+            "Settings": {
+                "Index": "true",
+                "Follow": "true"
+            },
+            "Plugins": [
+                {
+                    "Definition": "TextHTML Plugin",
+                    "Section": "Top",
+                    "ContentPath": "about/001.html"
+                },
+                {
+                    "Definition": "TextHTML Plugin",
+                    "Section": "Left",
+                    "ContentPath": "about/002.html"
+                },
+                {
+                    "Definition": "TextHTML Plugin",
+                    "Section": "Right",
+                    "ContentPath": "about/003.html"
+                },
+                {
+                    "Definition": "Content List",
+                    "Section": "Right",
+                    "Settings": {
+                        "Template": "about/004.sbn",
+                        "ContentTypeSlug": "skill"
+                    }
+                },
+                {
+                    "Definition": "TextHTML Plugin",
+                    "Section": "Right",
+                    "ContentPath": "about/005.html"
+                },
+                {
+                    "Definition": "Content List",
+                    "Section": "Right",
+                    "Settings": {
+                        "Template": "about/006.sbn",
+                        "ContentTypeSlug": "project"
+                    }
+                },
+                {
+                    "Definition": "TextHTML Plugin",
+                    "Section": "Right",
+                    "ContentPath": "about/007.html"
+                },
+                {
+                    "Definition": "TextHTML Plugin",
+                    "Section": "Right",
+                    "ContentPath": "about/008.html" 
+                },
+                {
+                    "Definition": "TextHTML Plugin",
+                    "Section": "Left",
+                    "ContentPath": "about/009.html"
+                },
+                {
+                    "Definition": "TextHTML Plugin",
+                    "Section": "Right",
+                    "ContentPath": "about/010.html"
+                }
+            ]
+        },
+        {
+            "Title": "Contato",
+            "Path": "/contact",
+            "Layout": "DefaultLayout",
+            "ViewRoles": [ "All Users" ],
+            "Plugins": [
+                {
+                    "Definition": "TextHTML Plugin",
+                    "Section": "Main",
+                    "ContentPath": "contact/001.html"
+                },
+                {
+                    "Definition": "Contact Us Plugin",
+                    "Section": "Main",
+                    "Settings": {
+                        "EmailAddress": "your.email@example.com",
+                        "Class": "p-4 mx-auto bg-surface text-content"
+                    }
+                }
+            ]
+        },
+        {
+            "Title": "Administração",
+            "Path": "/admin",
+            "Layout": "AdminLayout",
+            "EditLayout": "AdminLayout",
+            "AdminRoles": [ "Administrators" ],
+            "ViewRoles": [ "Administrators" ],
+            "Locked": true,
+            "Plugins": [],
+            "Children": [
+                {
+                    "Title": "Construtor de Tipos de Conteúdo",
+                    "Path": "/content-types",
+                    "Layout": "AdminLayout",
+                    "EditLayout": "AdminLayout",
+                    "AdminRoles": [ "Administrators" ],
+                    "ViewRoles": [ "Administrators" ],
+                    "Settings": {
+                        "Index": "false",
+                        "Follow": "false"
+                    },
+                    "Locked": true,
+                    "Plugins": [
+                        {
+                            "Definition": "ContentType Management",
+                            "Section": "Main",
+                            "Locked": true
+                        }
+                    ]
+                },
+                {
+                    "Title": "Usuários",
+                    "Path": "/users",
+                    "Layout": "AdminLayout",
+                    "EditLayout": "AdminLayout",
+                    "AdminRoles": [ "Administrators" ],
+                    "ViewRoles": [ "Administrators" ],
+                    "Settings": {
+                        "Index": "false",
+                        "Follow": "false"
+                    },
+                    "Locked": true,
+                    "Plugins": [
+                        {
+                            "Definition": "User Management",
+                            "Section": "Main",
+                            "Locked": true
+                        }
+                    ]
+                },
+                {
+                    "Title": "Gerenciamento de Arquivos",
+                    "Path": "/files",
+                    "Layout": "AdminLayout",
+                    "EditLayout": "AdminLayout",
+                    "AdminRoles": [ "Administrators" ],
+                    "ViewRoles": [ "Administrators" ],
+                    "Settings": {
+                        "Index": "false",
+                        "Follow": "false"
+                    },
+                    "Locked": true,
+                    "Plugins": [
+                        {
+                            "Definition": "File Management",
+                            "Section": "Main",
+                            "Locked": true
+                        }
+                    ]
+                },
+                {
+                    "Title": "Tokens de API",
+                    "Path": "/api-tokens",
+                    "Layout": "AdminLayout",
+                    "EditLayout": "AdminLayout",
+                    "AdminRoles": [ "Administrators" ],
+                    "ViewRoles": [ "Administrators" ],
+                    "Settings": {
+                        "Index": "false",
+                        "Follow": "false"
+                    },
+                    "Locked": true,
+                    "Plugins": [
+                        {
+                            "Definition": "Api Token Management",
+                            "Section": "Main",
+                            "Locked": true
+                        }
+                    ]
+                },
+                {
+                    "Title": "Funções",
+                    "Path": "/roles",
+                    "Layout": "AdminLayout",
+                    "EditLayout": "AdminLayout",
+                    "AdminRoles": [ "Administrators" ],
+                    "ViewRoles": [ "Administrators" ],
+                    "Settings": {
+                        "Index": "false",
+                        "Follow": "false"
+                    },
+                    "Locked": true,
+                    "Plugins": [
+                        {
+                            "Definition": "Role Management",
+                            "Section": "Main",
+                            "Locked": true
+                        }
+                    ]
+                },
+                {
+                    "Title": "Sites",
+                    "Path": "/sites",
+                    "Layout": "AdminLayout",
+                    "EditLayout": "AdminLayout",
+                    "AdminRoles": [ "Administrators" ],
+                    "ViewRoles": [ "Administrators" ],
+                    "Settings": {
+                        "Index": "false",
+                        "Follow": "false"
+                    },
+                    "Locked": true,
+                    "Plugins": [
+                        {
+                            "Definition": "Site Management",
+                            "Section": "Main",
+                            "Locked": true
+                        }
+                    ]
+                },
+                {
+                    "Title": "Plugins",
+                    "Path": "/plugins",
+                    "Layout": "AdminLayout",
+                    "EditLayout": "AdminLayout",
+                    "AdminRoles": [ "Administrators" ],
+                    "ViewRoles": [ "Administrators" ],
+                    "Settings": {
+                        "Index": "false",
+                        "Follow": "false"
+                    },
+                    "Locked": true,
+                    "Plugins": [
+                        {
+                            "Definition": "Plugin Definition Management",
+                            "Section": "Main",
+                            "Locked": true
+                        }
+                    ]
+                },
+                {
+                    "Title": "Páginas",
+                    "Path": "/pages",
+                    "Layout": "AdminLayout",
+                    "EditLayout": "AdminLayout",
+                    "AdminRoles": [ "Administrators" ],
+                    "ViewRoles": [ "Administrators" ],
+                    "Settings": {
+                        "Index": "false",
+                        "Follow": "false"
+                    },
+                    "Locked": true,
+                    "Plugins": [
+                        {
+                            "Definition": "Page Management",
+                            "Section": "Main",
+                            "Locked": true
+                        }
+                    ]
+                },
+                {
+                    "Title": "Blocos",
+                    "Path": "/blocks",
+                    "Layout": "AdminLayout",
+                    "EditLayout": "AdminLayout",
+                    "AdminRoles": [ "Administrators" ],
+                    "ViewRoles": [ "Administrators" ],
+                    "Settings": {
+                        "Index": "false",
+                        "Follow": "false"
+                    },
+                    "Locked": true,
+                    "Plugins": [
+                        {
+                            "Definition": "Block Management",
+                            "Section": "Main",
+                            "Locked": true
+                        }
+                    ]
+                },
+                {
+                    "Title": "Layouts",
+                    "Path": "/layouts",
+                    "Layout": "AdminLayout",
+                    "EditLayout": "AdminLayout",
+                    "AdminRoles": [ "Administrators" ],
+                    "ViewRoles": [ "Administrators" ],
+                    "Settings": {
+                        "Index": "false",
+                        "Follow": "false"
+                    },
+                    "Locked": true,
+                    "Plugins": [
+                        {
+                            "Definition": "Layout Management",
+                            "Section": "Main",
+                            "Locked": true
+                        }
+                    ]
+                },
+                {
+                    "Title": "Configurações Globais",
+                    "Path": "/globalsettings",
+                    "Layout": "AdminLayout",
+                    "EditLayout": "AdminLayout",
+                    "AdminRoles": [ "Administrators" ],
+                    "ViewRoles": [ "Administrators" ],
+                    "Settings": {
+                        "Index": "false",
+                        "Follow": "false"
+                    },
+                    "Locked": true,
+                    "Plugins": [
+                        {
+                            "Definition": "Global Settings Management",
+                            "Section": "Main",
+                            "Locked": true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "Title": "Autenticação",
+            "Path": "/auth",
+            "Children": [
+                {
+                    "Title": "Entrar",
+                    "Path": "/login",
+                    "Locked": true,
+                    "Layout": "AuthLayout",
+                    "ViewRoles": [ "All Users" ],
+                    "Settings": {
+                        "Index": "false",
+                        "Follow": "false"
+                    },
+                    "Plugins": [
+                        {
+                            "Definition": "Login",
+                            "Section": "Main"
+                        }
+                    ]
+                },
+                {
+                    "Title": "Sair",
+                    "Path": "/logout",
+                    "ViewRoles": [ "All Users" ],
+                    "Settings": {
+                        "Index": "false",
+                        "Follow": "false"
+                    },
+                    "Locked": true,
+                    "Plugins": [
+                        {
+                            "Definition": "Logout",
+                            "Section": "Main"
+                        }
+                    ]
+                },
+                {
+                    "Title": "Registrar",
+                    "Path": "/register",
+                    "Locked": true,
+                    "Layout": "AuthLayout",
+                    "ViewRoles": [ "All Users" ],
+                    "Settings": {
+                        "Index": "false",
+                        "Follow": "false"
+                    },
+                    "Plugins": [
+                        {
+                            "Definition": "Register",
+                            "Section": "Main"
+                        }
+                    ]
+                },
+                {
+                    "Title": "Redefinir Senha",
+                    "Path": "/reset-password",
+                    "Locked": true,
+                    "Layout": "AuthLayout",
+                    "ViewRoles": [ "All Users" ],
+                    "Settings": {
+                        "Index": "false",
+                        "Follow": "false"
+                    },
+                    "Plugins": [
+                        {
+                            "Definition": "Reset Password",
+                            "Section": "Main"
+                        }
+                    ]
+                },
+                {
+                    "Title": "Esqueci a Senha",
+                    "Path": "/forgot-password",
+                    "Locked": true,
+                    "Layout": "AuthLayout",
+                    "ViewRoles": [ "All Users" ],
+                    "Settings": {
+                        "Index": "false",
+                        "Follow": "false"
+                    },
+                    "Plugins": [
+                        {
+                            "Definition": "Forgot Password",
+                            "Section": "Main"
+                        }
+                    ]
+                },
+                {
+                    "Title": "Perfil",
+                    "Path": "/profile",
+                    "Layout": "AdminLayout",
+                    "EditLayout": "AdminLayout",
+                    "ViewRoles": [ "Authenticated Users" ],
+                    "Settings": {
+                        "Index": "false",
+                        "Follow": "false"
+                    },
+                    "Locked": true,
+                    "Plugins": [
+                        {
+                            "Definition": "Profile",
+                            "Section": "Main"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "Blocks": [
+        {
+            "Name": "Header",
+            "Category": "Headers",
+            "Description": "Bloco de Cabeçalho Simples"
+        },
+        {
+            "Name": "Default",
+            "Category": "Hero",
+            "Description": "Bloco Hero Padrão"
+        },
+        {
+            "Name": "Visual Image",
+            "Category": "Hero",
+            "Description": "Imagem visual com título"
+        },
+        {
+            "Name": "Default",
+            "Description": "Lista de recursos padrão",
+            "Category": "Feature"
+        },
+        {
+            "Name": "Default",
+            "Description": "Bloco CTA Padrão",
+            "Category": "CTA"
+        },
+        {
+            "Name": "With Image",
+            "Description": "CTA com Imagem",
+            "Category": "CTA"
+        },
+        {
+            "Name": "With Heading",
+            "Description": "CTA com Título",
+            "Category": "CTA"
+        },
+        {
+            "Name": "Simple",
+            "Category": "Content",
+            "Description": "Conteúdo com título e descrição"
+        },
+        {
+            "Name": "With Image",
+            "Category": "Content",
+            "Description": "Conteúdo com Imagem"
+        },
+        {
+            "Name": "Card",
+            "Category": "Teams",
+            "Description": "Seção de equipe com cartões"
+        },
+        {
+            "Name": "Clean",
+            "Category": "Teams",
+            "Description": "Layout em grade limpo sem cartões"
+        },
+        {
+            "Name": "Default",
+            "Category": "Pricing",
+            "Description": "Preços padrão com cartões"
+        },
+        {
+            "Name": "Default",
+            "Category": "Footer",
+            "Description": "Rodapé padrão"
+        },
+        {
+            "Name": "With Sitemap & Social",
+            "Category": "Footer",
+            "Description": "Rodapé com mapa do site e redes sociais"
+        },
+        {
+            "Name": "Default",
+            "Category": "Social Proof",
+            "Description": "Estatísticas simples"
+        },
+        {
+            "Name": "Card Statistics",
+            "Category": "Social Proof",
+            "Description": "Estatísticas em cartões"
+        },
+        {
+            "Name": "Icon Statistics",
+            "Category": "Social Proof",
+            "Description": "Estatísticas com ícones"
+        },
+        {
+            "Name": "With Gallery",
+            "Category": "Content",
+            "Description": "Conteúdo com galeria"
+        },
+        {
+            "Name": "Mobile App",
+            "Category": "CTA",
+            "Description": "Descrição e links para download do aplicativo móvel"
+        },
+        {
+            "Name": "Default",
+            "Category": "FAQ",
+            "Description": "Bloco de perguntas frequentes padrão"
+        },
+        {
+            "Name": "Default",
+            "Category": "Testimonials",
+            "Description": "Bloco de depoimentos padrão"
+        },
+        {
+            "Name": "Cards",
+            "Category": "Testimonials",
+            "Description": "Depoimentos em cartões"
+        },
+        {
+            "Name": "Default",
+            "Category": "Customer Logos",
+            "Description": "Seção de logotipos de clientes padrão"
+        },
+        {
+            "Name": "Default",
+            "Category": "Schedule",
+            "Description": "Seção de cronograma padrão"
+        },
+        {
+            "Name": "Simple",
+            "Category": "Title",
+            "Description": "Bloco de título simples"
+        }
+    ],
+    "ContentTypes": [
+        {
+            "Slug": "project",
+            "Title": "Projeto",
+            "Description": "Um tipo de conteúdo para apresentar projetos individuais do portfólio.",
+            "Fields": [
+                {
+                    "Name": "project_title",
+                    "Description": "Título do projeto",
+                    "Type": "string",
+                    "Required": true,
+                    "Unique": true,
+                    "Label": "Título do Projeto",
+                    "Settings": {
+                        "Placeholder": "Digite o título do projeto",
+                        "DataTableColumnOrder": 1,
+                        "DataTableVisible": true,
+                        "DataTableViewComponent": "StringFieldDataTableView",
+                        "FormViewOrder": 1,
+                        "FormColWidth": 6,
+                        "FormViewComponent": "StringFieldFormText"
+                    }
+                },
+                {
+                    "Name": "description",
+                    "Description": "Descrição detalhada do projeto",
+                    "Type": "string",
+                    "" : "",
+                    "Required": true,
+                    "Unique": false,
+                    "Label": "Descrição",
+                    "Settings": {
+                        "Placeholder": "Digite a descrição do projeto",
+                        "DataTableColumnOrder": 2,
+                        "DataTableVisible": true,
+                        "DataTableViewComponent": "StringFieldDataTableView",
+                        "FormViewOrder": 3,
+                        "FormColWidth": 12,
+                        "FormViewComponent": "StringFieldFormMarkdownText"
+                    }
+                },
+                {
+                    "Name": "start_date",
+                    "Description": "A data em que o projeto foi iniciado",
+                    "Type": "datetime",
+                    "Required": true,
+                    "Unique": false,
+                    "Label": "Data de Início",
+                    "Settings": {
+                        "Placeholder": "Escolha a data de início do projeto",
+                        "DataTableColumnOrder": 3,
+                        "DataTableVisible": true,
+                        "DataTableViewComponent": "DateFieldDataTableView",
+                        "FormViewOrder": 4,
+                        "FormColWidth": 6,
+                        "FormViewComponent": "DateFieldFormDate"
+                    }
+                },
+                {
+                    "Name": "end_date",
+                    "Description": "A data de conclusão do projeto (opcional)",
+                    "Type": "datetime",
+                    "Required": false,
+                    "Unique": false,
+                    "Label": "Data de Conclusão",
+                    "Settings": {
+                        "Placeholder": "Escolha a data de conclusão do projeto",
+                        "DataTableColumnOrder": 4,
+                        "DataTableVisible": true,
+                        "DataTableViewComponent": "DateFieldDataTableView",
+                        "FormViewOrder": 5,
+                        "FormColWidth": 6,
+                        "FormViewComponent": "DateFieldFormDate"
+                    }
+                },
+                {
+                    "Name": "technologies",
+                    "Description": "Lista de tecnologias utilizadas no projeto",
+                    "Type": "string",
+                    "Required": true,
+                    "Unique": false,
+                    "Label": "Tecnologias",
+                    "Settings": {
+                        "Placeholder": "Digite o nome das tecnologias utilizadas no projeto",
+                        "DataTableColumnOrder": 2,
+                        "DataTableVisible": true,
+                        "DataTableViewComponent": "StringFieldDataTableView",
+                        "FormViewOrder": 6,
+                        "FormColWidth": 12,
+                        "FormViewComponent": "StringFieldFormTextArea"
+                    }
+                },
+                {
+                    "Name": "project_url",
+                    "Description": "Link para o projeto publicado ou repositório",
+                    "Type": "string",
+                    "Required": false,
+                    "Unique": false,
+                    "Label": "URL do Projeto",
+                    "Settings": {
+                        "Placeholder": "Digite a URL ou link do repositório do projeto",
+                        "DataTableColumnOrder": 6,
+                        "DataTableVisible": true,
+                        "DataTableViewComponent": "StringFieldDataTableView",
+                        "FormViewOrder": 2,
+                        "FormColWidth": 6,
+                        "FormViewComponent": "StringFieldFormText"
+                    }
+                },
+                {
+                    "Name": "image",
+                    "Description": "Uma imagem ou captura de tela do projeto",
+                    "Type": "single-file",
+                    "Required": false,
+                    "Unique": false,
+                    "Label": "Imagem",
+                    "Settings": {
+                        "Placeholder": "Escolha a imagem principal do projeto",
+                        "DataTableVisible": true,
+                        "DataTableViewComponent": "SingleFileFieldDataTableFile",
+                        "FormViewOrder": 3,
+                        "FormColWidth": 12,
+                        "FormViewComponent": "SingleFileFieldFormFilePicker"
+                    }
+                }
+            ],
+            "Contents": [
+                {
+                    "project_title": "Site de Portfólio Pessoal",
+                    "description": "Um site pessoal apresentando meu portfólio, blog e informações de contato.",
+                    "start_date": "2023-01-15",
+                    "end_date": "2023-03-10",
+                    "technologies": "HTML, CSS, JavaScript, Tailwind CSS",
+                    "project_url": "https://portfolio.example.com",
+                    "image": "/files/contents/portfolio.png"
+                },
+                {
+                    "project_title": "Plataforma de E-commerce",
+                    "description": "Uma plataforma de e-commerce completa com catálogo de produtos, carrinho e checkout.",
+                    "start_date": "2022-05-01",
+                    "end_date": "2022-07-20",
+                    "technologies": "React, Node.js, MongoDB, Stripe API",
+                    "project_url": "https://ecommerce.example.com",
+                    "image": "/files/contents/commerce.png"
+                },
+                {
+                    "project_title": "Aplicativo de Gerenciamento de Tarefas",
+                    "description": "Um aplicativo de gerenciamento de tarefas responsivo com recursos de atribuição e prazos.",
+                    "start_date": "2022-08-10",
+                    "end_date": "2022-10-05",
+                    "technologies": "Vue.js, Firebase, Tailwind CSS",
+                    "project_url": "https://taskmanager.example.com",
+                    "image": "/files/contents/task.png"
+                },
+                {
+                    "project_title": "Painel de Mídias Sociais",
+                    "description": "Um painel que agrega métricas de redes sociais como Twitter, Facebook e Instagram.",
+                    "start_date": "2023-02-01",
+                    "end_date": "2023-04-15",
+                    "technologies": "Next.js, Node.js, Chart.js, API Integrations",
+                    "project_url": "https://socialdashboard.example.com",
+                    "image": "/files/contents/dashboard.png"
+                },
+                {
+                    "project_title": "Plataforma de Blog",
+                    "description": "Uma plataforma de blog com edição em rich text, gerenciamento de categorias e otimizações de SEO.",
+                    "start_date": "2021-11-01",
+                    "end_date": "2022-01-15",
+                    "technologies": "WordPress, PHP, MySQL",
+                    "project_url": "https://blogplatform.example.com",
+                    "image": "/files/contents/blog.png"
+                },
+                {
+                    "project_title": "Portal Imobiliário",
+                    "description": "Um site para imobiliárias anunciarem imóveis com mapas interativos e recursos de contato.",
+                    "start_date": "2022-09-05",
+                    "end_date": "2022-11-20",
+                    "technologies": "Laravel , Vue.js, Leaflet.js",
+                    "project_url": "https://realestate.example.com",
+                    "image": "/files/contents/real-estate.png"
+
+                }
+            ]
+        },
+        {
+            "Slug": "skill",
+            "Title": "Habilidade",
+            "Description": "Um tipo de conteúdo para listar habilidades no portfólio.",
+            "Fields": [
+                {
+                    "Name": "skill_name",
+                    "Description": "Nome da habilidade",
+                    "Type": "string",
+                    "Required": true,
+                    "Unique": true,
+                    "Label": "Nome da Habilidade",
+                    "Settings": null
+                },
+                {
+                    "Name": "proficiency",
+                    "Description": "Nível de proficiência na habilidade",
+                    "Type": "string",
+                    "Required": true,
+                    "Unique": false,
+                    "Label": "Proficiência",
+                    "Settings": {
+                        "options": [
+                            "Iniciante",
+                            "Intermediário",
+                            "Avançado",
+                            "Especialista"
+                        ]
+                    }
+                }
+            ],
+            "Contents": [
+                {
+                    "skill_name": "React",
+                    "proficiency": "Avançado"
+                },
+                {
+                    "skill_name": "Blazor",
+                    "proficiency": "Avançado"
+                },
+                {
+                    "skill_name": "SEO",
+                    "proficiency": "Especialista"
+                },
+                {
+                    "skill_name": "HTML",
+                    "proficiency": "Iniciante"
+                }
+            ]
+        }
+    ]
+}
+

@@ -1,0 +1,62 @@
+<Solution>
+  <Folder Name="/Backend/">
+    <Project Path="Backend/JT_CMS.Entities/JT_CMS.Entities.csproj" />
+    <Project Path="Backend/JT_CMS.Identity/JT_CMS.Identity.csproj" />
+    <Project Path="Backend/JT_CMS.Services/JT_CMS.Services.csproj" />
+    <Project Path="Backend/JT_CMS.Web.Api/JT_CMS.Web.Api.csproj" />
+  </Folder>
+  <Folder Name="/Backend/Repositories/">
+    <Project Path="Backend/Repositories/JT_CMS.Repositories.Abstractions/JT_CMS.Repositories.Abstractions.csproj" />
+    <Project Path="Backend/Repositories/JT_CMS.Repositories.Caching/JT_CMS.Repositories.Caching.csproj" />
+    <Project Path="Backend/Repositories/JT_CMS.Repositories.EFCore.MySql/JT_CMS.Repositories.EFCore.MySql.csproj" />
+    <Project Path="Backend/Repositories/JT_CMS.Repositories.EFCore.PostgreSQL/JT_CMS.Repositories.EFCore.PostgreSQL.csproj" />
+    <Project Path="Backend/Repositories/JT_CMS.Repositories.EFCore.Sqlite/JT_CMS.Repositories.EFCore.Sqlite.csproj" />
+    <Project Path="Backend/Repositories/JT_CMS.Repositories.EFCore.SqlServer/JT_CMS.Repositories.EFCore.SqlServer.csproj" />
+    <Project Path="Backend/Repositories/JT_CMS.Repositories.EFCore/JT_CMS.Repositories.EFCore.csproj" />
+    <Project Path="Backend/Repositories/JT_CMS.Repositories.LiteDb/JT_CMS.Repositories.LiteDb.csproj" />
+    <Project Path="Backend/Repositories/JT_CMS.Repositories.MongoDB/JT_CMS.Repositories.MongoDB.csproj" />
+  </Folder>
+  <Folder Name="/Frontend/">
+    <Project Path="Frontend/JT_CMS.Web.ApiClients/JT_CMS.Web.ApiClients.csproj" />
+    <Project Path="Frontend/JT_CMS.Web.UI.Components/JT_CMS.Web.UI.Components.csproj" />
+    <Project Path="Frontend/JT_CMS.Web.UI.TailwindStyleBuilder/JT_CMS.Web.UI.TailwindStyleBuilder.csproj" />
+    <Project Path="Frontend/JT_CMS.Web.UI/JT_CMS.Web.UI.csproj" />
+  </Folder>
+  <Folder Name="/Frontend/Plugins/">
+    <Project Path="Frontend/Plugins/JT_CMS.Web.Plugins.Admin/JT_CMS.Web.Plugins.Admin.csproj" />
+    <Project Path="Frontend/Plugins/JT_CMS.Web.Plugins.Base/JT_CMS.Web.Plugins.Base.csproj" />
+    <Project Path="Frontend/Plugins/JT_CMS.Web.Plugins.Block/JT_CMS.Web.Plugins.Block.csproj" />
+    <Project Path="Frontend/Plugins/JT_CMS.Web.Plugins.ContactUs/JT_CMS.Web.Plugins.ContactUs.csproj" />
+    <Project Path="Frontend/Plugins/JT_CMS.Web.Plugins.ContentViewer/JT_CMS.Web.Plugins.ContentViewer.csproj" />
+    <Project Path="Frontend/Plugins/JT_CMS.Web.Plugins.IFrame/JT_CMS.Web.Plugins.IFrame.csproj" />
+    <Project Path="Frontend/Plugins/JT_CMS.Web.Plugins.RichText/JT_CMS.Web.Plugins.RichText.csproj" />
+    <Project Path="Frontend/Plugins/JT_CMS.Web.Plugins.TextHTML/JT_CMS.Web.Plugins.TextHTML.csproj" />
+  </Folder>
+  <Folder Name="/Providers/" />
+  <Folder Name="/Providers/ApiTokenProviders/">
+    <Project Path="Providers/ApiTokenProviders/JT_CMS.Providers.ApiTokenProviders.Abstractions/JT_CMS.Providers.ApiTokenProviders.Abstractions.csproj" />
+    <Project Path="Providers/ApiTokenProviders/JT_CMS.Providers.ApiTokenProviders/JT_CMS.Providers.ApiTokenProviders.csproj" />
+  </Folder>
+  <Folder Name="/Providers/CacheProviders/">
+    <Project Path="Providers/CacheProviders/JT_CMS.Providers.CacheProviders.Abstractions/JT_CMS.Providers.CacheProviders.Abstractions.csproj" />
+    <Project Path="Providers/CacheProviders/JT_CMS.Providers.CacheProviders/JT_CMS.Providers.CacheProviders.csproj" />
+  </Folder>
+  <Folder Name="/Providers/EmailProviders/">
+    <Project Path="Providers/EmailProviders/JT_CMS.Providers.EmailProviders.Abstractions/JT_CMS.Providers.EmailProviders.Abstractions.csproj" />
+    <Project Path="Providers/EmailProviders/JT_CMS.Providers.EmailProviders/JT_CMS.Providers.EmailProviders.csproj" />
+  </Folder>
+  <Folder Name="/Providers/FileStorageProviders/">
+    <Project Path="Providers/FileStorageProviders/JT_CMS.Providers.FileStorageProviders.Abstractions/JT_CMS.Providers.FileStorageProviders.Abstractions.csproj" />
+    <Project Path="Providers/FileStorageProviders/JT_CMS.Providers.FileStorageProviders/JT_CMS.Providers.FileStorageProviders.csproj" />
+  </Folder>
+  <Folder Name="/Providers/MessageBusProviders/">
+    <Project Path="Providers/MessageBusProviders/JT_CMS.Providers.MessageBusProviders.Abstractions/JT_CMS.Providers.MessageBusProviders.Abstractions.csproj" />
+    <Project Path="Providers/MessageBusProviders/JT_CMS.Providers.MessageBusProviders/JT_CMS.Providers.MessageBusProviders.csproj" />
+  </Folder>
+  <Folder Name="/Providers/TemplateRenderingProviders/">
+    <Project Path="Providers/TemplateRenderingProviders/JT_CMS.Providers.TemplateRenderingProviders.Abstractions/JT_CMS.Providers.TemplateRenderingProviders.Abstractions.csproj" />
+    <Project Path="Providers/TemplateRenderingProviders/JT_CMS.Providers.TemplateRenderingProviders/JT_CMS.Providers.TemplateRenderingProviders.csproj" />
+  </Folder>
+  <Project Path="JT_CMS/JT_CMS.csproj" />
+  <Project Path="JT_CMS.Shared/JT_CMS.Shared.csproj" />
+</Solution>

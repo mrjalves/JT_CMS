@@ -1,0 +1,12 @@
+﻿namespace JT_CMS.Repositories.EFCore;
+
+public class ContentRepository(JT_CMSDbContext dbContext, IMapper mapper, IApiExecutionContext apiExecutionContext) : SiteAssociatedRepository<Content, ContentModel>(dbContext, mapper, apiExecutionContext),
+    IContentRepository
+{
+
+    public async Task<IEnumerable<Content>> GetAll(Guid contentTypeId, CancellationToken cancellationToken = default)
+    {
+        var dbEntity = await DbContext.Contents.Where(x => x.TypeId == contentTypeId).ToListAsync(cancellationToken);
+        return Mapper.Map<IEnumerable<Content>>(dbEntity);
+    }
+}

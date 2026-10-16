@@ -1,0 +1,6 @@
+@inherits BaseEditPlugin
+@namespace JT_CMS.Web.Plugins.RichText
+
+<PluginModalForm Open="Open" Title="Editar Conteúdo de Texto Rico" Model="@Model" OnCancel="OnCancel" OnSubmit="HandleSubmit" Name="@CONTENT_TYPE_NAME">
+    <FormRichTextEditor Placeholder="Escreva o conteúdo" @bind-Value="@Model!.Content" Label="Conteúdo" />
+</PluginModalForm>

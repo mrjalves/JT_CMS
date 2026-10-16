@@ -1,0 +1,12 @@
+﻿namespace JT_CMS.Entities;
+
+public class AuditableEntityLog
+{
+    public Guid Id { get; set; }
+    public string EntityType { get; set; } = default!;
+    public Guid EntityId { get; set; }
+    public string Action { get; set; } = default!;
+    public DateTime TimeStamp { get; set; } = DateTime.UtcNow;
+    public string Username { get; set; } = default!;
+    public object? Entity { get; set; }
+}

@@ -1,0 +1,17 @@
+@inherits BaseEditPlugin
+@namespace JT_CMS.Web.Plugins.IFrame
+
+<PluginModalForm Open="Open" Title="Editar IFrame" Model="@Model" OnSubmit="HandleSubmit" OnCancel="OnCancel" Name="IFrameEditPlugin">
+    <FormSwitch Label="Usar URL de Origem" Text="Selecione para usar um URL de página ou desmarque para incorporar HTML personalizado." @bind-Value="@Model!.IsUsingSrc" />
+
+    @if (Model.IsUsingSrc)
+    {
+        <FormInput Label="URL de Origem" Placeholder="Digite o URL da página externa" Hint="Forneça o URL da página web que deseja incorporar no iframe." @bind-Value="@Model!.Src" />
+    }
+    else
+    {
+        <FormTextarea Label="Código de Incorporação" Rows="5" Placeholder="Digite o HTML personalizado" Hint="Cole o código HTML completo aqui. Isso substituirá o URL de Origem se fornecido." @bind-Value="@Model!.EmbedCode" />
+    }
+
+    <FormInput Label="Altura" Placeholder="Digite a altura do iframe (ex: 400px, 50%)" Hint="Especifique a altura do iframe. Você pode usar pixels (px), porcentagem (%) ou outras unidades CSS válidas." @bind-Value="@Model!.Height" />
+</PluginModalForm>

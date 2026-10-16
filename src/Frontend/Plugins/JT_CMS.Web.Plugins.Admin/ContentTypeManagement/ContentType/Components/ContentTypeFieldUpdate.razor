@@ -1,0 +1,8 @@
+﻿@inherits BaseContentTypeFieldComponent
+
+@namespace JT_CMS.Web.Plugins.Admin.ContentTypeManagement
+
+@if (Visible)
+{
+    <DynamicComponent Type="FieldTypes.GetSettingType(ContentTypeField!.Type!)" Parameters="GetParameters()" />
+}

@@ -1,0 +1,8 @@
+@namespace JT_CMS.Web.Plugins
+
+@inherits ActionButton
+
+@if (Visible)
+{
+    <ActionButton IconName="IconName.Delete" Label="Excluir" Color="Color.Danger" Href="@Href" @attributes="AdditionalAttributes" />
+}

@@ -1,0 +1,8 @@
+@namespace JT_CMS.Web.Plugins
+
+@inherits ActionButton
+
+@if (Visible)
+{
+    <ActionButton IconName="IconName.Plus" Color="Color.Primary" Label="@(Label ?? "Criar")" Href="@Href" @attributes="AdditionalAttributes" />
+}

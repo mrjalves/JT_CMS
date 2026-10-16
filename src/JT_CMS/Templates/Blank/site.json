@@ -1,0 +1,539 @@
+{
+    "Name": "JT_CMS Administration",
+    "Description": "Modelo de site em branco JT_CMS",
+    "Layout": "DefaultLayout",
+    "EditLayout": "EditLayout",
+    "DetailLayout": "SingleLayout",
+    "AdminRoles": [ "Administrators" ],
+    "ContributorRoles": [ "Contributors" ],
+    "Settings": {
+        "MetaTitle": "JT_CMS - CMS Blazor Impulsionado por IA",
+        "MetaDescription": "JT_CMS é um CMS Blazor de código aberto impulsionado por IA, projetado para simplificar o gerenciamento de conteúdo com flexibilidade e escalabilidade para sites modernos.",
+        "GoogleTagsId": "",
+        "Head": "",
+        "Index": "true",
+        "Follow": "true",
+        "OgType": "website",
+        "RobotsTxt": "User-agent: *\nDisallow: /admin",
+        "Theme": ":root {\n        --f-primary-50: 48 100% 96.1%;\n        --f-primary-100: 48 96.5% 88.8%;\n        --f-primary-200: 48 96.6% 76.7%;\n        --f-primary-300: 45.9 96.7% 64.5%;\n        --f-primary-400: 43.3 96.4% 56.3%;\n        --f-primary-500: 37.7 92.1% 50.2%;\n        --f-primary-600: 32.1 94.6% 43.7%;\n        --f-primary-700: 26 90.5% 37.1%;\n        --f-primary-800: 22.7 82.5% 31.4%;\n        --f-primary-900: 21.7 77.8% 26.5%;\n}\n\n            :root {\n        --f-surface: 240, 17%, 98%; \n        --f-surface-muted: 240, 10%, 96%; \n        --f-surface-accent: 0, 0%, 100%; \n        --f-content: 240, 10%, 38%; \n        --f-content-muted: 240, 8%, 55%; \n        --f-content-accent: 240, 17%, 15%; \n        --f-border: 240, 7%, 89%; \n        --f-border-muted: 240, 10%, 96%; \n        --f-border-accent: 240, 5%, 75%; \n    }\n\n    .dark {\n        --f-surface: 220.91, 39.29%, 10.98%; \n        --f-surface-muted: 240, 10%, 38%; \n        --f-surface-accent: 215, 28%, 17%; \n\n        --f-content: 240, 7%, 89%; \n        --f-content-muted: 240, 8%, 77%; \n        --f-content-accent: 0, 0%, 100%; \n\n        --f-border: 240, 10%, 38%; \n        --f-border-muted: 240, 10%, 38%; \n        --f-border-accent: 240, 8%, 55%; \n    }"
+    },
+    "Roles": [
+        {
+            "Name": "Administrators",
+            "Description": "Função padrão de administradores com acesso total ao site",
+            "Type": 1
+        },
+        {
+            "Name": "Authenticated Users",
+            "Description": "Função padrão de usuários autenticados",
+            "Type": 2
+        },
+        {
+            "Name": "Guests",
+            "Description": "Função padrão de usuários não autenticados (visitantes)",
+            "Type": 3
+        },
+        {
+            "Name": "All Users",
+            "Description": "Função padrão para todos os usuários (autenticados ou não)",
+            "Type": 4
+        },
+        {
+            "Name": "Contributors",
+            "Description": "Usuários colaboradores para gerenciar páginas, plugins, etc.",
+            "Type": 0
+        }
+    ],
+    "Layouts": [
+        {
+            "Name": "DefaultLayout"
+        },
+        {
+            "Name": "AdminLayout"
+        },
+        {
+            "Name": "AuthLayout"
+        },
+        {
+            "Name": "EditLayout"
+        },
+        {
+            "Name": "SingleLayout"
+        }
+    ],
+    "Pages": [
+        {
+            "Title": "Início",
+            "Path": "/",
+            "EditLayout": "EditLayout",
+            "ViewRoles": [ "All Users" ],
+            "Plugins": []
+        },
+        {
+            "Title": "Administração",
+            "Path": "/admin",
+            "Layout": "AdminLayout",
+            "EditLayout": "AdminLayout",
+            "AdminRoles": [ "Administrators" ],
+            "ViewRoles": [ "Administrators" ],
+            "Locked": true,
+            "Plugins": [],
+            "Settings": {
+                "Index": "false",
+                "Follow": "false"
+            },
+            "Children": [
+                {
+                    "Title": "Construtor de Tipos de Conteúdo",
+                    "Path": "/content-types",
+                    "Layout": "AdminLayout",
+                    "EditLayout": "AdminLayout",
+                    "AdminRoles": [ "Administrators" ],
+                    "ViewRoles": [ "Administrators" ],
+                    "Settings": {
+                        "Index": "false",
+                        "Follow": "false"
+                    },
+                    "Locked": true,
+                    "Plugins": [
+                        {
+                            "Definition": "ContentType Management",
+                            "Section": "Main",
+                            "Locked": true
+                        }
+                    ]
+                },
+                {
+                    "Title": "Usuários",
+                    "Path": "/users",
+                    "Layout": "AdminLayout",
+                    "EditLayout": "AdminLayout",
+                    "AdminRoles": [ "Administrators" ],
+                    "ViewRoles": [ "Administrators" ],
+                    "Settings": {
+                        "Index": "false",
+                        "Follow": "false"
+                    },
+                    "Locked": true,
+                    "Plugins": [
+                        {
+                            "Definition": "User Management",
+                            "Section": "Main",
+                            "Locked": true
+                        }
+                    ]
+                },
+                {
+                    "Title": "Gerenciamento de Arquivos",
+                    "Path": "/files",
+                    "Layout": "AdminLayout",
+                    "EditLayout": "AdminLayout",
+                    "AdminRoles": [ "Administrators" ],
+                    "ViewRoles": [ "Administrators" ],
+                    "Settings": {
+                        "Index": "false",
+                        "Follow": "false"
+                    },
+                    "Locked": true,
+                    "Plugins": [
+                        {
+                            "Definition": "File Management",
+                            "Section": "Main",
+                            "Locked": true
+                        }
+                    ]
+                },
+                {
+                    "Title": "Tokens de API",
+                    "Path": "/api-tokens",
+                    "Layout": "AdminLayout",
+                    "EditLayout": "AdminLayout",
+                    "AdminRoles": [ "Administrators" ],
+                    "ViewRoles": [ "Administrators" ],
+                    "Settings": {
+                        "Index": "false",
+                        "Follow": "false"
+                    },
+                    "Locked": true,
+                    "Plugins": [
+                        {
+                            "Definition": "Api Token Management",
+                            "Section": "Main",
+                            "Locked": true
+                        }
+                    ]
+                },
+                {
+                    "Title": "Funções",
+                    "Path": "/roles",
+                    "Layout": "AdminLayout",
+                    "EditLayout": "AdminLayout",
+                    "AdminRoles": [ "Administrators" ],
+                    "ViewRoles": [ "Administrators" ],
+                    "Settings": {
+                        "Index": "false",
+                        "Follow": "false"
+                    },
+                    "Locked": true,
+                    "Plugins": [
+                        {
+                            "Definition": "Role Management",
+                            "Section": "Main",
+                            "Locked": true
+                        }
+                    ]
+                },
+                {
+                    "Title": "Sites",
+                    "Path": "/sites",
+                    "Layout": "AdminLayout",
+                    "EditLayout": "AdminLayout",
+                    "AdminRoles": [ "Administrators" ],
+                    "ViewRoles": [ "Administrators" ],
+                    "Settings": {
+                        "Index": "false",
+                        "Follow": "false"
+                    },
+                    "Locked": true,
+                    "Plugins": [
+                        {
+                            "Definition": "Site Management",
+                            "Section": "Main",
+                            "Locked": true
+                        }
+                    ]
+                },
+                {
+                    "Title": "Plugins",
+                    "Path": "/plugins",
+                    "Layout": "AdminLayout",
+                    "EditLayout": "AdminLayout",
+                    "AdminRoles": [ "Administrators" ],
+                    "ViewRoles": [ "Administrators" ],
+                    "Settings": {
+                        "Index": "false",
+                        "Follow": "false"
+                    },
+                    "Locked": true,
+                    "Plugins": [
+                        {
+                            "Definition": "Plugin Definition Management",
+                            "Section": "Main",
+                            "Locked": true
+                        }
+                    ]
+                },
+                {
+                    "Title": "Páginas",
+                    "Path": "/pages",
+                    "Layout": "AdminLayout",
+                    "EditLayout": "AdminLayout",
+                    "AdminRoles": [ "Administrators" ],
+                    "ViewRoles": [ "Administrators" ],
+                    "Settings": {
+                        "Index": "false",
+                        "Follow": "false"
+                    },
+                    "Locked": true,
+                    "Plugins": [
+                        {
+                            "Definition": "Page Management",
+                            "Section": "Main",
+                            "Locked": true
+                        }
+                    ]
+                },
+                {
+                    "Title": "Blocos",
+                    "Path": "/blocks",
+                    "Layout": "AdminLayout",
+                    "EditLayout": "AdminLayout",
+                    "AdminRoles": [ "Administrators" ],
+                    "ViewRoles": [ "Administrators" ],
+                    "Settings": {
+                        "Index": "false",
+                        "Follow": "false"
+                    },
+                    "Locked": true,
+                    "Plugins": [
+                        {
+                            "Definition": "Block Management",
+                            "Section": "Main",
+                            "Locked": true
+                        }
+                    ]
+                },
+                {
+                    "Title": "Layouts",
+                    "Path": "/layouts",
+                    "Layout": "AdminLayout",
+                    "EditLayout": "AdminLayout",
+                    "AdminRoles": [ "Administrators" ],
+                    "ViewRoles": [ "Administrators" ],
+                    "Settings": {
+                        "Index": "false",
+                        "Follow": "false"
+                    },
+                    "Locked": true,
+                    "Plugins": [
+                        {
+                            "Definition": "Layout Management",
+                            "Section": "Main",
+                            "Locked": true
+                        }
+                    ]
+                },
+                {
+                    "Title": "Configurações Globais",
+                    "Path": "/globalsettings",
+                    "Layout": "AdminLayout",
+                    "EditLayout": "AdminLayout",
+                    "AdminRoles": [ "Administrators" ],
+                    "ViewRoles": [ "Administrators" ],
+                    "Settings": {
+                        "Index": "false",
+                        "Follow": "false"
+                    },
+                    "Locked": true,
+                    "Plugins": [
+                        {
+                            "Definition": "Global Settings Management",
+                            "Section": "Main",
+                            "Locked": true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "Title": "Autenticação",
+            "Path": "/auth",
+            "Children": [
+                {
+                    "Title": "Entrar",
+                    "Path": "/login",
+                    "Locked": true,
+                    "Layout": "AuthLayout",
+                    "ViewRoles": [ "All Users" ],
+                    "Settings": {
+                        "Index": "false",
+                        "Follow": "false"
+                    },
+                    "Plugins": [
+                        {
+                            "Definition": "Login",
+                            "Section": "Main"
+                        }
+                    ]
+                },
+                {
+                    "Title": "Sair",
+                    "Path": "/logout",
+                    "ViewRoles": [ "All Users" ],
+                    "Settings": {
+                        "Index": "false",
+                        "Follow": "false"
+                    },
+                    "Locked": true,
+                    "Plugins": [
+                        {
+                            "Definition": "Logout",
+                            "Section": "Main"
+                        }
+                    ]
+                },
+                {
+                    "Title": "Registrar",
+                    "Path": "/register",
+                    "ViewRoles": [ "All Users" ],
+                    "Settings": {
+                        "Index": "false",
+                        "Follow": "false"
+                    },
+                    "Locked": true,
+                    "Layout": "AuthLayout",
+                    "Plugins": [
+                        {
+                            "Definition": "Register",
+                            "Section": "Main"
+                        }
+                    ]
+                },
+                {
+                    "Title": "Redefinir Senha",
+                    "Path": "/reset-password",
+                    "ViewRoles": [ "All Users" ],
+                    "Settings": {
+                        "Index": "false",
+                        "Follow": "false"
+                    },
+                    "Locked": true,
+                    "Layout": "AuthLayout",
+                    "Plugins": [
+                        {
+                            "Definition": "Reset Password",
+                            "Section": "Main"
+                        }
+                    ]
+                },
+                {
+                    "Title": "Esqueci a Senha",
+                    "Path": "/forgot-password",
+                    "ViewRoles": [ "All Users" ],
+                    "Settings": {
+                        "Index": "false",
+                        "Follow": "false"
+                    },
+                    "Locked": true,
+                    "Layout": "AuthLayout",
+                    "Plugins": [
+                        {
+                            "Definition": "Forgot Password",
+                            "Section": "Main"
+                        }
+                    ]
+                },
+                {
+                    "Title": "Perfil",
+                    "Path": "/profile",
+                    "ViewRoles": [ "Authenticated Users" ],
+                    "Settings": {
+                        "Index": "false",
+                        "Follow": "false"
+                    },
+                    "Layout": "AdminLayout",
+                    "EditLayout": "AdminLayout",
+                    "Locked": true,
+                    "Plugins": [
+                        {
+                            "Definition": "Profile",
+                            "Section": "Main"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "Blocks": [
+        {
+            "Name": "Header",
+            "Category": "Headers",
+            "Description": "Bloco de Cabeçalho Simples"
+        },
+        {
+            "Name": "Default",
+            "Category": "Hero",
+            "Description": "Bloco Hero Padrão"
+        },
+        {
+            "Name": "Visual Image",
+            "Category": "Hero",
+            "Description": "Imagem visual com título"
+        },
+        {
+            "Name": "Default",
+            "Description": "Lista de recursos padrão",
+            "Category": "Feature"
+        },
+        {
+            "Name": "Default",
+            "Description": "Bloco CTA Padrão",
+            "Category": "CTA"
+        },
+        {
+            "Name": "With Image",
+            "Description": "CTA com Imagem",
+            "Category": "CTA"
+        },
+        {
+            "Name": "With Heading",
+            "Description": "CTA com Título",
+            "Category": "CTA"
+        },
+        {
+            "Name": "Simple",
+            "Category": "Content",
+            "Description": "Conteúdo com título e descrição"
+        },
+        {
+            "Name": "With Image",
+            "Category": "Content",
+            "Description": "Conteúdo com Imagem"
+        },
+        {
+            "Name": "Card",
+            "Category": "Teams",
+            "Description": "Seção de equipe com cartões"
+        },
+        {
+            "Name": "Clean",
+            "Category": "Teams",
+            "Description": "Layout em grade limpo sem cartões"
+        },
+        {
+            "Name": "Default",
+            "Category": "Pricing",
+            "Description": "Preços padrão com cartões"
+        },
+        {
+            "Name": "Default",
+            "Category": "Footer",
+            "Description": "Rodapé padrão"
+        },
+        {
+            "Name": "With Sitemap & Social",
+            "Category": "Footer",
+            "Description": "Rodapé com mapa do site e redes sociais"
+        },
+        {
+            "Name": "Default",
+            "Category": "Social Proof",
+            "Description": "Estatísticas simples"
+        },
+        {
+            "Name": "Card Statistics",
+            "Category": "Social Proof",
+            "Description": "Estatísticas em cartões"
+        },
+        {
+            "Name": "Icon Statistics",
+            "Category": "Social Proof",
+            "Description": "Estatísticas com ícones"
+        },
+        {
+            "Name": "With Gallery",
+            "Category": "Content",
+            "Description": "Conteúdo com galeria"
+        },
+        {
+            "Name": "Mobile App",
+            "Category": "CTA",
+            "Description": "Descrição e links para download do aplicativo móvel"
+        },
+        {
+            "Name": "Default",
+            "Category": "FAQ",
+            "Description": "Bloco de perguntas frequentes padrão"
+        },
+        {
+            "Name": "Default",
+            "Category": "Testimonials",
+            "Description": "Bloco de depoimentos padrão"
+        },
+        {
+            "Name": "Cards",
+            "Category": "Testimonials",
+            "Description": "Depoimentos em cartões"
+        },
+        {
+            "Name": "Default",
+            "Category": "Customer Logos",
+            "Description": "Seção de logotipos de clientes padrão"
+        },
+        {
+            "Name": "Default",
+            "Category": "Schedule",
+            "Description": "Seção de cronograma padrão"
+        }
+    ]
+}

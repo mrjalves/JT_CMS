@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <InvariantGlobalization>false</InvariantGlobalization>
+    <Version>0.0.0.0</Version>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Backend\JT_CMS.Web.Api\JT_CMS.Web.Api.csproj" />
+    <ProjectReference Include="..\Backend\Repositories\JT_CMS.Repositories.Caching\JT_CMS.Repositories.Caching.csproj" />
+    <ProjectReference Include="..\Backend\Repositories\JT_CMS.Repositories.EFCore.MySql\JT_CMS.Repositories.EFCore.MySql.csproj" />
+    <ProjectReference Include="..\Backend\Repositories\JT_CMS.Repositories.EFCore.PostgreSQL\JT_CMS.Repositories.EFCore.PostgreSQL.csproj" />
+    <ProjectReference Include="..\Backend\Repositories\JT_CMS.Repositories.EFCore.Sqlite\JT_CMS.Repositories.EFCore.Sqlite.csproj" />
+    <ProjectReference Include="..\Backend\Repositories\JT_CMS.Repositories.EFCore.SqlServer\JT_CMS.Repositories.EFCore.SqlServer.csproj" />
+    <ProjectReference Include="..\Backend\Repositories\JT_CMS.Repositories.MongoDB\JT_CMS.Repositories.MongoDB.csproj" />
+    <ProjectReference Include="..\Backend\Repositories\JT_CMS.Repositories.LiteDb\JT_CMS.Repositories.LiteDb.csproj" />
+    <ProjectReference Include="..\Frontend\JT_CMS.Web.UI\JT_CMS.Web.UI.csproj" />
+    <ProjectReference Include="..\Frontend\Plugins\JT_CMS.Web.Plugins.TextHTML\JT_CMS.Web.Plugins.TextHTML.csproj" />
+    <ProjectReference Include="..\Frontend\Plugins\JT_CMS.Web.Plugins.Block\JT_CMS.Web.Plugins.Block.csproj" />
+    <ProjectReference Include="..\Frontend\Plugins\JT_CMS.Web.Plugins.ContactUs\JT_CMS.Web.Plugins.ContactUs.csproj" />
+    <ProjectReference Include="..\Frontend\Plugins\JT_CMS.Web.Plugins.RichText\JT_CMS.Web.Plugins.RichText.csproj" />
+    <ProjectReference Include="..\Frontend\Plugins\JT_CMS.Web.Plugins.IFrame\JT_CMS.Web.Plugins.IFrame.csproj" />
+    <ProjectReference Include="..\Frontend\Plugins\JT_CMS.Web.Plugins.ContentViewer\JT_CMS.Web.Plugins.ContentViewer.csproj" />
+    <ProjectReference Include="..\Frontend\Plugins\JT_CMS.Web.Plugins.Admin\JT_CMS.Web.Plugins.Admin.csproj" />
+    <ProjectReference Include="..\Providers\ApiTokenProviders\JT_CMS.Providers.ApiTokenProviders\JT_CMS.Providers.ApiTokenProviders.csproj" />
+    <ProjectReference Include="..\Providers\CacheProviders\JT_CMS.Providers.CacheProviders\JT_CMS.Providers.CacheProviders.csproj" />
+    <ProjectReference Include="..\Providers\EmailProviders\JT_CMS.Providers.EmailProviders\JT_CMS.Providers.EmailProviders.csproj" />
+    <ProjectReference Include="..\Providers\FileStorageProviders\JT_CMS.Providers.FileStorageProviders\JT_CMS.Providers.FileStorageProviders.csproj" />
+    <ProjectReference Include="..\Providers\MessageBusProviders\JT_CMS.Providers.MessageBusProviders\JT_CMS.Providers.MessageBusProviders.csproj" />
+    <ProjectReference Include="..\Providers\TemplateRenderingProviders\JT_CMS.Providers.TemplateRenderingProviders\JT_CMS.Providers.TemplateRenderingProviders.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Templates\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational">
+      <Version>9.0.8</Version>
+    </PackageReference>
+  </ItemGroup>
+</Project>

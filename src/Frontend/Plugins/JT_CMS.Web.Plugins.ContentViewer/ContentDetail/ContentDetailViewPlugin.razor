@@ -1,0 +1,15 @@
+@inherits BasePlugin
+@namespace JT_CMS.Web.Plugins.ContentViewer
+
+@if (Rendered != null)
+{
+    <div class="f-content-detail">
+        @((MarkupString)Rendered)
+    </div>
+}
+else
+{
+    <div class="f-content-detail f-content-detail-empty">
+        Este plugin não possui nenhum conteúdo.
+    </div>
+}

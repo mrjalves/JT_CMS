@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>JT_CMS.Providers.TemplateRenderingProviders</PackageId>
+    <Version>0.0.1</Version>
+    <Authors>Amir Pournasserian</Authors>
+    <Company>JT_CMS</Company>
+    <Description>template rendering provider abstractions.</Description>
+    <PackageTags>JT_CMS;cms;template;rendering;provider;core</PackageTags>
+    <RepositoryUrl>https://github.com/JT_CMS/JT_CMS</RepositoryUrl>
+    <PackageProjectUrl>https://JT_CMS.com</PackageProjectUrl>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0" />
+    <PackageReference Include="Scriban" Version="5.12.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JT_CMS.Providers.TemplateRenderingProviders.Abstractions\JT_CMS.Providers.TemplateRenderingProviders.Abstractions.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\icon.png" Pack="true" PackagePath="icon.png" />
+    <None Include="README.md" Pack="true" PackagePath="README.md" />
+  </ItemGroup>
+</Project>

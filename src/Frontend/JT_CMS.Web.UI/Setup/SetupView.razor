@@ -1,0 +1,18 @@
+@inherits BaseComponent
+@namespace JT_CMS.Web.UI
+
+@if (Model is not null)
+{
+    <PluginForm Model="@Model" Name="@FORM_NAME" Title="Configurar Conta de Administrador" OnSubmit="@OnSubmit">
+        <FormInput @bind-Value="Model!.Username" Label="Nome de Usuário" Placeholder="Digite seu nome de usuário" Required />
+        <FormHiddenInput @bind-Value="Model!.Url" />
+        <FormInput @bind-Value="Model!.Email" Label="E-mail" Placeholder="Digite seu e-mail" Required />
+        <FormInput @bind-Value="Model!.Password" Label="Senha" Placeholder="Digite sua senha" Required type="password" />
+        <FormSelect @bind-Value="Model!.Template" Data="Templates" Label="Template" />
+        <FormActions>
+            <Button Block Color="Color.Primary" Type="ButtonType.Submit">
+                Configurar
+            </Button>
+        </FormActions>
+    </PluginForm>        
+}

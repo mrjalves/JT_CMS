@@ -1,0 +1,5 @@
+﻿@inherits BaseFieldValueComponent<string?, SelectFieldModel>
+
+@namespace JT_CMS.Web.Plugins.Admin.ContentTypeManagement
+
+<FormRadioGroup Data="Options" Cols="@Field.FormColWidth" TValue="string" TItem="string" @bind-Value="FieldValue.Value" Label="@ContentTypeField!.Label" Required="@ContentTypeField!.Required" />

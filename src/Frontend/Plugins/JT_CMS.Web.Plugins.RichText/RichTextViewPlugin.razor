@@ -1,0 +1,9 @@
+@inherits BasePlugin
+@namespace JT_CMS.Web.Plugins.RichText
+
+@if (Item != null)
+{
+    <div class="f-rich-text-content">
+        @((MarkupString)Item.Content)
+    </div>
+}

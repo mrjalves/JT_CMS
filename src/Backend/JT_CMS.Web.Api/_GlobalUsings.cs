@@ -1,0 +1,11 @@
+﻿global using AutoMapper;
+global using JT_CMS.Entities;
+global using JT_CMS.Services;
+global using JT_CMS.Web.Api.Models;
+global using JT_CMS.Web.Api.Validation;
+global using Microsoft.AspNetCore.Mvc;
+global using System;
+global using System.Collections.Generic;
+global using System.Linq;
+global using System.Threading;
+global using System.Threading.Tasks;

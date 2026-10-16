@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>JT_CMS.Services</PackageId>
+    <Version>0.0.1</Version>
+    <Authors>Amir Pournasserian</Authors>
+    <Company>JT_CMS</Company>
+    <Description>Services.</Description>
+    <PackageTags>JT_CMS;cms;services;core</PackageTags>
+    <RepositoryUrl>https://github.com/JT_CMS/JT_CMS</RepositoryUrl>
+    <PackageProjectUrl>https://JT_CMS.com</PackageProjectUrl>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Providers\ApiTokenProviders\JT_CMS.Providers.ApiTokenProviders.Abstractions\JT_CMS.Providers.ApiTokenProviders.Abstractions.csproj" />
+    <ProjectReference Include="..\..\Providers\CacheProviders\JT_CMS.Providers.CacheProviders.Abstractions\JT_CMS.Providers.CacheProviders.Abstractions.csproj" />
+    <ProjectReference Include="..\..\Providers\EmailProviders\JT_CMS.Providers.EmailProviders.Abstractions\JT_CMS.Providers.EmailProviders.Abstractions.csproj" />
+    <ProjectReference Include="..\..\Providers\FileStorageProviders\JT_CMS.Providers.FileStorageProviders.Abstractions\JT_CMS.Providers.FileStorageProviders.Abstractions.csproj" />
+    <ProjectReference Include="..\..\Providers\MessageBusProviders\JT_CMS.Providers.MessageBusProviders.Abstractions\JT_CMS.Providers.MessageBusProviders.Abstractions.csproj" />
+    <ProjectReference Include="..\JT_CMS.Identity\JT_CMS.Identity.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\icon.png" Pack="true" PackagePath="icon.png" />
+    <None Include="README.md" Pack="true" PackagePath="README.md" />
+  </ItemGroup>
+</Project>

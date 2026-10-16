@@ -1,0 +1,32 @@
+@inherits BaseEditPlugin
+@namespace JT_CMS.Web.Plugins.ContentViewer
+
+<PluginModalForm Open="Open" Title="Editar Detalhes do Conteúdo" Model="@Model" OnSubmit="HandleSubmit" OnCancel="OnCancel" Name="@FORM_NAME">
+    <FormSelect Data="ContentTypes" TextField="Title" ValueField="Slug" Placeholder="Escolha o Tipo de Conteúdo" @bind-Value="Model.ContentTypeSlug" Label="Tipo de Conteúdo" />
+    @if (!string.IsNullOrEmpty(Model.ContentTypeSlug))
+    {
+        <GridItem Small="GridItemColumn.Twelve">
+            <Stack Justify="StackJustify.Start" Items="StackItems.Start" Vertical>
+                @{
+                    var contentType = ContentTypes.Where(x => x.Slug == Model.ContentTypeSlug).FirstOrDefault();
+                }
+                <Typography Size="TextSize.Large"></Typography>
+                <Typography Size="TextSize.Small"><code class="font-bold">Item</code> a variável está disponível para o modelo, que possui estes campos:</Typography>
+                <Stack Wrap>
+                    @foreach (var field in contentType?.Fields ?? [])
+                    {
+                        <Badge Color="Color.Primary">@field.Name: @field.Type</Badge>   
+                    }
+                </Stack>
+            </Stack>
+            <Spacer />                                
+        </GridItem>
+    }
+    <FormTextarea Rows="15" Placeholder="Editar Modelo" @bind-Value="@Model.Template" Label="Modelo" />
+    <GridItem Small="GridItemColumn.Twelve">
+        <Alert Type="AlertType.Info">
+            Para o guia de modelagem, você pode consultar a <a style="font-weight: bold; text-decoration: underline;" href="https://github.com/scriban/scriban/blob/master/doc/language.md">Documentação do Scriban</a>
+        </Alert>
+        <Spacer/>
+    </GridItem>
+</PluginModalForm>

@@ -1,0 +1,11 @@
+﻿@inherits BaseComponent
+
+@namespace JT_CMS.Web.UI.Components
+
+@if(Visible)
+{
+    <h3 @attributes="AdditionalAttributes"
+        class="@this.GetClasses()">
+        @ChildContent
+    </h3>
+}
