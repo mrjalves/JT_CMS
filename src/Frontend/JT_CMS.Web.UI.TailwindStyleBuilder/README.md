@@ -150,3 +150,11 @@ Contributions are welcome! Feel free to open issues or submit pull requests on t
 
 This project is licensed under the [MIT License](LICENSE).
 
+## 🖼️ Imagens
+
+> Coloque as imagens desta seção em [`docs/images/frontend/tailwind-style-builder`](../../../docs/images/frontend/tailwind-style-builder/).
+
+<!--
+Exemplo de uso (descomente após adicionar a imagem):
+![Descrição da imagem](../../../docs/images/frontend/tailwind-style-builder/nome-da-imagem.png)
+-->

@@ -89,3 +89,12 @@ We welcome contributions! If you'd like to contribute, please open an issue or s
 
 ## License
 This project is open-source and available under the MIT License.
+
+## 🖼️ Imagens
+
+> Coloque as imagens desta seção em [`docs/images/frontend/ui-components`](../../../docs/images/frontend/ui-components/).
+
+<!--
+Exemplo de uso (descomente após adicionar a imagem):
+![Descrição da imagem](../../../docs/images/frontend/ui-components/nome-da-imagem.png)
+-->

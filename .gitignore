@@ -4,3 +4,33 @@
 
 /.vs
 src/JT_CMS/temp
+name: Deploy Automático Blazor no VPS
+
+# Dispara o processo sempre que houver envio de código na branch main
+on:
+  push:
+    branches:
+      - main
+
+# Define as tarefas que serão executadas
+jobs:
+  build-and-deploy:
+    # Indica que a execução ocorrerá no seu VPS recém-configurado
+    runs-on: self-hosted
+
+    steps:
+      # 1. Faz o clone/checkout do código mais recente do repositório
+      - name: Baixar código do repositório
+        uses: actions/checkout@v4
+
+      # 2. Baixa e restaura todas as dependências e pacotes NuGet do Blazor
+      - name: Restaurar pacotes NuGet
+        run: dotnet restore
+
+      # 3. Compila o projeto em modo Release e envia os binários para a pasta web
+      - name: Compilar e Publicar Aplicação
+        run: dotnet publish -c Release -o /var/www/meublazor
+
+      # 4. Reinicia o serviço no Linux para carregar os novos arquivos
+      - name: Reiniciar serviço systemd
+        run: sudo systemctl restart meublazor.service
