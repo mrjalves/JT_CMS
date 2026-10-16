@@ -24,7 +24,7 @@ jobs:
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.KEY }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
         source: "./publish/*"
         target: "/var/www/jt_cms"
         strip_components: 1
@@ -34,6 +34,6 @@ jobs:
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.KEY }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
           sudo systemctl restart jt_cms.service
