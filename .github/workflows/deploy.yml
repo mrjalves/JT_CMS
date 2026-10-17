@@ -34,12 +34,20 @@ jobs:
           --no-restore
           -p:ErrorOnDuplicatePublishOutputFiles=false
 
+      
       - name: Configurar SSH
+        env:
+          SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+          SSH_HOST: ${{ secrets.VPS_HOST }}
+          SSH_PORT: ${{ secrets.VPS_PORT }}
         run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/id_ed25519
+          echo "HOST: ${#SSH_HOST} caracteres | PORT: '${SSH_PORT}' | KEY: ${#SSH_KEY} caracteres"
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan -p ${{ secrets.VPS_PORT }} -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
+          ssh-keygen -y -f ~/.ssh/id_ed25519 > /dev/null && echo "Chave privada válida"
+          ssh-keyscan -v -T 10 -p "$SSH_PORT" -H "$SSH_HOST" 2>&1 | tee -a ~/.ssh/known_hosts | head -20
+          test -s ~/.ssh/known_hosts || { echo "::error::Não consegui conectar na VPS"; exit 1; }
 
       - name: Enviar arquivos para a VPS
         run: |
