@@ -32,6 +32,7 @@ jobs:
           -c Release
           -o ./publish
           --no-restore
+          -p:ErrorOnDuplicatePublishOutputFiles=false
 
       - name: Configurar SSH
         run: |

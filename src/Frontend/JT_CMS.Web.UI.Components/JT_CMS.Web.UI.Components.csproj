@@ -28,7 +28,10 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-
+<ItemGroup>
+  <Content Update="Styles\package.json" CopyToPublishDirectory="Never" />
+  <Content Update="Styles\package-lock.json" CopyToPublishDirectory="Never" />
+</ItemGroup>
   <ItemGroup>
       <None Include="wwwroot\**">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

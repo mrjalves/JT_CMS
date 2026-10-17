@@ -29,7 +29,10 @@
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
-
+<ItemGroup>
+  <Content Update="Styles\package.json" CopyToPublishDirectory="Never" />
+  <Content Update="Styles\package-lock.json" CopyToPublishDirectory="Never" />
+</ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Providers\TemplateRenderingProviders\JT_CMS.Providers.TemplateRenderingProviders.Abstractions\JT_CMS.Providers.TemplateRenderingProviders.Abstractions.csproj" />
     <ProjectReference Include="..\..\Providers\MessageBusProviders\JT_CMS.Providers.MessageBusProviders.Abstractions\JT_CMS.Providers.MessageBusProviders.Abstractions.csproj" />
