@@ -1,0 +1,302 @@
+<section id="certificados" class="py-5 bg-surface text-content">
+  <div class="container">
+    <!-- Header -->
+    <div class="text-center mb-5">
+      <span class="hero-greeting" data-inline-editable>Educação Continuada &amp; Credenciais</span>
+      <h2 class="display-5 fw-bold text-content-accent mb-3" data-inline-editable>Certificados &amp; Qualificações</h2>
+      <p class="text-content-muted fs-5 mx-auto" style="max-width: 760px;" data-inline-editable>
+        Qualificações técnicas em Inteligência Artificial, Engenharia de Software .NET, Arquitetura de Sistemas, Segurança da Informação e Metodologias Ágeis.
+      </p>
+
+      <!-- Category Filter Buttons -->
+      <div class="d-flex flex-wrap justify-content-center gap-2 mt-4" id="certFilterButtons">
+        <button class="cert-filter-btn active" data-filter="all">Todos</button>
+        <button class="cert-filter-btn" data-filter="ia">IA &amp; Machine Learning</button>
+        <button class="cert-filter-btn" data-filter="dotnet">.NET, C# &amp; Arquitetura</button>
+        <button class="cert-filter-btn" data-filter="security">Segurança &amp; Cloud</button>
+        <button class="cert-filter-btn" data-filter="database">Bancos de Dados</button>
+        <button class="cert-filter-btn" data-filter="agile">Metodologias &amp; Inovação</button>
+      </div>
+    </div>
+
+    <!-- Certificates Grid -->
+    <div class="row g-4" id="certGrid">
+      
+      <!-- 1. Microsoft Learn AI -->
+      <div class="col-md-6 col-lg-4 cert-item" data-category="ia">
+        <div class="cert-card">
+          <div class="cert-thumbnail-wrapper" onclick="openCertLightbox('/files/images/certificados/microsoft-learn-ia.jpg', 'Desafio de Habilidades em IA - Microsoft Learn')">
+            <img src="/files/images/certificados/microsoft-learn-ia.jpg" alt="Desafio de Habilidades em IA - Microsoft Learn" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Microsoft Learn</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-primary bg-opacity-10 text-primary small mb-1 align-self-start">IA &amp; Machine Learning</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Desafio de Habilidades em IA</h5>
+            <p class="text-content-muted small mb-3">Conclusão do desafio oficial de Inteligência Artificial com foco em modelos e automações.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary mt-auto align-self-start" onclick="openCertLightbox('/files/images/certificados/microsoft-learn-ia.jpg', 'Desafio de Habilidades em IA - Microsoft Learn')">
+              Ampliar Certificado 🔍
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Google Cybersecurity -->
+      <div class="col-md-6 col-lg-4 cert-item" data-category="security">
+        <div class="cert-card">
+          <div class="cert-thumbnail-wrapper" onclick="openCertLightbox('/files/images/certificados/google-cybersecurity.jpg', 'Google Cybersecurity Certificate - Coursera')">
+            <img src="/files/images/certificados/google-cybersecurity.jpg" alt="Google Cybersecurity Certificate" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Google Cloud</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-danger bg-opacity-10 text-danger small mb-1 align-self-start">Segurança &amp; Cloud</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Google Cybersecurity Professional</h5>
+            <p class="text-content-muted small mb-3">Segurança ofensiva/defensiva, redes, mitigação de ameaças e conformidade.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary mt-auto align-self-start" onclick="openCertLightbox('/files/images/certificados/google-cybersecurity.jpg', 'Google Cybersecurity Professional')">
+              Ampliar Certificado 🔍
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Python II Senac -->
+      <div class="col-md-6 col-lg-4 cert-item" data-category="ia">
+        <div class="cert-card">
+          <div class="cert-thumbnail-wrapper" onclick="openCertLightbox('/files/images/certificados/pythonii-senac.jpg', 'Python II: Programação Web e IA - Senac')">
+            <img src="/files/images/certificados/pythonii-senac.jpg" alt="Python II Senac" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Senac SP</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-primary bg-opacity-10 text-primary small mb-1 align-self-start">Python &amp; Web</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Python II: Programação Web</h5>
+            <p class="text-content-muted small mb-3">Aprofundamento na linguagem Python, desenvolvimento web e preparação para IA.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary mt-auto align-self-start" onclick="openCertLightbox('/files/images/certificados/pythonii-senac.jpg', 'Python II: Programação Web - Senac')">
+              Ampliar Certificado 🔍
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Arquitetura Backend .NET -->
+      <div class="col-md-6 col-lg-4 cert-item" data-category="dotnet">
+        <div class="cert-card">
+          <div class="cert-thumbnail-wrapper" onclick="openCertLightbox('/files/images/certificados/arquitetura-backend-dotnet.jpg', 'Arquitetura Back-End com .NET Core')">
+            <img src="/files/images/certificados/arquitetura-backend-dotnet.jpg" alt="Arquitetura Back-End .NET" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">DIO</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-success bg-opacity-10 text-success small mb-1 align-self-start">.NET Core</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Arquitetura Back-End com .NET Core</h5>
+            <p class="text-content-muted small mb-3">Configuração de APIs robustas, injeção de dependência e microsserviços.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary mt-auto align-self-start" onclick="openCertLightbox('/files/images/certificados/arquitetura-backend-dotnet.jpg', 'Arquitetura Back-End com .NET Core')">
+              Ampliar Certificado 🔍
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Redes Neurais -->
+      <div class="col-md-6 col-lg-4 cert-item" data-category="ia">
+        <div class="cert-card">
+          <div class="cert-thumbnail-wrapper" onclick="openCertLightbox('/files/images/certificados/redes-neurais.jpg', 'Redes Neurais Artificiais')">
+            <img src="/files/images/certificados/redes-neurais.jpg" alt="Redes Neurais" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Machine Learning</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-primary bg-opacity-10 text-primary small mb-1 align-self-start">IA &amp; Machine Learning</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Redes Neurais Artificiais</h5>
+            <p class="text-content-muted small mb-3">Treinamento de redes neurais, backpropagation, ativação e funções de perda.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary mt-auto align-self-start" onclick="openCertLightbox('/files/images/certificados/redes-neurais.jpg', 'Redes Neurais Artificiais')">
+              Ampliar Certificado 🔍
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. SQL Server -->
+      <div class="col-md-6 col-lg-4 cert-item" data-category="database">
+        <div class="cert-card">
+          <div class="cert-thumbnail-wrapper" onclick="openCertLightbox('/files/images/certificados/sqlserver.jpg', 'Banco de Dados SQL Server')">
+            <img src="/files/images/certificados/sqlserver.jpg" alt="SQL Server" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Microsoft</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-warning bg-opacity-10 text-warning small mb-1 align-self-start">Bancos de Dados</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Banco de Dados SQL Server</h5>
+            <p class="text-content-muted small mb-3">Modelagem relacional, stored procedures, índices e otimização de consultas transacionais.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary mt-auto align-self-start" onclick="openCertLightbox('/files/images/certificados/sqlserver.jpg', 'Banco de Dados SQL Server')">
+              Ampliar Certificado 🔍
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. Introdução ao Machine Learning -->
+      <div class="col-md-6 col-lg-4 cert-item" data-category="ia">
+        <div class="cert-card">
+          <div class="cert-thumbnail-wrapper" onclick="openCertLightbox('/files/images/certificados/introducao-ml.jpg', 'Introdução ao Machine Learning')">
+            <img src="/files/images/certificados/introducao-ml.jpg" alt="Introdução ao Machine Learning" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Data Science</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-primary bg-opacity-10 text-primary small mb-1 align-self-start">IA &amp; Machine Learning</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Introdução ao Machine Learning</h5>
+            <p class="text-content-muted small mb-3">Conceitos fundamentais, aprendizado supervisionado e métricas de avaliação.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary mt-auto align-self-start" onclick="openCertLightbox('/files/images/certificados/introducao-ml.jpg', 'Introdução ao Machine Learning')">
+              Ampliar Certificado 🔍
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. Orientação a Objetos .NET -->
+      <div class="col-md-6 col-lg-4 cert-item" data-category="dotnet">
+        <div class="cert-card">
+          <div class="cert-thumbnail-wrapper" onclick="openCertLightbox('/files/images/certificados/orientacao-objetos-dotnet.jpg', 'Programação Orientada a Objetos com .NET')">
+            <img src="/files/images/certificados/orientacao-objetos-dotnet.jpg" alt="POO .NET" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">C# / .NET</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-success bg-opacity-10 text-success small mb-1 align-self-start">.NET Core</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">POO com .NET e C#</h5>
+            <p class="text-content-muted small mb-3">Herança, polimorfismo, interfaces, encapsulamento e princípios SOLID em C#.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary mt-auto align-self-start" onclick="openCertLightbox('/files/images/certificados/orientacao-objetos-dotnet.jpg', 'POO com .NET e C#')">
+              Ampliar Certificado 🔍
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9. Algoritmos Genéticos -->
+      <div class="col-md-6 col-lg-4 cert-item" data-category="ia">
+        <div class="cert-card">
+          <div class="cert-thumbnail-wrapper" onclick="openCertLightbox('/files/images/certificados/algoritmos-geneticos.jpg', 'Algoritmos Genéticos')">
+            <img src="/files/images/certificados/algoritmos-geneticos.jpg" alt="Algoritmos Genéticos" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Otimização</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-primary bg-opacity-10 text-primary small mb-1 align-self-start">IA &amp; Machine Learning</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Algoritmos Genéticos</h5>
+            <p class="text-content-muted small mb-3">Modelagem de soluções bioinspiradas, mutação, crossover e otimização heurística.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary mt-auto align-self-start" onclick="openCertLightbox('/files/images/certificados/algoritmos-geneticos.jpg', 'Algoritmos Genéticos')">
+              Ampliar Certificado 🔍
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10. Projetos Ágeis Scrum -->
+      <div class="col-md-6 col-lg-4 cert-item" data-category="agile">
+        <div class="cert-card">
+          <div class="cert-thumbnail-wrapper" onclick="openCertLightbox('/files/images/certificados/projetos-ageis-scrum.jpg', 'Gestão de Projetos com Scrum')">
+            <img src="/files/images/certificados/projetos-ageis-scrum.jpg" alt="Projetos Ágeis Scrum" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Metodologias</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-info bg-opacity-10 text-info small mb-1 align-self-start">Agile &amp; Scrum</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Gestão de Projetos com Scrum</h5>
+            <p class="text-content-muted small mb-3">Sprints, cerimônias ágeis, refinamento de backlog e entregas de valor contínuo.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary mt-auto align-self-start" onclick="openCertLightbox('/files/images/certificados/projetos-ageis-scrum.jpg', 'Gestão de Projetos com Scrum')">
+              Ampliar Certificado 🔍
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 11. Fundamentos de Arquitetura de Software -->
+      <div class="col-md-6 col-lg-4 cert-item" data-category="dotnet">
+        <div class="cert-card">
+          <div class="cert-thumbnail-wrapper" onclick="openCertLightbox('/files/images/certificados/fundamentos-arquitetura.jpg', 'Fundamentos de Arquitetura de Software')">
+            <img src="/files/images/certificados/fundamentos-arquitetura.jpg" alt="Fundamentos de Arquitetura" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Arquitetura</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-success bg-opacity-10 text-success small mb-1 align-self-start">Arquitetura</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Fundamentos de Arquitetura de Sistemas</h5>
+            <p class="text-content-muted small mb-3">Padrões de projeto, Clean Architecture, desacoplamento e resiliência de software.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary mt-auto align-self-start" onclick="openCertLightbox('/files/images/certificados/fundamentos-arquitetura.jpg', 'Fundamentos de Arquitetura de Sistemas')">
+              Ampliar Certificado 🔍
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 12. Ideathon Inova CPS -->
+      <div class="col-md-6 col-lg-4 cert-item" data-category="agile">
+        <div class="cert-card">
+          <div class="cert-thumbnail-wrapper" onclick="openCertLightbox('/files/images/certificados/ideathon-inova-cps.jpg', 'Hackathon / Ideathon Inova CPS')">
+            <img src="/files/images/certificados/ideathon-inova-cps.jpg" alt="Ideathon Inova CPS" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Inovação</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-warning bg-opacity-10 text-warning small mb-1 align-self-start">Hackathons &amp; Inovação</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Ideathon &amp; Inovação - Inova CPS</h5>
+            <p class="text-content-muted small mb-3">Desenvolvimento de soluções inovadoras sob pressão de tempo e prototipação ágil.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary mt-auto align-self-start" onclick="openCertLightbox('/files/images/certificados/ideathon-inova-cps.jpg', 'Ideathon & Inovação - Inova CPS')">
+              Ampliar Certificado 🔍
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox Modal -->
+<div id="certificateLightbox" class="cert-lightbox" onclick="closeCertLightbox(event)">
+  <div class="cert-lightbox-content" onclick="event.stopPropagation()">
+    <button type="button" class="cert-lightbox-close" onclick="closeCertLightbox()">&times;</button>
+    <img id="certLightboxImage" src="" alt="Certificado" class="cert-lightbox-img">
+    <div id="certLightboxCaption" class="cert-lightbox-title"></div>
+  </div>
+</div>
+
+<script>
+  function openCertLightbox(imgUrl, caption) {
+    const lightbox = document.getElementById('certificateLightbox');
+    const img = document.getElementById('certLightboxImage');
+    const cap = document.getElementById('certLightboxCaption');
+    if (lightbox && img) {
+      img.src = imgUrl;
+      if (cap) cap.textContent = caption || '';
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeCertLightbox(e) {
+    const lightbox = document.getElementById('certificateLightbox');
+    if (lightbox) {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeCertLightbox();
+    }
+  });
+
+  // Filter Buttons
+  document.addEventListener('DOMContentLoaded', function() {
+    const buttons = document.querySelectorAll('#certFilterButtons .cert-filter-btn');
+    const items = document.querySelectorAll('#certGrid .cert-item');
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', function() {
+        buttons.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+
+        const filter = this.getAttribute('data-filter');
+        items.forEach(item => {
+          if (filter === 'all' || item.getAttribute('data-category') === filter) {
+            item.style.display = '';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+  });
+</script>
