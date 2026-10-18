@@ -52,6 +52,7 @@ jobs:
       - name: Enviar arquivos para a VPS
         run: |
           rsync -az --delete \
+            --exclude 'appsettings.json' \
             --exclude 'appsettings.Production.json' \
             --exclude 'Data/' \
             --exclude 'uploads/' \
