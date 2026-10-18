@@ -2,301 +2,1099 @@
   <div class="container">
     <!-- Header -->
     <div class="text-center mb-5">
-      <span class="hero-greeting" data-inline-editable>Educação Continuada &amp; Credenciais</span>
-      <h2 class="display-5 fw-bold text-content-accent mb-3" data-inline-editable>Certificados &amp; Qualificações</h2>
-      <p class="text-content-muted fs-5 mx-auto" style="max-width: 760px;" data-inline-editable>
-        Qualificações técnicas em Inteligência Artificial, Engenharia de Software .NET, Arquitetura de Sistemas, Segurança da Informação e Metodologias Ágeis.
+      <span class="hero-greeting" data-inline-editable>Educação Continuada &amp; Qualificações</span>
+      <h2 class="display-5 fw-bold text-content-accent mb-3" data-inline-editable>Galeria Completa de Certificados</h2>
+      <p class="text-content-muted fs-5 mx-auto" style="max-width: 820px;" data-inline-editable>
+        Acervo com todos os <strong>50 certificados e credenciais técnicas</strong> obtidos em Inteligência Artificial, Engenharia de Software .NET, Segurança Cibernética, Bancos de Dados, Desenvolvimento Web e Metodologias Ágeis.
       </p>
 
+      <!-- Search Input -->
+      <div class="mx-auto mt-4 mb-3" style="max-width: 500px;">
+        <div class="input-group">
+          <span class="input-group-text bg-surface-accent border-0 text-muted">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          </span>
+          <input type="text" id="certSearchInput" class="form-control bg-surface-accent border-0 text-content" placeholder="Pesquisar por nome, tecnologia ou emissor..." autocomplete="off">
+        </div>
+      </div>
+
       <!-- Category Filter Buttons -->
-      <div class="d-flex flex-wrap justify-content-center gap-2 mt-4" id="certFilterButtons">
-        <button class="cert-filter-btn active" data-filter="all">Todos</button>
-        <button class="cert-filter-btn" data-filter="ia">IA &amp; Machine Learning</button>
-        <button class="cert-filter-btn" data-filter="dotnet">.NET, C# &amp; Arquitetura</button>
-        <button class="cert-filter-btn" data-filter="security">Segurança &amp; Cloud</button>
-        <button class="cert-filter-btn" data-filter="database">Bancos de Dados</button>
-        <button class="cert-filter-btn" data-filter="agile">Metodologias &amp; Inovação</button>
+      <div class="d-flex flex-wrap justify-content-center gap-2 mt-3" id="certFilterButtons">
+        <button type="button" class="cert-filter-btn active" data-filter="all" onclick="window.filterCertificates('all', this)">Todos (50)</button>
+        <button type="button" class="cert-filter-btn" data-filter="ia" onclick="window.filterCertificates('ia', this)">IA &amp; Machine Learning (9)</button>
+        <button type="button" class="cert-filter-btn" data-filter="dotnet" onclick="window.filterCertificates('dotnet', this)">.NET &amp; Arquitetura (4)</button>
+        <button type="button" class="cert-filter-btn" data-filter="security" onclick="window.filterCertificates('security', this)">Segurança &amp; Cloud (3)</button>
+        <button type="button" class="cert-filter-btn" data-filter="database" onclick="window.filterCertificates('database', this)">Bancos de Dados &amp; Python (3)</button>
+        <button type="button" class="cert-filter-btn" data-filter="web" onclick="window.filterCertificates('web', this)">Web &amp; Frontend (20)</button>
+        <button type="button" class="cert-filter-btn" data-filter="agile" onclick="window.filterCertificates('agile', this)">Metodologias &amp; Inovação (11)</button>
+      </div>
+
+      <!-- Counter -->
+      <div class="text-muted small mt-2" id="certCounter">
+        Exibindo todos os <strong>50</strong> certificados
       </div>
     </div>
 
     <!-- Certificates Grid -->
-    <div class="row g-4" id="certGrid">
-      
-      <!-- 1. Microsoft Learn AI -->
-      <div class="col-md-6 col-lg-4 cert-item" data-category="ia">
-        <div class="cert-card">
-          <div class="cert-thumbnail-wrapper" onclick="openCertLightbox('/files/images/certificados/microsoft-learn-ia.jpg', 'Desafio de Habilidades em IA - Microsoft Learn')">
-            <img src="/files/images/certificados/microsoft-learn-ia.jpg" alt="Desafio de Habilidades em IA - Microsoft Learn" class="cert-img" loading="lazy">
+    <div class="row g-3 g-lg-4" id="certGrid">
+      <!-- Desafio de Habilidades em IA -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="ia" data-search="desafio de habilidades em ia microsoft learn ia & machine learning conclusão do desafio oficial da microsoft com foco em modelos generativos, automação inteligente e serviços cognitivos.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/microsoft-learn-ia.jpg" data-cert-title="Desafio de Habilidades em IA" onclick="window.openCertLightbox('/files/images/certificados/microsoft-learn-ia.jpg', 'Desafio de Habilidades em IA')" title="Clique para ampliar">
+            <img src="/files/images/certificados/microsoft-learn-ia.jpg" alt="Desafio de Habilidades em IA" class="cert-img" loading="lazy">
             <span class="cert-badge-overlay">Microsoft Learn</span>
           </div>
           <div class="p-3 d-flex flex-column flex-grow-1">
-            <span class="badge bg-primary bg-opacity-10 text-primary small mb-1 align-self-start">IA &amp; Machine Learning</span>
+            <span class="badge bg-primary bg-opacity-10 text-primary small mb-1 align-self-start">IA & Machine Learning</span>
             <h5 class="h6 fw-bold text-content-accent mb-1">Desafio de Habilidades em IA</h5>
-            <p class="text-content-muted small mb-3">Conclusão do desafio oficial de Inteligência Artificial com foco em modelos e automações.</p>
-            <button type="button" class="btn btn-sm btn-outline-primary mt-auto align-self-start" onclick="openCertLightbox('/files/images/certificados/microsoft-learn-ia.jpg', 'Desafio de Habilidades em IA - Microsoft Learn')">
-              Ampliar Certificado 🔍
+            <p class="text-content-muted small mb-3 flex-grow-1">Conclusão do desafio oficial da Microsoft com foco em modelos generativos, automação inteligente e serviços cognitivos.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/microsoft-learn-ia.jpg" data-cert-title="Desafio de Habilidades em IA" onclick="window.openCertLightbox('/files/images/certificados/microsoft-learn-ia.jpg', 'Desafio de Habilidades em IA')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
             </button>
           </div>
         </div>
       </div>
 
-      <!-- 2. Google Cybersecurity -->
-      <div class="col-md-6 col-lg-4 cert-item" data-category="security">
-        <div class="cert-card">
-          <div class="cert-thumbnail-wrapper" onclick="openCertLightbox('/files/images/certificados/google-cybersecurity.jpg', 'Google Cybersecurity Certificate - Coursera')">
-            <img src="/files/images/certificados/google-cybersecurity.jpg" alt="Google Cybersecurity Certificate" class="cert-img" loading="lazy">
-            <span class="cert-badge-overlay">Google Cloud</span>
+      <!-- Inteligência Artificial - Google Cloud -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="ia" data-search="inteligência artificial - google cloud google cloud / fat ia & machine learning capacitação prática em soluções de inteligência artificial e machine learning na infraestrutura do google cloud.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/google-cloud-ia.jpg" data-cert-title="Inteligência Artificial - Google Cloud" onclick="window.openCertLightbox('/files/images/certificados/google-cloud-ia.jpg', 'Inteligência Artificial - Google Cloud')" title="Clique para ampliar">
+            <img src="/files/images/certificados/google-cloud-ia.jpg" alt="Inteligência Artificial - Google Cloud" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Google Cloud / FAT</span>
           </div>
           <div class="p-3 d-flex flex-column flex-grow-1">
-            <span class="badge bg-danger bg-opacity-10 text-danger small mb-1 align-self-start">Segurança &amp; Cloud</span>
-            <h5 class="h6 fw-bold text-content-accent mb-1">Google Cybersecurity Professional</h5>
-            <p class="text-content-muted small mb-3">Segurança ofensiva/defensiva, redes, mitigação de ameaças e conformidade.</p>
-            <button type="button" class="btn btn-sm btn-outline-primary mt-auto align-self-start" onclick="openCertLightbox('/files/images/certificados/google-cybersecurity.jpg', 'Google Cybersecurity Professional')">
-              Ampliar Certificado 🔍
+            <span class="badge bg-primary bg-opacity-10 text-primary small mb-1 align-self-start">IA & Machine Learning</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Inteligência Artificial - Google Cloud</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Capacitação prática em soluções de Inteligência Artificial e machine learning na infraestrutura do Google Cloud.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/google-cloud-ia.jpg" data-cert-title="Inteligência Artificial - Google Cloud" onclick="window.openCertLightbox('/files/images/certificados/google-cloud-ia.jpg', 'Inteligência Artificial - Google Cloud')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
             </button>
           </div>
         </div>
       </div>
 
-      <!-- 3. Python II Senac -->
-      <div class="col-md-6 col-lg-4 cert-item" data-category="ia">
-        <div class="cert-card">
-          <div class="cert-thumbnail-wrapper" onclick="openCertLightbox('/files/images/certificados/pythonii-senac.jpg', 'Python II: Programação Web e IA - Senac')">
-            <img src="/files/images/certificados/pythonii-senac.jpg" alt="Python II Senac" class="cert-img" loading="lazy">
-            <span class="cert-badge-overlay">Senac SP</span>
+      <!-- Redes Neurais Artificiais -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="ia" data-search="redes neurais artificiais digital innovation one ia & machine learning arquitetura de redes neurais artificiais, camadas densas, retropropagação do erro e treinamento de deep learning.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/redes-neurais.jpg" data-cert-title="Redes Neurais Artificiais" onclick="window.openCertLightbox('/files/images/certificados/redes-neurais.jpg', 'Redes Neurais Artificiais')" title="Clique para ampliar">
+            <img src="/files/images/certificados/redes-neurais.jpg" alt="Redes Neurais Artificiais" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Digital Innovation One</span>
           </div>
           <div class="p-3 d-flex flex-column flex-grow-1">
-            <span class="badge bg-primary bg-opacity-10 text-primary small mb-1 align-self-start">Python &amp; Web</span>
-            <h5 class="h6 fw-bold text-content-accent mb-1">Python II: Programação Web</h5>
-            <p class="text-content-muted small mb-3">Aprofundamento na linguagem Python, desenvolvimento web e preparação para IA.</p>
-            <button type="button" class="btn btn-sm btn-outline-primary mt-auto align-self-start" onclick="openCertLightbox('/files/images/certificados/pythonii-senac.jpg', 'Python II: Programação Web - Senac')">
-              Ampliar Certificado 🔍
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- 4. Arquitetura Backend .NET -->
-      <div class="col-md-6 col-lg-4 cert-item" data-category="dotnet">
-        <div class="cert-card">
-          <div class="cert-thumbnail-wrapper" onclick="openCertLightbox('/files/images/certificados/arquitetura-backend-dotnet.jpg', 'Arquitetura Back-End com .NET Core')">
-            <img src="/files/images/certificados/arquitetura-backend-dotnet.jpg" alt="Arquitetura Back-End .NET" class="cert-img" loading="lazy">
-            <span class="cert-badge-overlay">DIO</span>
-          </div>
-          <div class="p-3 d-flex flex-column flex-grow-1">
-            <span class="badge bg-success bg-opacity-10 text-success small mb-1 align-self-start">.NET Core</span>
-            <h5 class="h6 fw-bold text-content-accent mb-1">Arquitetura Back-End com .NET Core</h5>
-            <p class="text-content-muted small mb-3">Configuração de APIs robustas, injeção de dependência e microsserviços.</p>
-            <button type="button" class="btn btn-sm btn-outline-primary mt-auto align-self-start" onclick="openCertLightbox('/files/images/certificados/arquitetura-backend-dotnet.jpg', 'Arquitetura Back-End com .NET Core')">
-              Ampliar Certificado 🔍
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- 5. Redes Neurais -->
-      <div class="col-md-6 col-lg-4 cert-item" data-category="ia">
-        <div class="cert-card">
-          <div class="cert-thumbnail-wrapper" onclick="openCertLightbox('/files/images/certificados/redes-neurais.jpg', 'Redes Neurais Artificiais')">
-            <img src="/files/images/certificados/redes-neurais.jpg" alt="Redes Neurais" class="cert-img" loading="lazy">
-            <span class="cert-badge-overlay">Machine Learning</span>
-          </div>
-          <div class="p-3 d-flex flex-column flex-grow-1">
-            <span class="badge bg-primary bg-opacity-10 text-primary small mb-1 align-self-start">IA &amp; Machine Learning</span>
+            <span class="badge bg-primary bg-opacity-10 text-primary small mb-1 align-self-start">IA & Machine Learning</span>
             <h5 class="h6 fw-bold text-content-accent mb-1">Redes Neurais Artificiais</h5>
-            <p class="text-content-muted small mb-3">Treinamento de redes neurais, backpropagation, ativação e funções de perda.</p>
-            <button type="button" class="btn btn-sm btn-outline-primary mt-auto align-self-start" onclick="openCertLightbox('/files/images/certificados/redes-neurais.jpg', 'Redes Neurais Artificiais')">
-              Ampliar Certificado 🔍
+            <p class="text-content-muted small mb-3 flex-grow-1">Arquitetura de redes neurais artificiais, camadas densas, retropropagação do erro e treinamento de deep learning.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/redes-neurais.jpg" data-cert-title="Redes Neurais Artificiais" onclick="window.openCertLightbox('/files/images/certificados/redes-neurais.jpg', 'Redes Neurais Artificiais')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
             </button>
           </div>
         </div>
       </div>
 
-      <!-- 6. SQL Server -->
-      <div class="col-md-6 col-lg-4 cert-item" data-category="database">
-        <div class="cert-card">
-          <div class="cert-thumbnail-wrapper" onclick="openCertLightbox('/files/images/certificados/sqlserver.jpg', 'Banco de Dados SQL Server')">
-            <img src="/files/images/certificados/sqlserver.jpg" alt="SQL Server" class="cert-img" loading="lazy">
-            <span class="cert-badge-overlay">Microsoft</span>
+      <!-- Algoritmos de SVM (Support Vector Machine) -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="ia" data-search="algoritmos de svm (support vector machine) digital innovation one ia & machine learning classificação de padrões, hiperplanos de separação máxima e funções de transformação de kernel.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/algoritmos-svm.jpg" data-cert-title="Algoritmos de SVM (Support Vector Machine)" onclick="window.openCertLightbox('/files/images/certificados/algoritmos-svm.jpg', 'Algoritmos de SVM (Support Vector Machine)')" title="Clique para ampliar">
+            <img src="/files/images/certificados/algoritmos-svm.jpg" alt="Algoritmos de SVM (Support Vector Machine)" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Digital Innovation One</span>
           </div>
           <div class="p-3 d-flex flex-column flex-grow-1">
-            <span class="badge bg-warning bg-opacity-10 text-warning small mb-1 align-self-start">Bancos de Dados</span>
-            <h5 class="h6 fw-bold text-content-accent mb-1">Banco de Dados SQL Server</h5>
-            <p class="text-content-muted small mb-3">Modelagem relacional, stored procedures, índices e otimização de consultas transacionais.</p>
-            <button type="button" class="btn btn-sm btn-outline-primary mt-auto align-self-start" onclick="openCertLightbox('/files/images/certificados/sqlserver.jpg', 'Banco de Dados SQL Server')">
-              Ampliar Certificado 🔍
+            <span class="badge bg-primary bg-opacity-10 text-primary small mb-1 align-self-start">IA & Machine Learning</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Algoritmos de SVM (Support Vector Machine)</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Classificação de padrões, hiperplanos de separação máxima e funções de transformação de kernel.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/algoritmos-svm.jpg" data-cert-title="Algoritmos de SVM (Support Vector Machine)" onclick="window.openCertLightbox('/files/images/certificados/algoritmos-svm.jpg', 'Algoritmos de SVM (Support Vector Machine)')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
             </button>
           </div>
         </div>
       </div>
 
-      <!-- 7. Introdução ao Machine Learning -->
-      <div class="col-md-6 col-lg-4 cert-item" data-category="ia">
-        <div class="cert-card">
-          <div class="cert-thumbnail-wrapper" onclick="openCertLightbox('/files/images/certificados/introducao-ml.jpg', 'Introdução ao Machine Learning')">
-            <img src="/files/images/certificados/introducao-ml.jpg" alt="Introdução ao Machine Learning" class="cert-img" loading="lazy">
-            <span class="cert-badge-overlay">Data Science</span>
-          </div>
-          <div class="p-3 d-flex flex-column flex-grow-1">
-            <span class="badge bg-primary bg-opacity-10 text-primary small mb-1 align-self-start">IA &amp; Machine Learning</span>
-            <h5 class="h6 fw-bold text-content-accent mb-1">Introdução ao Machine Learning</h5>
-            <p class="text-content-muted small mb-3">Conceitos fundamentais, aprendizado supervisionado e métricas de avaliação.</p>
-            <button type="button" class="btn btn-sm btn-outline-primary mt-auto align-self-start" onclick="openCertLightbox('/files/images/certificados/introducao-ml.jpg', 'Introdução ao Machine Learning')">
-              Ampliar Certificado 🔍
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- 8. Orientação a Objetos .NET -->
-      <div class="col-md-6 col-lg-4 cert-item" data-category="dotnet">
-        <div class="cert-card">
-          <div class="cert-thumbnail-wrapper" onclick="openCertLightbox('/files/images/certificados/orientacao-objetos-dotnet.jpg', 'Programação Orientada a Objetos com .NET')">
-            <img src="/files/images/certificados/orientacao-objetos-dotnet.jpg" alt="POO .NET" class="cert-img" loading="lazy">
-            <span class="cert-badge-overlay">C# / .NET</span>
-          </div>
-          <div class="p-3 d-flex flex-column flex-grow-1">
-            <span class="badge bg-success bg-opacity-10 text-success small mb-1 align-self-start">.NET Core</span>
-            <h5 class="h6 fw-bold text-content-accent mb-1">POO com .NET e C#</h5>
-            <p class="text-content-muted small mb-3">Herança, polimorfismo, interfaces, encapsulamento e princípios SOLID em C#.</p>
-            <button type="button" class="btn btn-sm btn-outline-primary mt-auto align-self-start" onclick="openCertLightbox('/files/images/certificados/orientacao-objetos-dotnet.jpg', 'POO com .NET e C#')">
-              Ampliar Certificado 🔍
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- 9. Algoritmos Genéticos -->
-      <div class="col-md-6 col-lg-4 cert-item" data-category="ia">
-        <div class="cert-card">
-          <div class="cert-thumbnail-wrapper" onclick="openCertLightbox('/files/images/certificados/algoritmos-geneticos.jpg', 'Algoritmos Genéticos')">
+      <!-- Algoritmos Genéticos -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="ia" data-search="algoritmos genéticos digital innovation one ia & machine learning computação bioinspirada e algoritmos evolutivos: seleção por roleta/torneio, recombinação e mutação.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/algoritmos-geneticos.jpg" data-cert-title="Algoritmos Genéticos" onclick="window.openCertLightbox('/files/images/certificados/algoritmos-geneticos.jpg', 'Algoritmos Genéticos')" title="Clique para ampliar">
             <img src="/files/images/certificados/algoritmos-geneticos.jpg" alt="Algoritmos Genéticos" class="cert-img" loading="lazy">
-            <span class="cert-badge-overlay">Otimização</span>
+            <span class="cert-badge-overlay">Digital Innovation One</span>
           </div>
           <div class="p-3 d-flex flex-column flex-grow-1">
-            <span class="badge bg-primary bg-opacity-10 text-primary small mb-1 align-self-start">IA &amp; Machine Learning</span>
+            <span class="badge bg-primary bg-opacity-10 text-primary small mb-1 align-self-start">IA & Machine Learning</span>
             <h5 class="h6 fw-bold text-content-accent mb-1">Algoritmos Genéticos</h5>
-            <p class="text-content-muted small mb-3">Modelagem de soluções bioinspiradas, mutação, crossover e otimização heurística.</p>
-            <button type="button" class="btn btn-sm btn-outline-primary mt-auto align-self-start" onclick="openCertLightbox('/files/images/certificados/algoritmos-geneticos.jpg', 'Algoritmos Genéticos')">
-              Ampliar Certificado 🔍
+            <p class="text-content-muted small mb-3 flex-grow-1">Computação bioinspirada e algoritmos evolutivos: seleção por roleta/torneio, recombinação e mutação.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/algoritmos-geneticos.jpg" data-cert-title="Algoritmos Genéticos" onclick="window.openCertLightbox('/files/images/certificados/algoritmos-geneticos.jpg', 'Algoritmos Genéticos')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
             </button>
           </div>
         </div>
       </div>
 
-      <!-- 10. Projetos Ágeis Scrum -->
-      <div class="col-md-6 col-lg-4 cert-item" data-category="agile">
-        <div class="cert-card">
-          <div class="cert-thumbnail-wrapper" onclick="openCertLightbox('/files/images/certificados/projetos-ageis-scrum.jpg', 'Gestão de Projetos com Scrum')">
-            <img src="/files/images/certificados/projetos-ageis-scrum.jpg" alt="Projetos Ágeis Scrum" class="cert-img" loading="lazy">
-            <span class="cert-badge-overlay">Metodologias</span>
+      <!-- Métodos de ML Bioinspirados -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="ia" data-search="métodos de ml bioinspirados digital innovation one ia & machine learning otimização inteligente por enxame de partículas (pso) e sistemas computacionais inspirados na biologia.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/metodos-ml-bioinspirados.jpg" data-cert-title="Métodos de ML Bioinspirados" onclick="window.openCertLightbox('/files/images/certificados/metodos-ml-bioinspirados.jpg', 'Métodos de ML Bioinspirados')" title="Clique para ampliar">
+            <img src="/files/images/certificados/metodos-ml-bioinspirados.jpg" alt="Métodos de ML Bioinspirados" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Digital Innovation One</span>
           </div>
           <div class="p-3 d-flex flex-column flex-grow-1">
-            <span class="badge bg-info bg-opacity-10 text-info small mb-1 align-self-start">Agile &amp; Scrum</span>
-            <h5 class="h6 fw-bold text-content-accent mb-1">Gestão de Projetos com Scrum</h5>
-            <p class="text-content-muted small mb-3">Sprints, cerimônias ágeis, refinamento de backlog e entregas de valor contínuo.</p>
-            <button type="button" class="btn btn-sm btn-outline-primary mt-auto align-self-start" onclick="openCertLightbox('/files/images/certificados/projetos-ageis-scrum.jpg', 'Gestão de Projetos com Scrum')">
-              Ampliar Certificado 🔍
+            <span class="badge bg-primary bg-opacity-10 text-primary small mb-1 align-self-start">IA & Machine Learning</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Métodos de ML Bioinspirados</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Otimização inteligente por enxame de partículas (PSO) e sistemas computacionais inspirados na biologia.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/metodos-ml-bioinspirados.jpg" data-cert-title="Métodos de ML Bioinspirados" onclick="window.openCertLightbox('/files/images/certificados/metodos-ml-bioinspirados.jpg', 'Métodos de ML Bioinspirados')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
             </button>
           </div>
         </div>
       </div>
 
-      <!-- 11. Fundamentos de Arquitetura de Software -->
-      <div class="col-md-6 col-lg-4 cert-item" data-category="dotnet">
-        <div class="cert-card">
-          <div class="cert-thumbnail-wrapper" onclick="openCertLightbox('/files/images/certificados/fundamentos-arquitetura.jpg', 'Fundamentos de Arquitetura de Software')">
-            <img src="/files/images/certificados/fundamentos-arquitetura.jpg" alt="Fundamentos de Arquitetura" class="cert-img" loading="lazy">
-            <span class="cert-badge-overlay">Arquitetura</span>
+      <!-- Introdução ao Machine Learning -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="ia" data-search="introdução ao machine learning digital innovation one ia & machine learning fundamentos teóricos e práticos de aprendizado supervisionado, métricas de acurácia, precisão e recall.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/introducao-ml.jpg" data-cert-title="Introdução ao Machine Learning" onclick="window.openCertLightbox('/files/images/certificados/introducao-ml.jpg', 'Introdução ao Machine Learning')" title="Clique para ampliar">
+            <img src="/files/images/certificados/introducao-ml.jpg" alt="Introdução ao Machine Learning" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Digital Innovation One</span>
           </div>
           <div class="p-3 d-flex flex-column flex-grow-1">
-            <span class="badge bg-success bg-opacity-10 text-success small mb-1 align-self-start">Arquitetura</span>
+            <span class="badge bg-primary bg-opacity-10 text-primary small mb-1 align-self-start">IA & Machine Learning</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Introdução ao Machine Learning</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Fundamentos teóricos e práticos de aprendizado supervisionado, métricas de acurácia, precisão e recall.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/introducao-ml.jpg" data-cert-title="Introdução ao Machine Learning" onclick="window.openCertLightbox('/files/images/certificados/introducao-ml.jpg', 'Introdução ao Machine Learning')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Classificação de Problemas & Datasets -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="ia" data-search="classificação de problemas & datasets digital innovation one ia & machine learning engenharia de features, pré-processamento de dados e análise exploratória de grandes volumes de informação.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/classificacao-datasets-ml.jpg" data-cert-title="Classificação de Problemas & Datasets" onclick="window.openCertLightbox('/files/images/certificados/classificacao-datasets-ml.jpg', 'Classificação de Problemas & Datasets')" title="Clique para ampliar">
+            <img src="/files/images/certificados/classificacao-datasets-ml.jpg" alt="Classificação de Problemas & Datasets" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Digital Innovation One</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-primary bg-opacity-10 text-primary small mb-1 align-self-start">IA & Machine Learning</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Classificação de Problemas & Datasets</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Engenharia de features, pré-processamento de dados e análise exploratória de grandes volumes de informação.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/classificacao-datasets-ml.jpg" data-cert-title="Classificação de Problemas & Datasets" onclick="window.openCertLightbox('/files/images/certificados/classificacao-datasets-ml.jpg', 'Classificação de Problemas & Datasets')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Materiais Complementares de ML -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="ia" data-search="materiais complementares de ml digital innovation one ia & machine learning aprofundamento prático na construção e validação de modelos preditivos para problemas do mundo real.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/complemento-introducao-ml.jpg" data-cert-title="Materiais Complementares de ML" onclick="window.openCertLightbox('/files/images/certificados/complemento-introducao-ml.jpg', 'Materiais Complementares de ML')" title="Clique para ampliar">
+            <img src="/files/images/certificados/complemento-introducao-ml.jpg" alt="Materiais Complementares de ML" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Digital Innovation One</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-primary bg-opacity-10 text-primary small mb-1 align-self-start">IA & Machine Learning</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Materiais Complementares de ML</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Aprofundamento prático na construção e validação de modelos preditivos para problemas do mundo real.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/complemento-introducao-ml.jpg" data-cert-title="Materiais Complementares de ML" onclick="window.openCertLightbox('/files/images/certificados/complemento-introducao-ml.jpg', 'Materiais Complementares de ML')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Configuração de Arquitetura Back-End com .NET -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="dotnet" data-search="configuração de arquitetura back-end com .net digital innovation one .net & arquitetura arquitetura limpa para apis c# .net, injeção de dependência nativa, pipeline de middleware e design de camadas.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/arquitetura-backend-dotnet.jpg" data-cert-title="Configuração de Arquitetura Back-End com .NET" onclick="window.openCertLightbox('/files/images/certificados/arquitetura-backend-dotnet.jpg', 'Configuração de Arquitetura Back-End com .NET')" title="Clique para ampliar">
+            <img src="/files/images/certificados/arquitetura-backend-dotnet.jpg" alt="Configuração de Arquitetura Back-End com .NET" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Digital Innovation One</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-success bg-opacity-10 text-success small mb-1 align-self-start">.NET & Arquitetura</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Configuração de Arquitetura Back-End com .NET</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Arquitetura limpa para APIs C# .NET, injeção de dependência nativa, pipeline de middleware e design de camadas.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/arquitetura-backend-dotnet.jpg" data-cert-title="Configuração de Arquitetura Back-End com .NET" onclick="window.openCertLightbox('/files/images/certificados/arquitetura-backend-dotnet.jpg', 'Configuração de Arquitetura Back-End com .NET')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Orientação a Objetos em .NET -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="dotnet" data-search="orientação a objetos em .net digital innovation one .net & arquitetura princípios de poo em c#: classes abstratas, interfaces, herança, polimorfismo e encapsulamento corporativo.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/orientacao-objetos-dotnet.jpg" data-cert-title="Orientação a Objetos em .NET" onclick="window.openCertLightbox('/files/images/certificados/orientacao-objetos-dotnet.jpg', 'Orientação a Objetos em .NET')" title="Clique para ampliar">
+            <img src="/files/images/certificados/orientacao-objetos-dotnet.jpg" alt="Orientação a Objetos em .NET" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Digital Innovation One</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-success bg-opacity-10 text-success small mb-1 align-self-start">.NET & Arquitetura</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Orientação a Objetos em .NET</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Princípios de POO em C#: classes abstratas, interfaces, herança, polimorfismo e encapsulamento corporativo.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/orientacao-objetos-dotnet.jpg" data-cert-title="Orientação a Objetos em .NET" onclick="window.openCertLightbox('/files/images/certificados/orientacao-objetos-dotnet.jpg', 'Orientação a Objetos em .NET')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fundamentos de Arquitetura de Sistemas -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="dotnet" data-search="fundamentos de arquitetura de sistemas digital innovation one .net & arquitetura padrões arquiteturais contemporâneos: microsserviços, mensageria assíncrona, escalabilidade e resiliência.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/fundamentos-arquitetura.jpg" data-cert-title="Fundamentos de Arquitetura de Sistemas" onclick="window.openCertLightbox('/files/images/certificados/fundamentos-arquitetura.jpg', 'Fundamentos de Arquitetura de Sistemas')" title="Clique para ampliar">
+            <img src="/files/images/certificados/fundamentos-arquitetura.jpg" alt="Fundamentos de Arquitetura de Sistemas" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Digital Innovation One</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-success bg-opacity-10 text-success small mb-1 align-self-start">.NET & Arquitetura</span>
             <h5 class="h6 fw-bold text-content-accent mb-1">Fundamentos de Arquitetura de Sistemas</h5>
-            <p class="text-content-muted small mb-3">Padrões de projeto, Clean Architecture, desacoplamento e resiliência de software.</p>
-            <button type="button" class="btn btn-sm btn-outline-primary mt-auto align-self-start" onclick="openCertLightbox('/files/images/certificados/fundamentos-arquitetura.jpg', 'Fundamentos de Arquitetura de Sistemas')">
-              Ampliar Certificado 🔍
+            <p class="text-content-muted small mb-3 flex-grow-1">Padrões arquiteturais contemporâneos: microsserviços, mensageria assíncrona, escalabilidade e resiliência.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/fundamentos-arquitetura.jpg" data-cert-title="Fundamentos de Arquitetura de Sistemas" onclick="window.openCertLightbox('/files/images/certificados/fundamentos-arquitetura.jpg', 'Fundamentos de Arquitetura de Sistemas')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
             </button>
           </div>
         </div>
       </div>
 
-      <!-- 12. Ideathon Inova CPS -->
-      <div class="col-md-6 col-lg-4 cert-item" data-category="agile">
-        <div class="cert-card">
-          <div class="cert-thumbnail-wrapper" onclick="openCertLightbox('/files/images/certificados/ideathon-inova-cps.jpg', 'Hackathon / Ideathon Inova CPS')">
-            <img src="/files/images/certificados/ideathon-inova-cps.jpg" alt="Ideathon Inova CPS" class="cert-img" loading="lazy">
-            <span class="cert-badge-overlay">Inovação</span>
+      <!-- Introdução à Qualidade de Software -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="dotnet" data-search="introdução à qualidade de software digital innovation one .net & arquitetura garantia de qualidade (qa), ciclo de vida de testes unitários, análise estática de código e boas práticas solid.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/introducao-qualidade-software.jpg" data-cert-title="Introdução à Qualidade de Software" onclick="window.openCertLightbox('/files/images/certificados/introducao-qualidade-software.jpg', 'Introdução à Qualidade de Software')" title="Clique para ampliar">
+            <img src="/files/images/certificados/introducao-qualidade-software.jpg" alt="Introdução à Qualidade de Software" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Digital Innovation One</span>
           </div>
           <div class="p-3 d-flex flex-column flex-grow-1">
-            <span class="badge bg-warning bg-opacity-10 text-warning small mb-1 align-self-start">Hackathons &amp; Inovação</span>
-            <h5 class="h6 fw-bold text-content-accent mb-1">Ideathon &amp; Inovação - Inova CPS</h5>
-            <p class="text-content-muted small mb-3">Desenvolvimento de soluções inovadoras sob pressão de tempo e prototipação ágil.</p>
-            <button type="button" class="btn btn-sm btn-outline-primary mt-auto align-self-start" onclick="openCertLightbox('/files/images/certificados/ideathon-inova-cps.jpg', 'Ideathon & Inovação - Inova CPS')">
-              Ampliar Certificado 🔍
+            <span class="badge bg-success bg-opacity-10 text-success small mb-1 align-self-start">.NET & Arquitetura</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Introdução à Qualidade de Software</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Garantia de qualidade (QA), ciclo de vida de testes unitários, análise estática de código e boas práticas SOLID.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/introducao-qualidade-software.jpg" data-cert-title="Introdução à Qualidade de Software" onclick="window.openCertLightbox('/files/images/certificados/introducao-qualidade-software.jpg', 'Introdução à Qualidade de Software')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
             </button>
           </div>
         </div>
       </div>
 
+      <!-- Google Cybersecurity Professional -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="security" data-search="google cybersecurity professional google / coursera / credly segurança & cloud certificação emitida pelo google abordando segurança ofensiva/defensiva, siem, redes, linux e mitigação de vulnerabilidades.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/google-cybersecurity.jpg" data-cert-title="Google Cybersecurity Professional" onclick="window.openCertLightbox('/files/images/certificados/google-cybersecurity.jpg', 'Google Cybersecurity Professional')" title="Clique para ampliar">
+            <img src="/files/images/certificados/google-cybersecurity.jpg" alt="Google Cybersecurity Professional" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Google / Coursera / Credly</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-danger bg-opacity-10 text-danger small mb-1 align-self-start">Segurança & Cloud</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Google Cybersecurity Professional</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Certificação emitida pelo Google abordando segurança ofensiva/defensiva, SIEM, redes, Linux e mitigação de vulnerabilidades.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/google-cybersecurity.jpg" data-cert-title="Google Cybersecurity Professional" onclick="window.openCertLightbox('/files/images/certificados/google-cybersecurity.jpg', 'Google Cybersecurity Professional')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Segurança da Informação -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="security" data-search="segurança da informação even3 / fatec segurança & cloud políticas de governança, conformidade lgpd, criptografia de ponta a ponta e gestão de riscos corporativos.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/seguranca-informacao.jpg" data-cert-title="Segurança da Informação" onclick="window.openCertLightbox('/files/images/certificados/seguranca-informacao.jpg', 'Segurança da Informação')" title="Clique para ampliar">
+            <img src="/files/images/certificados/seguranca-informacao.jpg" alt="Segurança da Informação" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Even3 / FATEC</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-danger bg-opacity-10 text-danger small mb-1 align-self-start">Segurança & Cloud</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Segurança da Informação</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Políticas de governança, conformidade LGPD, criptografia de ponta a ponta e gestão de riscos corporativos.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/seguranca-informacao.jpg" data-cert-title="Segurança da Informação" onclick="window.openCertLightbox('/files/images/certificados/seguranca-informacao.jpg', 'Segurança da Informação')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Introdução ao Sistema Operacional Linux -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="security" data-search="introdução ao sistema operacional linux digital innovation one segurança & cloud operação do shell bash, administração de permissões de usuários, gerenciamento de pacotes e automação de rotinas.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/introducao-linux.jpg" data-cert-title="Introdução ao Sistema Operacional Linux" onclick="window.openCertLightbox('/files/images/certificados/introducao-linux.jpg', 'Introdução ao Sistema Operacional Linux')" title="Clique para ampliar">
+            <img src="/files/images/certificados/introducao-linux.jpg" alt="Introdução ao Sistema Operacional Linux" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Digital Innovation One</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-danger bg-opacity-10 text-danger small mb-1 align-self-start">Segurança & Cloud</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Introdução ao Sistema Operacional Linux</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Operação do shell Bash, administração de permissões de usuários, gerenciamento de pacotes e automação de rotinas.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/introducao-linux.jpg" data-cert-title="Introdução ao Sistema Operacional Linux" onclick="window.openCertLightbox('/files/images/certificados/introducao-linux.jpg', 'Introdução ao Sistema Operacional Linux')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Banco de Dados 1: Fundamentos -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="database" data-search="banco de dados 1: fundamentos ifrs bancos de dados & python modelagem de dados conceitual e lógica, normalização (1fn, 2fn, 3fn), integridade relacional e álgebra de bancos.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/banco-de-dados-fundamentos.jpg" data-cert-title="Banco de Dados 1: Fundamentos" onclick="window.openCertLightbox('/files/images/certificados/banco-de-dados-fundamentos.jpg', 'Banco de Dados 1: Fundamentos')" title="Clique para ampliar">
+            <img src="/files/images/certificados/banco-de-dados-fundamentos.jpg" alt="Banco de Dados 1: Fundamentos" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">IFRS</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-warning bg-opacity-10 text-warning small mb-1 align-self-start">Bancos de Dados & Python</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Banco de Dados 1: Fundamentos</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Modelagem de dados conceitual e lógica, normalização (1FN, 2FN, 3FN), integridade relacional e álgebra de bancos.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/banco-de-dados-fundamentos.jpg" data-cert-title="Banco de Dados 1: Fundamentos" onclick="window.openCertLightbox('/files/images/certificados/banco-de-dados-fundamentos.jpg', 'Banco de Dados 1: Fundamentos')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SQL Server: Primeiras Consultas -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="database" data-search="sql server: primeiras consultas digital innovation one bancos de dados & python manipulação de bases no microsoft sql server: comandos ddl/dml, cláusulas join, agregações e subqueries.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/sqlserver.jpg" data-cert-title="SQL Server: Primeiras Consultas" onclick="window.openCertLightbox('/files/images/certificados/sqlserver.jpg', 'SQL Server: Primeiras Consultas')" title="Clique para ampliar">
+            <img src="/files/images/certificados/sqlserver.jpg" alt="SQL Server: Primeiras Consultas" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Digital Innovation One</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-warning bg-opacity-10 text-warning small mb-1 align-self-start">Bancos de Dados & Python</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">SQL Server: Primeiras Consultas</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Manipulação de bases no Microsoft SQL Server: comandos DDL/DML, cláusulas JOIN, agregações e subqueries.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/sqlserver.jpg" data-cert-title="SQL Server: Primeiras Consultas" onclick="window.openCertLightbox('/files/images/certificados/sqlserver.jpg', 'SQL Server: Primeiras Consultas')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Python II - Desenvolvimento com Python -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="database" data-search="python ii - desenvolvimento com python senac catanduva bancos de dados & python desenvolvimento prático com python: manipulação de arquivos, bibliotecas de dados, tratamento de erros e scripts robustos.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/pythonii-senac.jpg" data-cert-title="Python II - Desenvolvimento com Python" onclick="window.openCertLightbox('/files/images/certificados/pythonii-senac.jpg', 'Python II - Desenvolvimento com Python')" title="Clique para ampliar">
+            <img src="/files/images/certificados/pythonii-senac.jpg" alt="Python II - Desenvolvimento com Python" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Senac Catanduva</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-warning bg-opacity-10 text-warning small mb-1 align-self-start">Bancos de Dados & Python</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Python II - Desenvolvimento com Python</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Desenvolvimento prático com Python: manipulação de arquivos, bibliotecas de dados, tratamento de erros e scripts robustos.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/pythonii-senac.jpg" data-cert-title="Python II - Desenvolvimento com Python" onclick="window.openCertLightbox('/files/images/certificados/pythonii-senac.jpg', 'Python II - Desenvolvimento com Python')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Introdução ao ReactJS -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="web" data-search="introdução ao reactjs digital innovation one web & frontend componentes funcionais, renderização condicional, propriedades e gerenciamento de estado local com hooks no react.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/introducao-reactjs.jpg" data-cert-title="Introdução ao ReactJS" onclick="window.openCertLightbox('/files/images/certificados/introducao-reactjs.jpg', 'Introdução ao ReactJS')" title="Clique para ampliar">
+            <img src="/files/images/certificados/introducao-reactjs.jpg" alt="Introdução ao ReactJS" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Digital Innovation One</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-info bg-opacity-10 text-info small mb-1 align-self-start">Web & Frontend</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Introdução ao ReactJS</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Componentes funcionais, renderização condicional, propriedades e gerenciamento de estado local com Hooks no React.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/introducao-reactjs.jpg" data-cert-title="Introdução ao ReactJS" onclick="window.openCertLightbox('/files/images/certificados/introducao-reactjs.jpg', 'Introdução ao ReactJS')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Primeiros Passos na Biblioteca React -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="web" data-search="primeiros passos na biblioteca react digital innovation one web & frontend ecossistema moderno react: fluxo de dados unidirecional, ciclo de vida e composição de interfaces declarativas.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/primeiros-passos-react.jpg" data-cert-title="Primeiros Passos na Biblioteca React" onclick="window.openCertLightbox('/files/images/certificados/primeiros-passos-react.jpg', 'Primeiros Passos na Biblioteca React')" title="Clique para ampliar">
+            <img src="/files/images/certificados/primeiros-passos-react.jpg" alt="Primeiros Passos na Biblioteca React" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Digital Innovation One</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-info bg-opacity-10 text-info small mb-1 align-self-start">Web & Frontend</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Primeiros Passos na Biblioteca React</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Ecossistema moderno React: fluxo de dados unidirecional, ciclo de vida e composição de interfaces declarativas.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/primeiros-passos-react.jpg" data-cert-title="Primeiros Passos na Biblioteca React" onclick="window.openCertLightbox('/files/images/certificados/primeiros-passos-react.jpg', 'Primeiros Passos na Biblioteca React')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Introdução ao JavaScript -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="web" data-search="introdução ao javascript digital innovation one web & frontend fundamentos de programação em javascript es6+, controle de fluxo, estruturas de repetição e manipulação de arrays.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/introducao-javascript.jpg" data-cert-title="Introdução ao JavaScript" onclick="window.openCertLightbox('/files/images/certificados/introducao-javascript.jpg', 'Introdução ao JavaScript')" title="Clique para ampliar">
+            <img src="/files/images/certificados/introducao-javascript.jpg" alt="Introdução ao JavaScript" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Digital Innovation One</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-info bg-opacity-10 text-info small mb-1 align-self-start">Web & Frontend</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Introdução ao JavaScript</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Fundamentos de programação em JavaScript ES6+, controle de fluxo, estruturas de repetição e manipulação de arrays.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/introducao-javascript.jpg" data-cert-title="Introdução ao JavaScript" onclick="window.openCertLightbox('/files/images/certificados/introducao-javascript.jpg', 'Introdução ao JavaScript')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- JavaScript Assíncrono -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="web" data-search="javascript assíncrono digital innovation one web & frontend programação assíncrona, promises, cadeia de .then()/.catch(), async/await e requisições http via fetch api.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/javascript-assincrono.jpg" data-cert-title="JavaScript Assíncrono" onclick="window.openCertLightbox('/files/images/certificados/javascript-assincrono.jpg', 'JavaScript Assíncrono')" title="Clique para ampliar">
+            <img src="/files/images/certificados/javascript-assincrono.jpg" alt="JavaScript Assíncrono" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Digital Innovation One</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-info bg-opacity-10 text-info small mb-1 align-self-start">Web & Frontend</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">JavaScript Assíncrono</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Programação assíncrona, Promises, cadeia de .then()/.catch(), async/await e requisições HTTP via Fetch API.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/javascript-assincrono.jpg" data-cert-title="JavaScript Assíncrono" onclick="window.openCertLightbox('/files/images/certificados/javascript-assincrono.jpg', 'JavaScript Assíncrono')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Map, Filter e Reduce em JavaScript -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="web" data-search="map, filter e reduce em javascript digital innovation one web & frontend abordagem funcional na manipulação de coleções de dados no js com alta performance e imutabilidade.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/map-filter-reduce-js.jpg" data-cert-title="Map, Filter e Reduce em JavaScript" onclick="window.openCertLightbox('/files/images/certificados/map-filter-reduce-js.jpg', 'Map, Filter e Reduce em JavaScript')" title="Clique para ampliar">
+            <img src="/files/images/certificados/map-filter-reduce-js.jpg" alt="Map, Filter e Reduce em JavaScript" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Digital Innovation One</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-info bg-opacity-10 text-info small mb-1 align-self-start">Web & Frontend</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Map, Filter e Reduce em JavaScript</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Abordagem funcional na manipulação de coleções de dados no JS com alta performance e imutabilidade.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/map-filter-reduce-js.jpg" data-cert-title="Map, Filter e Reduce em JavaScript" onclick="window.openCertLightbox('/files/images/certificados/map-filter-reduce-js.jpg', 'Map, Filter e Reduce em JavaScript')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coleções em JavaScript -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="web" data-search="coleções em javascript digital innovation one web & frontend uso eficiente das estruturas map e set para armazenar chaves e coleções de elementos com verificação rápida.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/colecoes-javascript.jpg" data-cert-title="Coleções em JavaScript" onclick="window.openCertLightbox('/files/images/certificados/colecoes-javascript.jpg', 'Coleções em JavaScript')" title="Clique para ampliar">
+            <img src="/files/images/certificados/colecoes-javascript.jpg" alt="Coleções em JavaScript" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Digital Innovation One</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-info bg-opacity-10 text-info small mb-1 align-self-start">Web & Frontend</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Coleções em JavaScript</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Uso eficiente das estruturas Map e Set para armazenar chaves e coleções de elementos com verificação rápida.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/colecoes-javascript.jpg" data-cert-title="Coleções em JavaScript" onclick="window.openCertLightbox('/files/images/certificados/colecoes-javascript.jpg', 'Coleções em JavaScript')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Orientação a Objetos em JavaScript -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="web" data-search="orientação a objetos em javascript digital innovation one web & frontend sintaxe de classes es6, encapsulamento, protótipos de objetos, métodos estáticos e polimorfismo.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/orientacao-objetos-js.jpg" data-cert-title="Orientação a Objetos em JavaScript" onclick="window.openCertLightbox('/files/images/certificados/orientacao-objetos-js.jpg', 'Orientação a Objetos em JavaScript')" title="Clique para ampliar">
+            <img src="/files/images/certificados/orientacao-objetos-js.jpg" alt="Orientação a Objetos em JavaScript" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Digital Innovation One</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-info bg-opacity-10 text-info small mb-1 align-self-start">Web & Frontend</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Orientação a Objetos em JavaScript</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Sintaxe de classes ES6, encapsulamento, protótipos de objetos, métodos estáticos e polimorfismo.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/orientacao-objetos-js.jpg" data-cert-title="Orientação a Objetos em JavaScript" onclick="window.openCertLightbox('/files/images/certificados/orientacao-objetos-js.jpg', 'Orientação a Objetos em JavaScript')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Funções em JavaScript -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="web" data-search="funções em javascript digital innovation one web & frontend arrow functions, closures, escopo léxico, argumentos variáveis (rest parameter) e desestruturação de objetos.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/funcoes-javascript.jpg" data-cert-title="Funções em JavaScript" onclick="window.openCertLightbox('/files/images/certificados/funcoes-javascript.jpg', 'Funções em JavaScript')" title="Clique para ampliar">
+            <img src="/files/images/certificados/funcoes-javascript.jpg" alt="Funções em JavaScript" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Digital Innovation One</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-info bg-opacity-10 text-info small mb-1 align-self-start">Web & Frontend</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Funções em JavaScript</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Arrow functions, closures, escopo léxico, argumentos variáveis (rest parameter) e desestruturação de objetos.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/funcoes-javascript.jpg" data-cert-title="Funções em JavaScript" onclick="window.openCertLightbox('/files/images/certificados/funcoes-javascript.jpg', 'Funções em JavaScript')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Debugging e Error Handling em JS -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="web" data-search="debugging e error handling em js digital innovation one web & frontend tratamento de exceções com blocos try/catch, lançamento de erros personalizados e depuração no chrome devtools.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/debugging-error-handling-js.jpg" data-cert-title="Debugging e Error Handling em JS" onclick="window.openCertLightbox('/files/images/certificados/debugging-error-handling-js.jpg', 'Debugging e Error Handling em JS')" title="Clique para ampliar">
+            <img src="/files/images/certificados/debugging-error-handling-js.jpg" alt="Debugging e Error Handling em JS" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Digital Innovation One</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-info bg-opacity-10 text-info small mb-1 align-self-start">Web & Frontend</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Debugging e Error Handling em JS</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Tratamento de exceções com blocos try/catch, lançamento de erros personalizados e depuração no Chrome DevTools.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/debugging-error-handling-js.jpg" data-cert-title="Debugging e Error Handling em JS" onclick="window.openCertLightbox('/files/images/certificados/debugging-error-handling-js.jpg', 'Debugging e Error Handling em JS')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trabalhando com Módulos em JavaScript -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="web" data-search="trabalhando com módulos em javascript digital innovation one web & frontend padrões modernos de módulos (esm), exportações nomeadas e default, e estruturação de projetos front-end modulares.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/modulos-javascript.jpg" data-cert-title="Trabalhando com Módulos em JavaScript" onclick="window.openCertLightbox('/files/images/certificados/modulos-javascript.jpg', 'Trabalhando com Módulos em JavaScript')" title="Clique para ampliar">
+            <img src="/files/images/certificados/modulos-javascript.jpg" alt="Trabalhando com Módulos em JavaScript" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Digital Innovation One</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-info bg-opacity-10 text-info small mb-1 align-self-start">Web & Frontend</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Trabalhando com Módulos em JavaScript</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Padrões modernos de módulos (ESM), exportações nomeadas e default, e estruturação de projetos front-end modulares.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/modulos-javascript.jpg" data-cert-title="Trabalhando com Módulos em JavaScript" onclick="window.openCertLightbox('/files/images/certificados/modulos-javascript.jpg', 'Trabalhando com Módulos em JavaScript')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Entendendo a DOM -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="web" data-search="entendendo a dom digital innovation one web & frontend conceito da árvore dom dos navegadores, seleção de elementos por seletores css e fluxo de renderização.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/dom-entendendo-document-object-model.jpg" data-cert-title="Entendendo a DOM" onclick="window.openCertLightbox('/files/images/certificados/dom-entendendo-document-object-model.jpg', 'Entendendo a DOM')" title="Clique para ampliar">
+            <img src="/files/images/certificados/dom-entendendo-document-object-model.jpg" alt="Entendendo a DOM" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Digital Innovation One</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-info bg-opacity-10 text-info small mb-1 align-self-start">Web & Frontend</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Entendendo a DOM</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Conceito da árvore DOM dos navegadores, seleção de elementos por seletores CSS e fluxo de renderização.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/dom-entendendo-document-object-model.jpg" data-cert-title="Entendendo a DOM" onclick="window.openCertLightbox('/files/images/certificados/dom-entendendo-document-object-model.jpg', 'Entendendo a DOM')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Manipulando a DOM com JavaScript -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="web" data-search="manipulando a dom com javascript digital innovation one web & frontend criação e inserção dinâmica de elementos, listeners de eventos, alternância de classes e estilos em tempo de execução.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/manipulacao-dom.jpg" data-cert-title="Manipulando a DOM com JavaScript" onclick="window.openCertLightbox('/files/images/certificados/manipulacao-dom.jpg', 'Manipulando a DOM com JavaScript')" title="Clique para ampliar">
+            <img src="/files/images/certificados/manipulacao-dom.jpg" alt="Manipulando a DOM com JavaScript" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Digital Innovation One</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-info bg-opacity-10 text-info small mb-1 align-self-start">Web & Frontend</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Manipulando a DOM com JavaScript</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Criação e inserção dinâmica de elementos, listeners de eventos, alternância de classes e estilos em tempo de execução.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/manipulacao-dom.jpg" data-cert-title="Manipulando a DOM com JavaScript" onclick="window.openCertLightbox('/files/images/certificados/manipulacao-dom.jpg', 'Manipulando a DOM com JavaScript')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Páginas Web Interativas com JS -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="web" data-search="páginas web interativas com js digital innovation one web & frontend interatividade avançada na web: modais interativos, validações em tempo real e experiência de usuário dinâmica.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/paginas-web-interativas-js.jpg" data-cert-title="Páginas Web Interativas com JS" onclick="window.openCertLightbox('/files/images/certificados/paginas-web-interativas-js.jpg', 'Páginas Web Interativas com JS')" title="Clique para ampliar">
+            <img src="/files/images/certificados/paginas-web-interativas-js.jpg" alt="Páginas Web Interativas com JS" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Digital Innovation One</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-info bg-opacity-10 text-info small mb-1 align-self-start">Web & Frontend</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Páginas Web Interativas com JS</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Interatividade avançada na web: modais interativos, validações em tempo real e experiência de usuário dinâmica.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/paginas-web-interativas-js.jpg" data-cert-title="Páginas Web Interativas com JS" onclick="window.openCertLightbox('/files/images/certificados/paginas-web-interativas-js.jpg', 'Páginas Web Interativas com JS')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sintaxe Básica em JavaScript -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="web" data-search="sintaxe básica em javascript digital innovation one web & frontend declaração de constantes, tipos booleanos, numéricos e strings, e estruturas de repetição for/while.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/sintaxe-basica-javascript.jpg" data-cert-title="Sintaxe Básica em JavaScript" onclick="window.openCertLightbox('/files/images/certificados/sintaxe-basica-javascript.jpg', 'Sintaxe Básica em JavaScript')" title="Clique para ampliar">
+            <img src="/files/images/certificados/sintaxe-basica-javascript.jpg" alt="Sintaxe Básica em JavaScript" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Digital Innovation One</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-info bg-opacity-10 text-info small mb-1 align-self-start">Web & Frontend</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Sintaxe Básica em JavaScript</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Declaração de constantes, tipos booleanos, numéricos e strings, e estruturas de repetição for/while.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/sintaxe-basica-javascript.jpg" data-cert-title="Sintaxe Básica em JavaScript" onclick="window.openCertLightbox('/files/images/certificados/sintaxe-basica-javascript.jpg', 'Sintaxe Básica em JavaScript')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sintaxe e Operadores em JavaScript -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="web" data-search="sintaxe e operadores em javascript digital innovation one web & frontend comparações estritas (=== vs ==), precedência de operadores matemáticos, lógicos e operadores ternários.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/sintaxe-operadores-javascript.jpg" data-cert-title="Sintaxe e Operadores em JavaScript" onclick="window.openCertLightbox('/files/images/certificados/sintaxe-operadores-javascript.jpg', 'Sintaxe e Operadores em JavaScript')" title="Clique para ampliar">
+            <img src="/files/images/certificados/sintaxe-operadores-javascript.jpg" alt="Sintaxe e Operadores em JavaScript" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Digital Innovation One</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-info bg-opacity-10 text-info small mb-1 align-self-start">Web & Frontend</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Sintaxe e Operadores em JavaScript</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Comparações estritas (=== vs ==), precedência de operadores matemáticos, lógicos e operadores ternários.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/sintaxe-operadores-javascript.jpg" data-cert-title="Sintaxe e Operadores em JavaScript" onclick="window.openCertLightbox('/files/images/certificados/sintaxe-operadores-javascript.jpg', 'Sintaxe e Operadores em JavaScript')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Variáveis e Tipos em JavaScript -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="web" data-search="variáveis e tipos em javascript digital innovation one web & frontend escopo global versus escopo de bloco, conceito de hoisting e características de imutabilidade com const.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/variaveis-tipos-javascript.jpg" data-cert-title="Variáveis e Tipos em JavaScript" onclick="window.openCertLightbox('/files/images/certificados/variaveis-tipos-javascript.jpg', 'Variáveis e Tipos em JavaScript')" title="Clique para ampliar">
+            <img src="/files/images/certificados/variaveis-tipos-javascript.jpg" alt="Variáveis e Tipos em JavaScript" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Digital Innovation One</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-info bg-opacity-10 text-info small mb-1 align-self-start">Web & Frontend</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Variáveis e Tipos em JavaScript</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Escopo global versus escopo de bloco, conceito de hoisting e características de imutabilidade com const.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/variaveis-tipos-javascript.jpg" data-cert-title="Variáveis e Tipos em JavaScript" onclick="window.openCertLightbox('/files/images/certificados/variaveis-tipos-javascript.jpg', 'Variáveis e Tipos em JavaScript')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Páginas Web com HTML -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="web" data-search="páginas web com html digital innovation one web & frontend construção semântica com tags html5, formulários acessíveis, metatags de seo e estrutura de páginas padrão w3c.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/html-paginas-web.jpg" data-cert-title="Páginas Web com HTML" onclick="window.openCertLightbox('/files/images/certificados/html-paginas-web.jpg', 'Páginas Web com HTML')" title="Clique para ampliar">
+            <img src="/files/images/certificados/html-paginas-web.jpg" alt="Páginas Web com HTML" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Digital Innovation One</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-info bg-opacity-10 text-info small mb-1 align-self-start">Web & Frontend</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Páginas Web com HTML</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Construção semântica com tags HTML5, formulários acessíveis, metatags de SEO e estrutura de páginas padrão W3C.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/html-paginas-web.jpg" data-cert-title="Páginas Web com HTML" onclick="window.openCertLightbox('/files/images/certificados/html-paginas-web.jpg', 'Páginas Web com HTML')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Estilizando Páginas com CSS -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="web" data-search="estilizando páginas com css digital innovation one web & frontend modelo de caixas (box model), seletores específicos, propriedades de layout, sombras, gradientes e transformações.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/css-estilizando-paginas.jpg" data-cert-title="Estilizando Páginas com CSS" onclick="window.openCertLightbox('/files/images/certificados/css-estilizando-paginas.jpg', 'Estilizando Páginas com CSS')" title="Clique para ampliar">
+            <img src="/files/images/certificados/css-estilizando-paginas.jpg" alt="Estilizando Páginas com CSS" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Digital Innovation One</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-info bg-opacity-10 text-info small mb-1 align-self-start">Web & Frontend</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Estilizando Páginas com CSS</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Modelo de caixas (Box Model), seletores específicos, propriedades de layout, sombras, gradientes e transformações.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/css-estilizando-paginas.jpg" data-cert-title="Estilizando Páginas com CSS" onclick="window.openCertLightbox('/files/images/certificados/css-estilizando-paginas.jpg', 'Estilizando Páginas com CSS')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Criação de Websites com HTML5 e CSS3 -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="web" data-search="criação de websites com html5 e css3 digital innovation one web & frontend design web responsivo com flexbox, grid e media queries para adaptação perfeita a telas de smartphones e desktops.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/introducao-websites-html-css.jpg" data-cert-title="Criação de Websites com HTML5 e CSS3" onclick="window.openCertLightbox('/files/images/certificados/introducao-websites-html-css.jpg', 'Criação de Websites com HTML5 e CSS3')" title="Clique para ampliar">
+            <img src="/files/images/certificados/introducao-websites-html-css.jpg" alt="Criação de Websites com HTML5 e CSS3" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Digital Innovation One</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-info bg-opacity-10 text-info small mb-1 align-self-start">Web & Frontend</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Criação de Websites com HTML5 e CSS3</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Design web responsivo com Flexbox, Grid e Media Queries para adaptação perfeita a telas de smartphones e desktops.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/introducao-websites-html-css.jpg" data-cert-title="Criação de Websites com HTML5 e CSS3" onclick="window.openCertLightbox('/files/images/certificados/introducao-websites-html-css.jpg', 'Criação de Websites com HTML5 e CSS3')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Páginas Web com Bootstrap -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="web" data-search="páginas web com bootstrap digital innovation one web & frontend prototipação acelerada e estilização com o framework bootstrap: container fluido, grid de 12 colunas e componentes utilitários.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/bootstrap-paginas-web.jpg" data-cert-title="Páginas Web com Bootstrap" onclick="window.openCertLightbox('/files/images/certificados/bootstrap-paginas-web.jpg', 'Páginas Web com Bootstrap')" title="Clique para ampliar">
+            <img src="/files/images/certificados/bootstrap-paginas-web.jpg" alt="Páginas Web com Bootstrap" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Digital Innovation One</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-info bg-opacity-10 text-info small mb-1 align-self-start">Web & Frontend</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Páginas Web com Bootstrap</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Prototipação acelerada e estilização com o framework Bootstrap: container fluido, grid de 12 colunas e componentes utilitários.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/bootstrap-paginas-web.jpg" data-cert-title="Páginas Web com Bootstrap" onclick="window.openCertLightbox('/files/images/certificados/bootstrap-paginas-web.jpg', 'Páginas Web com Bootstrap')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Projetos Ágeis com SCRUM -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="agile" data-search="projetos ágeis com scrum digital innovation one metodologias & inovação conceitos do guia scrum: papéis de product owner e scrum master, iterações em sprints, refinamento de backlog e entregas de valor contínuas.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/projetos-ageis-scrum.jpg" data-cert-title="Projetos Ágeis com SCRUM" onclick="window.openCertLightbox('/files/images/certificados/projetos-ageis-scrum.jpg', 'Projetos Ágeis com SCRUM')" title="Clique para ampliar">
+            <img src="/files/images/certificados/projetos-ageis-scrum.jpg" alt="Projetos Ágeis com SCRUM" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Digital Innovation One</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-secondary bg-opacity-10 text-secondary small mb-1 align-self-start">Metodologias & Inovação</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Projetos Ágeis com SCRUM</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Conceitos do Guia Scrum: papéis de Product Owner e Scrum Master, iterações em Sprints, refinamento de backlog e entregas de valor contínuas.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/projetos-ageis-scrum.jpg" data-cert-title="Projetos Ágeis com SCRUM" onclick="window.openCertLightbox('/files/images/certificados/projetos-ageis-scrum.jpg', 'Projetos Ágeis com SCRUM')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Práticas Ágeis com SCRUM -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="agile" data-search="práticas ágeis com scrum digital innovation one metodologias & inovação implementação de cerimônias ágeis, estimativas com planning poker, quadros kanban e métricas de velocidade da equipe.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/scrum-praticas-ageis.jpg" data-cert-title="Práticas Ágeis com SCRUM" onclick="window.openCertLightbox('/files/images/certificados/scrum-praticas-ageis.jpg', 'Práticas Ágeis com SCRUM')" title="Clique para ampliar">
+            <img src="/files/images/certificados/scrum-praticas-ageis.jpg" alt="Práticas Ágeis com SCRUM" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Digital Innovation One</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-secondary bg-opacity-10 text-secondary small mb-1 align-self-start">Metodologias & Inovação</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Práticas Ágeis com SCRUM</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Implementação de cerimônias ágeis, estimativas com Planning Poker, quadros Kanban e métricas de velocidade da equipe.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/scrum-praticas-ageis.jpg" data-cert-title="Práticas Ágeis com SCRUM" onclick="window.openCertLightbox('/files/images/certificados/scrum-praticas-ageis.jpg', 'Práticas Ágeis com SCRUM')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- IDEATHON - Desenvolvimento Regional Inteligente -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="agile" data-search="ideathon - desenvolvimento regional inteligente even3 / fatec / inova cps metodologias & inovação participação e premiação na maratona de ideação voltada a soluções inovadoras para cidades e desenvolvimento regional inteligente.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/ideathon-inova-cps.jpg" data-cert-title="IDEATHON - Desenvolvimento Regional Inteligente" onclick="window.openCertLightbox('/files/images/certificados/ideathon-inova-cps.jpg', 'IDEATHON - Desenvolvimento Regional Inteligente')" title="Clique para ampliar">
+            <img src="/files/images/certificados/ideathon-inova-cps.jpg" alt="IDEATHON - Desenvolvimento Regional Inteligente" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Even3 / FATEC / Inova CPS</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-secondary bg-opacity-10 text-secondary small mb-1 align-self-start">Metodologias & Inovação</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">IDEATHON - Desenvolvimento Regional Inteligente</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Participação e premiação na maratona de ideação voltada a soluções inovadoras para Cidades e Desenvolvimento Regional Inteligente.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/ideathon-inova-cps.jpg" data-cert-title="IDEATHON - Desenvolvimento Regional Inteligente" onclick="window.openCertLightbox('/files/images/certificados/ideathon-inova-cps.jpg', 'IDEATHON - Desenvolvimento Regional Inteligente')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Imersão em Ideação - Inova CPS -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="agile" data-search="imersão em ideação - inova cps inova centro paula souza metodologias & inovação capacitação imersiva em design thinking, pesquisa de dores de usuários, definição de problema, ideação e pitch de mvp.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/imersao-ideacao-inova.jpg" data-cert-title="Imersão em Ideação - Inova CPS" onclick="window.openCertLightbox('/files/images/certificados/imersao-ideacao-inova.jpg', 'Imersão em Ideação - Inova CPS')" title="Clique para ampliar">
+            <img src="/files/images/certificados/imersao-ideacao-inova.jpg" alt="Imersão em Ideação - Inova CPS" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Inova Centro Paula Souza</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-secondary bg-opacity-10 text-secondary small mb-1 align-self-start">Metodologias & Inovação</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Imersão em Ideação - Inova CPS</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Capacitação imersiva em Design Thinking, pesquisa de dores de usuários, definição de problema, ideação e pitch de MVP.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/imersao-ideacao-inova.jpg" data-cert-title="Imersão em Ideação - Inova CPS" onclick="window.openCertLightbox('/files/images/certificados/imersao-ideacao-inova.jpg', 'Imersão em Ideação - Inova CPS')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Projeto Talentos -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="agile" data-search="projeto talentos fatec / centro paula souza metodologias & inovação programa seletivo de capacitação acadêmica de talentos de alto rendimento para atuação prática no mercado de tecnologia.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/projeto-talentos-fatec.jpg" data-cert-title="Projeto Talentos" onclick="window.openCertLightbox('/files/images/certificados/projeto-talentos-fatec.jpg', 'Projeto Talentos')" title="Clique para ampliar">
+            <img src="/files/images/certificados/projeto-talentos-fatec.jpg" alt="Projeto Talentos" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">FATEC / Centro Paula Souza</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-secondary bg-opacity-10 text-secondary small mb-1 align-self-start">Metodologias & Inovação</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Projeto Talentos</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Programa seletivo de capacitação acadêmica de talentos de alto rendimento para atuação prática no mercado de tecnologia.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/projeto-talentos-fatec.jpg" data-cert-title="Projeto Talentos" onclick="window.openCertLightbox('/files/images/certificados/projeto-talentos-fatec.jpg', 'Projeto Talentos')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comissão Organizadora - 25º SIMTEFAC -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="agile" data-search="comissão organizadora - 25º simtefac fatec catanduva metodologias & inovação atuação oficial na comissão organizadora do simpósio de tecnologia da fatec catanduva, coordenando atividades e logística técnica.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/comissao-25-simtefac.jpg" data-cert-title="Comissão Organizadora - 25º SIMTEFAC" onclick="window.openCertLightbox('/files/images/certificados/comissao-25-simtefac.jpg', 'Comissão Organizadora - 25º SIMTEFAC')" title="Clique para ampliar">
+            <img src="/files/images/certificados/comissao-25-simtefac.jpg" alt="Comissão Organizadora - 25º SIMTEFAC" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">FATEC Catanduva</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-secondary bg-opacity-10 text-secondary small mb-1 align-self-start">Metodologias & Inovação</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Comissão Organizadora - 25º SIMTEFAC</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Atuação oficial na comissão organizadora do Simpósio de Tecnologia da Fatec Catanduva, coordenando atividades e logística técnica.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/comissao-25-simtefac.jpg" data-cert-title="Comissão Organizadora - 25º SIMTEFAC" onclick="window.openCertLightbox('/files/images/certificados/comissao-25-simtefac.jpg', 'Comissão Organizadora - 25º SIMTEFAC')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 25º SIMTEFAC - Simpósio de Tecnologia -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="agile" data-search="25º simtefac - simpósio de tecnologia fatec catanduva metodologias & inovação participação acadêmica com submissão de projetos inovadores e presença em conferências de ponta do setor de ti.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/simposio-tecnologia-fatec-25.jpg" data-cert-title="25º SIMTEFAC - Simpósio de Tecnologia" onclick="window.openCertLightbox('/files/images/certificados/simposio-tecnologia-fatec-25.jpg', '25º SIMTEFAC - Simpósio de Tecnologia')" title="Clique para ampliar">
+            <img src="/files/images/certificados/simposio-tecnologia-fatec-25.jpg" alt="25º SIMTEFAC - Simpósio de Tecnologia" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">FATEC Catanduva</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-secondary bg-opacity-10 text-secondary small mb-1 align-self-start">Metodologias & Inovação</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">25º SIMTEFAC - Simpósio de Tecnologia</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Participação acadêmica com submissão de projetos inovadores e presença em conferências de ponta do setor de TI.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/simposio-tecnologia-fatec-25.jpg" data-cert-title="25º SIMTEFAC - Simpósio de Tecnologia" onclick="window.openCertLightbox('/files/images/certificados/simposio-tecnologia-fatec-25.jpg', '25º SIMTEFAC - Simpósio de Tecnologia')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 24º SIMTEFAC - Simpósio de Tecnologia -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="agile" data-search="24º simtefac - simpósio de tecnologia fatec catanduva metodologias & inovação imersão em pesquisa científica aplicada, engenharia de software e tendências tecnológicas em eventos institucionais.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/simposio-tecnologia-fatec-24.jpg" data-cert-title="24º SIMTEFAC - Simpósio de Tecnologia" onclick="window.openCertLightbox('/files/images/certificados/simposio-tecnologia-fatec-24.jpg', '24º SIMTEFAC - Simpósio de Tecnologia')" title="Clique para ampliar">
+            <img src="/files/images/certificados/simposio-tecnologia-fatec-24.jpg" alt="24º SIMTEFAC - Simpósio de Tecnologia" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">FATEC Catanduva</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-secondary bg-opacity-10 text-secondary small mb-1 align-self-start">Metodologias & Inovação</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">24º SIMTEFAC - Simpósio de Tecnologia</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Imersão em pesquisa científica aplicada, engenharia de software e tendências tecnológicas em eventos institucionais.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/simposio-tecnologia-fatec-24.jpg" data-cert-title="24º SIMTEFAC - Simpósio de Tecnologia" onclick="window.openCertLightbox('/files/images/certificados/simposio-tecnologia-fatec-24.jpg', '24º SIMTEFAC - Simpósio de Tecnologia')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lógica de Programação Essencial -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="agile" data-search="lógica de programação essencial digital innovation one metodologias & inovação construção de raciocínio lógico formal para resolução estruturada de problemas computacionais e algoritmos.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/logica-programacao-essencial.jpg" data-cert-title="Lógica de Programação Essencial" onclick="window.openCertLightbox('/files/images/certificados/logica-programacao-essencial.jpg', 'Lógica de Programação Essencial')" title="Clique para ampliar">
+            <img src="/files/images/certificados/logica-programacao-essencial.jpg" alt="Lógica de Programação Essencial" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Digital Innovation One</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-secondary bg-opacity-10 text-secondary small mb-1 align-self-start">Metodologias & Inovação</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Lógica de Programação Essencial</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Construção de raciocínio lógico formal para resolução estruturada de problemas computacionais e algoritmos.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/logica-programacao-essencial.jpg" data-cert-title="Lógica de Programação Essencial" onclick="window.openCertLightbox('/files/images/certificados/logica-programacao-essencial.jpg', 'Lógica de Programação Essencial')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pensamento Computacional -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="agile" data-search="pensamento computacional digital innovation one metodologias & inovação os pilares do pensamento algorítmico aplicados ao desenvolvimento de soluções escaláveis em engenharia de software.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/pensamento-computacional.jpg" data-cert-title="Pensamento Computacional" onclick="window.openCertLightbox('/files/images/certificados/pensamento-computacional.jpg', 'Pensamento Computacional')" title="Clique para ampliar">
+            <img src="/files/images/certificados/pensamento-computacional.jpg" alt="Pensamento Computacional" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Digital Innovation One</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-secondary bg-opacity-10 text-secondary small mb-1 align-self-start">Metodologias & Inovação</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Pensamento Computacional</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Os pilares do pensamento algorítmico aplicados ao desenvolvimento de soluções escaláveis em engenharia de software.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/pensamento-computacional.jpg" data-cert-title="Pensamento Computacional" onclick="window.openCertLightbox('/files/images/certificados/pensamento-computacional.jpg', 'Pensamento Computacional')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Estrutura de Dados e Algoritmos -->
+      <div class="col-sm-6 col-lg-4 col-xl-3 cert-item" data-category="agile" data-search="estrutura de dados e algoritmos digital innovation one metodologias & inovação estudo aprofundado de listas dinâmicas, pilhas, filas, matrizes, árvores binárias e notação assintótica big-o.">
+        <div class="cert-card h-100 d-flex flex-column">
+          <div class="cert-thumbnail-wrapper" data-cert-src="/files/images/certificados/estrutura-dados.jpg" data-cert-title="Estrutura de Dados e Algoritmos" onclick="window.openCertLightbox('/files/images/certificados/estrutura-dados.jpg', 'Estrutura de Dados e Algoritmos')" title="Clique para ampliar">
+            <img src="/files/images/certificados/estrutura-dados.jpg" alt="Estrutura de Dados e Algoritmos" class="cert-img" loading="lazy">
+            <span class="cert-badge-overlay">Digital Innovation One</span>
+          </div>
+          <div class="p-3 d-flex flex-column flex-grow-1">
+            <span class="badge bg-secondary bg-opacity-10 text-secondary small mb-1 align-self-start">Metodologias & Inovação</span>
+            <h5 class="h6 fw-bold text-content-accent mb-1">Estrutura de Dados e Algoritmos</h5>
+            <p class="text-content-muted small mb-3 flex-grow-1">Estudo aprofundado de listas dinâmicas, pilhas, filas, matrizes, árvores binárias e notação assintótica Big-O.</p>
+            <button type="button" class="btn btn-sm btn-outline-primary cert-open-btn mt-auto align-self-start d-inline-flex align-items-center gap-1" data-cert-src="/files/images/certificados/estrutura-dados.jpg" data-cert-title="Estrutura de Dados e Algoritmos" onclick="window.openCertLightbox('/files/images/certificados/estrutura-dados.jpg', 'Estrutura de Dados e Algoritmos')">
+              <span>Ampliar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <!-- Empty search message -->
+    <div id="certEmptyState" class="text-center py-5 d-none">
+      <div class="display-6 mb-2">🔍</div>
+      <h5 class="text-content-accent">Nenhum certificado encontrado</h5>
+      <p class="text-muted small">Tente buscar por outro termo ou selecione a categoria 'Todos'.</p>
+    </div>
+
   </div>
 </section>
 
-<!-- Lightbox Modal -->
-<div id="certificateLightbox" class="cert-lightbox" onclick="closeCertLightbox(event)">
-  <div class="cert-lightbox-content" onclick="event.stopPropagation()">
-    <button type="button" class="cert-lightbox-close" onclick="closeCertLightbox()">&times;</button>
-    <img id="certLightboxImage" src="" alt="Certificado" class="cert-lightbox-img">
-    <div id="certLightboxCaption" class="cert-lightbox-title"></div>
+<!-- Lightbox Modal Fullscreen -->
+<div id="certLightboxModal" class="cert-lightbox" onclick="handleCertLightboxBackdrop(event)">
+  <div class="cert-lightbox-dialog">
+    <button type="button" class="cert-lightbox-close" onclick="closeCertLightbox()" aria-label="Fechar visualização">&times;</button>
+    <img id="certLightboxImg" src="" alt="Certificado ampliado" class="cert-lightbox-image">
+    <div class="cert-lightbox-caption" id="certLightboxCaption"></div>
   </div>
 </div>
 
 <script>
-  function openCertLightbox(imgUrl, caption) {
-    const lightbox = document.getElementById('certificateLightbox');
-    const img = document.getElementById('certLightboxImage');
-    const cap = document.getElementById('certLightboxCaption');
-    if (lightbox && img) {
-      img.src = imgUrl;
-      if (cap) cap.textContent = caption || '';
-      lightbox.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
+  function openCertLightbox(imgSrc, title) {
+    var modal = document.getElementById('certLightboxModal');
+    var img = document.getElementById('certLightboxImg');
+    var caption = document.getElementById('certLightboxCaption');
+    if (!modal || !img) return;
+    img.src = imgSrc;
+    img.alt = title || 'Certificado';
+    if (caption) caption.textContent = title || '';
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
   }
 
-  function closeCertLightbox(e) {
-    const lightbox = document.getElementById('certificateLightbox');
-    if (lightbox) {
-      lightbox.classList.remove('active');
-      document.body.style.overflow = '';
+  function closeCertLightbox() {
+    var modal = document.getElementById('certLightboxModal');
+    if (!modal) return;
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function handleCertLightboxBackdrop(event) {
+    if (event.target.id === 'certLightboxModal' || event.target.classList.contains('cert-lightbox-dialog')) {
+      closeCertLightbox();
     }
   }
 
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      closeCertLightbox();
-    }
+    if (e.key === 'Escape') closeCertLightbox();
   });
 
-  // Filter Buttons
-  document.addEventListener('DOMContentLoaded', function() {
-    const buttons = document.querySelectorAll('#certFilterButtons .cert-filter-btn');
-    const items = document.querySelectorAll('#certGrid .cert-item');
+  // Filter & Search Logic
+  (function() {
+    var currentFilter = 'all';
+    var currentSearch = '';
 
-    buttons.forEach(btn => {
-      btn.addEventListener('click', function() {
-        buttons.forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
+    function applyFilters() {
+      var items = document.querySelectorAll('#certGrid .cert-item');
+      var visibleCount = 0;
+      var emptyState = document.getElementById('certEmptyState');
+      var counter = document.getElementById('certCounter');
 
-        const filter = this.getAttribute('data-filter');
-        items.forEach(item => {
-          if (filter === 'all' || item.getAttribute('data-category') === filter) {
-            item.style.display = '';
-          } else {
-            item.style.display = 'none';
-          }
+      items.forEach(function(item) {
+        var cat = item.getAttribute('data-category');
+        var searchData = (item.getAttribute('data-search') || '').toLowerCase();
+        
+        var matchesCat = (currentFilter === 'all' || cat === currentFilter);
+        var matchesSearch = (!currentSearch || searchData.indexOf(currentSearch) !== -1);
+
+        if (matchesCat && matchesSearch) {
+          item.style.display = '';
+          visibleCount++;
+        } else {
+          item.style.display = 'none';
+        }
+      });
+
+      if (emptyState) {
+        if (visibleCount === 0) {
+          emptyState.classList.remove('d-none');
+        } else {
+          emptyState.classList.add('d-none');
+        }
+      }
+
+      if (counter) {
+        counter.innerHTML = 'Exibindo <strong>' + visibleCount + '</strong> de <strong>' + items.length + '</strong> certificados';
+      }
+    }
+
+    var filterContainer = document.getElementById('certFilterButtons');
+    if (filterContainer) {
+      var buttons = filterContainer.querySelectorAll('.cert-filter-btn');
+      buttons.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          buttons.forEach(function(b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          currentFilter = btn.getAttribute('data-filter') || 'all';
+          applyFilters();
         });
       });
-    });
-  });
+    }
+
+    var searchInput = document.getElementById('certSearchInput');
+    if (searchInput) {
+      searchInput.addEventListener('input', function() {
+        currentSearch = searchInput.value.trim().toLowerCase();
+        applyFilters();
+      });
+    }
+  })();
 </script>

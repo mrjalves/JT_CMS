@@ -545,6 +545,7 @@
   display: flex;
 }
 
+.cert-lightbox-dialog,
 .cert-lightbox-content {
   position: relative;
   max-width: 90vw;
@@ -554,6 +555,7 @@
   align-items: center;
 }
 
+.cert-lightbox-image,
 .cert-lightbox-img {
   max-width: 100%;
   max-height: 82vh;
@@ -563,6 +565,7 @@
   border: 2px solid rgba(255, 255, 255, 0.15);
 }
 
+.cert-lightbox-caption,
 .cert-lightbox-title {
   color: #f3f4f6;
   margin-top: 1rem;
