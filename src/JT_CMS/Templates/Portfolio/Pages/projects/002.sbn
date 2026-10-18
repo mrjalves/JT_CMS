@@ -1,22 +1,39 @@
 <section id="projects" class="py-5 bg-surface">
-    <div class="container text-center">
+    <div class="container">
         <div class="row g-4">
             {{ for project in Items }}
             <div class="col-sm-6 col-lg-4">
-                <div class="bg-surface-accent border shadow-lg rounded overflow-hidden h-100">
-                    <img src="/files/{{ project.image }}" alt="{{ project.project_title }}" class="w-100" style="height:12rem;object-fit:cover;">
-                    <div class="p-4">
-                        <h3 class="h5 fw-semibold text-content-accent">{{ project.project_title }}</h3>
-                        <p class="text-content-muted mt-2">
+                <div class="glass-card portfolio-project-card border shadow-sm h-100 d-flex flex-column">
+                    <div class="overflow-hidden position-relative" style="height: 13rem;">
+                        <img src="/files/{{ project.image }}" alt="{{ project.project_title }}" class="portfolio-project-img w-100 h-100" style="object-fit:cover;" onerror="this.src='/files/contents/dashboard.png'">
+                    </div>
+                    <div class="p-4 d-flex flex-column flex-grow-1">
+                        <h3 class="h5 fw-bold text-content-accent mb-2">{{ project.project_title }}</h3>
+                        <p class="text-content-muted small flex-grow-1">
                             {{ project.description }}
                         </p>
-                        <a href="/projects/detail/{{ project.Id }}" class="d-inline-block mt-3 text-primary hover-text-primary">
-                            Ver Projeto →
-                        </a>
+                        {{ if project.technologies }}
+                        <div class="d-flex flex-wrap gap-1 my-2">
+                            {{ for tech in (project.technologies | string.split ",") }}
+                            <span class="badge rounded-pill bg-primary bg-opacity-10 text-primary small py-1 px-2" style="font-size: 0.75rem;">{{ tech | string.strip }}</span>
+                            {{ end }}
+                        </div>
+                        {{ end }}
+                        <div class="d-flex justify-content-between align-items-center mt-3 pt-2 border-top border-border-accent">
+                            <a href="/projects/detail/{{ project.Id }}" class="text-primary fw-medium small text-decoration-none hover-underline">
+                                Detalhes do Projeto →
+                            </a>
+                            {{ if project.project_url }}
+                            <a href="{{ project.project_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-1 py-1 px-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                                Repositório
+                            </a>
+                            {{ end }}
+                        </div>
                     </div>
                 </div>
             </div>
             {{ end }}
         </div>
     </div>
-</section>
+</section>

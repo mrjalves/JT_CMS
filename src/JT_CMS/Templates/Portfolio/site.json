@@ -1,14 +1,14 @@
 {
-    "Name": "JT_CMS",
-    "Description": "Modelo de site de portfólio JT_CMS incluindo exemplos",
+    "Name": "Júlio César | Portfólio",
+    "Description": "Portfólio profissional de Júlio César Alves Rodrigues - Desenvolvedor de Software & Especialista em IA / Python / .NET",
     "Layout": "DefaultLayout",
     "EditLayout": "EditLayout",
     "DetailLayout": "SingleLayout",
     "AdminRoles": ["Administrators"],
     "ContributorRoles": ["Contributors"],
     "Settings": {
-        "MetaTitle": "JT_CMS - CMS Blazor Impulsionado por IA",
-        "MetaDescription": "JT_CMS é um CMS Blazor de código aberto impulsionado por IA, projetado para simplificar o gerenciamento de conteúdo com flexibilidade e escalabilidade para sites modernos.",
+        "MetaTitle": "Júlio César Alves Rodrigues | Desenvolvedor de Software & IA",
+        "MetaDescription": "Desenvolvedor de Software com sólida experiência em C#/.NET, arquitetura corporativa, integração de sistemas (REST/SOAP) e formação em Inteligência Artificial e Machine Learning com Python.",
         "GoogleTagsId": "",
         "Head": "",
         "Robots": "index,follow",
@@ -243,7 +243,7 @@
                     "Definition": "Contact Us Plugin",
                     "Section": "Main",
                     "Settings": {
-                        "EmailAddress": "your.email@example.com",
+                        "EmailAddress": "juliocalves.ro@gmail.com",
                         "Class": "p-4 mx-auto bg-surface text-content"
                     }
                 }
@@ -845,59 +845,58 @@
             ],
             "Contents": [
                 {
-                    "project_title": "Site de Portfólio Pessoal",
-                    "description": "Um site pessoal apresentando meu portfólio, blog e informações de contato.",
-                    "start_date": "2023-01-15",
-                    "end_date": "2023-03-10",
-                    "technologies": "HTML, CSS, JavaScript, Tailwind CSS",
-                    "project_url": "https://portfolio.example.com",
-                    "image": "/files/contents/portfolio.png"
-                },
-                {
-                    "project_title": "Plataforma de E-commerce",
-                    "description": "Uma plataforma de e-commerce completa com catálogo de produtos, carrinho e checkout.",
-                    "start_date": "2022-05-01",
-                    "end_date": "2022-07-20",
-                    "technologies": "React, Node.js, MongoDB, Stripe API",
-                    "project_url": "https://ecommerce.example.com",
-                    "image": "/files/contents/commerce.png"
-                },
-                {
-                    "project_title": "Aplicativo de Gerenciamento de Tarefas",
-                    "description": "Um aplicativo de gerenciamento de tarefas responsivo com recursos de atribuição e prazos.",
-                    "start_date": "2022-08-10",
-                    "end_date": "2022-10-05",
-                    "technologies": "Vue.js, Firebase, Tailwind CSS",
-                    "project_url": "https://taskmanager.example.com",
-                    "image": "/files/contents/task.png"
-                },
-                {
-                    "project_title": "Painel de Mídias Sociais",
-                    "description": "Um painel que agrega métricas de redes sociais como Twitter, Facebook e Instagram.",
-                    "start_date": "2023-02-01",
-                    "end_date": "2023-04-15",
-                    "technologies": "Next.js, Node.js, Chart.js, API Integrations",
-                    "project_url": "https://socialdashboard.example.com",
+                    "project_title": "JT_CMS - AI-Powered Modular Headless & Fullstack CMS",
+                    "description": "CMS moderno e extensível em .NET 10 e Blazor com recursos impulsionados por IA, suporte a múltiplos bancos de dados, motor Scriban e Site Builder visual.",
+                    "start_date": "2025-01-10",
+                    "end_date": "2026-10-18",
+                    "technologies": "C#, .NET 10, Blazor Server, EF Core, Scriban, Clean Architecture, REST API, Tailwind CSS, SQL Server",
+                    "project_url": "https://github.com/mrjalves/JT_CMS",
                     "image": "/files/contents/dashboard.png"
                 },
                 {
-                    "project_title": "Plataforma de Blog",
-                    "description": "Uma plataforma de blog com edição em rich text, gerenciamento de categorias e otimizações de SEO.",
-                    "start_date": "2021-11-01",
-                    "end_date": "2022-01-15",
-                    "technologies": "WordPress, PHP, MySQL",
-                    "project_url": "https://blogplatform.example.com",
-                    "image": "/files/contents/blog.png"
+                    "project_title": "JT_Finance - Gestão Financeira Empresarial & Pessoal",
+                    "description": "Sistema avançado de controle financeiro corporativo e pessoal construído com .NET 10 e Blazor, com centros de custo, relatórios dinâmicos e performance otimizada.",
+                    "start_date": "2024-06-01",
+                    "end_date": "2026-06-01",
+                    "technologies": "C#, .NET 10, Blazor Web, Entity Framework Core, SQL Server, Charting, Clean Architecture",
+                    "project_url": "https://github.com/mrjalves/JT_Finance",
+                    "image": "/files/contents/commerce.png"
                 },
                 {
-                    "project_title": "Portal Imobiliário",
-                    "description": "Um site para imobiliárias anunciarem imóveis com mapas interativos e recursos de contato.",
-                    "start_date": "2022-09-05",
-                    "end_date": "2022-11-20",
-                    "technologies": "Laravel , Vue.js, Leaflet.js",
-                    "project_url": "https://realestate.example.com",
+                    "project_title": "JT_Food - Plataforma de Delivery & Gastronomia",
+                    "description": "Plataforma completa para gestão de pedidos, delivery e cardápio interativo para restaurantes com atualizações e tracking em tempo real.",
+                    "start_date": "2024-03-01",
+                    "end_date": "2025-02-15",
+                    "technologies": ".NET 10, ASP.NET Core Web API, Blazor, WebSockets, Entity Framework, SQL Server",
+                    "project_url": "https://github.com/mrjalves/JT_Food",
+                    "image": "/files/contents/task.png"
+                },
+                {
+                    "project_title": "JTech_AppManager - Central de Deploy & Orquestração",
+                    "description": "Gerenciador centralizado de aplicações, automação de deploy e monitoramento para microsserviços do ecossistema JTech.",
+                    "start_date": "2024-08-15",
+                    "end_date": "2025-11-30",
+                    "technologies": "C#, .NET Core, DevOps, Docker, Shell Script, CI/CD, Automação",
+                    "project_url": "https://github.com/mrjalves/JTech_AppManager",
                     "image": "/files/contents/real-estate.png"
-
+                },
+                {
+                    "project_title": "JT_Portifolio - Portfólio Interativo Blazor",
+                    "description": "Aplicação web desenvolvida em Blazor Server e .NET 10 com design moderno em glassmorphism, modo escuro dinâmico e integração com JT_ApplicationLayer.",
+                    "start_date": "2026-01-10",
+                    "end_date": "2026-10-18",
+                    "technologies": "C#, .NET 10, Blazor Server, CSS3 Glassmorphism, Responsive Web Design",
+                    "project_url": "https://github.com/mrjalves/JT_Portifolio",
+                    "image": "/files/contents/portfolio.png"
+                },
+                {
+                    "project_title": "AI Pipelines & Machine Learning com Python",
+                    "description": "Pipelines de treinamento, avaliação e otimização de modelos de Machine Learning com Python, integração com Google Cloud IA e análise de dados.",
+                    "start_date": "2024-01-15",
+                    "end_date": "2026-10-18",
+                    "technologies": "Python, Machine Learning, Google Cloud IA, Scikit-Learn, Pandas, REST APIs",
+                    "project_url": "https://github.com/mrjalves",
+                    "image": "/files/contents/blog.png"
                 }
             ]
         },
@@ -934,20 +933,52 @@
             ],
             "Contents": [
                 {
-                    "skill_name": "React",
-                    "proficiency": "Avançado"
-                },
-                {
-                    "skill_name": "Blazor",
-                    "proficiency": "Avançado"
-                },
-                {
-                    "skill_name": "SEO",
+                    "skill_name": "C# / .NET 10",
                     "proficiency": "Especialista"
                 },
                 {
-                    "skill_name": "HTML",
-                    "proficiency": "Iniciante"
+                    "skill_name": "ASP.NET Core & Blazor",
+                    "proficiency": "Especialista"
+                },
+                {
+                    "skill_name": "Python & Machine Learning",
+                    "proficiency": "Avançado"
+                },
+                {
+                    "skill_name": "Entity Framework Core",
+                    "proficiency": "Especialista"
+                },
+                {
+                    "skill_name": "Integração Web Services (REST / SOAP)",
+                    "proficiency": "Especialista"
+                },
+                {
+                    "skill_name": "SQL Server & PostgreSQL",
+                    "proficiency": "Avançado"
+                },
+                {
+                    "skill_name": "Google Cloud (IA & Dados)",
+                    "proficiency": "Avançado"
+                },
+                {
+                    "skill_name": "Aplicações Mobile Multiplataforma",
+                    "proficiency": "Avançado"
+                },
+                {
+                    "skill_name": "Git & GitHub / CI-CD",
+                    "proficiency": "Avançado"
+                },
+                {
+                    "skill_name": "React & JavaScript",
+                    "proficiency": "Avançado"
+                },
+                {
+                    "skill_name": "Sistemas ERP & Folha de Pagamento",
+                    "proficiency": "Especialista"
+                },
+                {
+                    "skill_name": "Metodologia Ágil (Scrum)",
+                    "proficiency": "Avançado"
                 }
             ]
         }

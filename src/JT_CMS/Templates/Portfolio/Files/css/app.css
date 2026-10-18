@@ -238,3 +238,206 @@
 [data-bs-theme="dark"] .f-plugin-content-type-modal-item:hover {
   background-color: var(--f-gray-700);  
 }
+
+/* ==========================================================================
+   JT Portfolio Design System & Showcase Extensions
+   ========================================================================== */
+:root {
+  --portfolio-primary: #6366f1;
+  --portfolio-primary-light: #818cf8;
+  --portfolio-secondary: #8b5cf6;
+  --portfolio-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  --portfolio-glow: 0 0 25px rgba(99, 102, 241, 0.35);
+  --portfolio-glass-bg: rgba(255, 255, 255, 0.7);
+  --portfolio-glass-border: rgba(99, 102, 241, 0.15);
+}
+
+[data-bs-theme="dark"] {
+  --portfolio-glass-bg: rgba(15, 23, 42, 0.75);
+  --portfolio-glass-border: rgba(255, 255, 255, 0.08);
+}
+
+.glass-card {
+  background: var(--portfolio-glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--portfolio-glass-border);
+  border-radius: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px -10px rgba(99, 102, 241, 0.25);
+  border-color: rgba(99, 102, 241, 0.4);
+}
+
+/* Hero Section */
+.hero-wrapper {
+  padding: 5rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-greeting {
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #6366f1;
+  background: rgba(99, 102, 241, 0.1);
+  padding: 0.35rem 0.9rem;
+  border-radius: 2rem;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.hero-name {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.15;
+  background: linear-gradient(135deg, #1e293b 0%, #6366f1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-bs-theme="dark"] .hero-name {
+  background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-role {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #818cf8;
+  margin-bottom: 1.25rem;
+}
+
+.hero-bio {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  max-width: 600px;
+}
+
+.hero-avatar-box {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-avatar-blob {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.35) 0%, rgba(139, 92, 246, 0.1) 70%, transparent 100%);
+  border-radius: 50%;
+  filter: blur(25px);
+  z-index: 1;
+}
+
+.hero-avatar-img {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid rgba(99, 102, 241, 0.4);
+  box-shadow: 0 0 35px rgba(99, 102, 241, 0.3);
+  position: relative;
+  z-index: 2;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.hero-avatar-img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 50px rgba(99, 102, 241, 0.5);
+}
+
+/* Badges & Tags */
+.skill-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(99, 102, 241, 0.1);
+  color: #6366f1;
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  padding: 0.4rem 0.9rem;
+  border-radius: 2rem;
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+}
+
+[data-bs-theme="dark"] .skill-tag {
+  color: #a5b4fc;
+}
+
+.skill-tag:hover {
+  background: #6366f1;
+  color: #ffffff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);
+}
+
+/* Project Card */
+.portfolio-project-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.portfolio-project-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.portfolio-project-card:hover .portfolio-project-img {
+  transform: scale(1.04);
+}
+
+/* Social Icons */
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  color: #6366f1;
+  transition: all 0.25s ease;
+  text-decoration: none !important;
+}
+
+[data-bs-theme="dark"] .social-btn {
+  color: #c7d2fe;
+}
+
+.social-btn:hover {
+  background: var(--portfolio-gradient);
+  color: #ffffff !important;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+}
+
+.btn-gradient {
+  background: var(--portfolio-gradient);
+  color: #ffffff !important;
+  border: none;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.25);
+  transition: all 0.25s ease;
+}
+
+.btn-gradient:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+}
