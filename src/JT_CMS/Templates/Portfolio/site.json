@@ -109,6 +109,24 @@
             ]
         },
         {
+            "Title": "Roadmap",
+            "Path": "/roadmap",
+            "Layout": "DefaultLayout",
+            "EditLayout": "EditLayout",
+            "ViewRoles": ["All Users"],
+            "Settings": {
+                "Index": "true",
+                "Follow": "true"
+            },
+            "Plugins": [
+                {
+                    "Definition": "TextHTML Plugin",
+                    "Section": "Main",
+                    "ContentPath": "roadmap/001.html"
+                }
+            ]
+        },
+        {
             "Title": "Projetos",
             "Path": "/projects",
             "EditLayout": "EditLayout",

@@ -244,3 +244,52 @@ if (document.readyState === 'loading') {
 
 window.addEventListener('JT_CMS:afterenhanced', initAll);
 window.addEventListener('JT_CMS:init', initAll);
+
+
+// ==========================================
+// ROADMAP INTERACTIVITY MODULE
+// ==========================================
+window.switchRoadmapTab = function(tabId, btnElement) {
+    const tabButtons = document.querySelectorAll('.roadmap-tab-btn');
+    tabButtons.forEach(btn => {
+        if (btn.getAttribute('data-tab') === tabId || btn === btnElement) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+
+    const tabContents = document.querySelectorAll('.roadmap-tab-content');
+    tabContents.forEach(content => {
+        if (content.id === 'tab-' + tabId) {
+            content.classList.remove('d-none');
+            content.classList.add('active');
+        } else {
+            content.classList.add('d-none');
+            content.classList.remove('active');
+        }
+    });
+};
+
+window.filterTimeline = function(type, btnElement) {
+    const filterButtons = document.querySelectorAll('[data-timeline-filter]');
+    filterButtons.forEach(btn => {
+        if (btn.getAttribute('data-timeline-filter') === type || btn === btnElement) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+
+    const items = document.querySelectorAll('.roadmap-timeline-item');
+    items.forEach(item => {
+        const itemType = item.getAttribute('data-timeline-type') || '';
+        if (type === 'all' || itemType === type) {
+            item.style.setProperty('display', '', 'important');
+            item.classList.remove('d-none');
+        } else {
+            item.style.setProperty('display', 'none', 'important');
+            item.classList.add('d-none');
+        }
+    });
+};
