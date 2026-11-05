@@ -56,6 +56,7 @@ jobs:
             --exclude 'appsettings.Production.json' \
             --exclude 'Data/' \
             --exclude 'uploads/' \
+            --exclude '/files/' \
             --exclude '*.db' \
             -e "ssh -p ${{ secrets.VPS_PORT }}" \
             ./publish/ \
