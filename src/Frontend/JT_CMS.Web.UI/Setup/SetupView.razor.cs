@@ -1,4 +1,4 @@
-﻿using JT_CMS.Web.ApiClients.Services;
+using JT_CMS.Web.ApiClients.Services;
 using Microsoft.AspNetCore.Http;
 
 namespace JT_CMS.Web.UI;
@@ -32,7 +32,10 @@ public partial class SetupView
     protected override async Task OnParametersSetAsync()
     {
         if (await SetupManager.IsInitialized())
-            throw new InvalidOperationException("Setup is already complete.");
+        {
+            NavigateTo("/");
+            return;
+        }
 
         Model ??= new SetupRequest
         {

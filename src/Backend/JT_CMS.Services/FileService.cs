@@ -1,4 +1,4 @@
-﻿using JT_CMS.Providers.FileStorageProviders;
+using JT_CMS.Providers.FileStorageProviders;
 using System.Text.RegularExpressions;
 
 namespace JT_CMS.Services;
@@ -92,8 +92,38 @@ public class FileService(IFileRepository fileRepository, IFolderRepository folde
 
     public async Task<System.IO.Stream> GetStream(Guid id, CancellationToken cancellationToken = default)
     {
-        return await fileStorageProvider.Download(id.ToString(), cancellationToken) ??
-            throw new AppException(ExceptionCodes.FileNotFound);
+        var stream = await fileStorageProvider.Download(id.ToString(), cancellationToken);
+        if (stream != null)
+            return stream;
+
+        var file = await fileRepository.GetById(id, cancellationToken);
+        if (file != null)
+        {
+            var relativePath = await GetFilePath(file, cancellationToken);
+            const string rootPrefix = ServiceConstants.ROOT_FOLDER_PATH + "/";
+            if (relativePath.StartsWith(rootPrefix, StringComparison.OrdinalIgnoreCase))
+                relativePath = relativePath[rootPrefix.Length..];
+
+            var templatesDir = ServiceConstants.SetupTemplatesFolder;
+            if (System.IO.Directory.Exists(templatesDir))
+            {
+                foreach (var templateDir in System.IO.Directory.GetDirectories(templatesDir))
+                {
+                    var candidate = System.IO.Path.Combine(templateDir, ServiceConstants.SetupFilesFolder, relativePath.Replace('/', System.IO.Path.DirectorySeparatorChar));
+                    if (System.IO.File.Exists(candidate))
+                    {
+                        await using (var sourceStream = System.IO.File.OpenRead(candidate))
+                        {
+                            await fileStorageProvider.Upload(file.Id.ToString(), sourceStream, cancellationToken);
+                        }
+                        return await fileStorageProvider.Download(id.ToString(), cancellationToken) ??
+                            throw new AppException(ExceptionCodes.FileNotFound);
+                    }
+                }
+            }
+        }
+
+        throw new AppException(ExceptionCodes.FileNotFound);
     }
 
     public async Task<File> Rename(Guid id, string name, CancellationToken cancellationToken = default)
