@@ -1,5 +1,6 @@
-﻿using JT_CMS.Providers.ApiTokenProviders;
+using JT_CMS.Providers.ApiTokenProviders;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace JT_CMS.Web.Api.Filters;
@@ -39,6 +40,11 @@ public class ApiTokenAuthorizeFilter : IAsyncAuthorizationFilter
         if (string.IsNullOrEmpty(requestApiToken))
             return false;
 
+        var configuration = context.HttpContext.RequestServices.GetRequiredService<IConfiguration>();
+        var configuredKey = configuration["ClientSettings:Key"];
+        if (!string.IsNullOrEmpty(configuredKey) && requestApiToken.ToString() == configuredKey)
+            return true;
+
         var parts = requestApiToken.ToString().Split(':');
         if (parts.Length != 2)
             return false;
@@ -75,4 +81,3 @@ public class ApiTokenAuthorizeFilter : IAsyncAuthorizationFilter
         return true;
     }
 }
-

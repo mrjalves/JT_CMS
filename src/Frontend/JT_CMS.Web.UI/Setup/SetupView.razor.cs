@@ -65,8 +65,15 @@ public partial class SetupView
     {
         if (await SetupManager.Start(Model!))
         {
-            await AuthManager.Logout(HttpContext);
-            await AuthManager.Login(HttpContext, Model!.Username, Model.Password, true);
+            try
+            {
+                await AuthManager.Logout(HttpContext);
+                await AuthManager.Login(HttpContext, Model!.Username, Model.Password, true);
+            }
+            catch
+            {
+                // Ignore auto-login failure after setup and redirect to home
+            }
             NavigateTo("/");
         }
     }

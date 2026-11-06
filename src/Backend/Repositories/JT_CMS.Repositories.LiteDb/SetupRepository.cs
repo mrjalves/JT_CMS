@@ -1,4 +1,4 @@
-﻿namespace JT_CMS.Repositories.LiteDb;
+namespace JT_CMS.Repositories.LiteDb;
 
 public class SetupRepository(ILiteDBContext liteDbContext) : ISetupRepository
 {
@@ -12,9 +12,10 @@ public class SetupRepository(ILiteDBContext liteDbContext) : ISetupRepository
         if (!System.IO.File.Exists(dbFilePath))
             return false; // Database file does not exist
 
-        // Check if the collection exists
-        if (!await liteDbContext.Database.CollectionExistsAsync(nameof(GlobalSettings)))
-            return false; // Collection does not exist
+        // Check if both GlobalSettings and Site collections exist so a partial setup never locks out /setup
+        if (!await liteDbContext.Database.CollectionExistsAsync(nameof(GlobalSettings)) ||
+            !await liteDbContext.Database.CollectionExistsAsync(nameof(Site)))
+            return false;
 
         return await Task.FromResult(true);
     }

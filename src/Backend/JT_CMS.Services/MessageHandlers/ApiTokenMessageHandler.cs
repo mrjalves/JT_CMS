@@ -1,10 +1,11 @@
-﻿using System.IO;
+using System.IO;
 using System.Text.Json;
 using System.Text.Json.Nodes;
+using Microsoft.Extensions.Configuration;
 
 namespace JT_CMS.Services.MessageHandlers;
 
-public class ApiTokenMessageHandler(IApiTokenService apiTokenService) : IMessageHandler<SetupTemplate>
+public class ApiTokenMessageHandler(IApiTokenService apiTokenService, IConfiguration configuration) : IMessageHandler<SetupTemplate>
 {
     public async Task Handle(Message<SetupTemplate> notification, CancellationToken cancellationToken)
     {
@@ -12,13 +13,33 @@ public class ApiTokenMessageHandler(IApiTokenService apiTokenService) : IMessage
         {
             case ActionNames.SetupStarted:
                 var apiToken = await apiTokenService.Create(GetDefaultApiToken(), cancellationToken);
-                var appSettingsFilePath = Path.Combine($"appsettings.json");
-                var text = System.IO.File.ReadAllText(appSettingsFilePath);
-                var jsonNode = JsonNode.Parse(text)!;
-                jsonNode!["ClientSettings"]!["Key"] = apiToken.Key + ":" + apiToken.Secret;
+                var newKey = apiToken.Key + ":" + apiToken.Secret;
 
-                var output = JsonSerializer.Serialize(jsonNode, new JsonSerializerOptions() { WriteIndented = true });
-                System.IO.File.WriteAllText(appSettingsFilePath, output);
+                // Update in-memory configuration immediately so subsequent API requests in the same process use the new key
+                configuration["ClientSettings:Key"] = newKey;
+
+                // Update appsettings.json and appsettings.Production.json (if present)
+                foreach (var fileName in new[] { "appsettings.json", "appsettings.Production.json" })
+                {
+                    var appSettingsFilePath = Path.Combine(fileName);
+                    if (!System.IO.File.Exists(appSettingsFilePath))
+                        continue;
+
+                    var text = System.IO.File.ReadAllText(appSettingsFilePath);
+                    var jsonNode = JsonNode.Parse(text);
+                    if (jsonNode?["ClientSettings"] is JsonObject clientSettingsNode)
+                    {
+                        clientSettingsNode["Key"] = newKey;
+                        var output = JsonSerializer.Serialize(jsonNode, new JsonSerializerOptions() { WriteIndented = true });
+                        System.IO.File.WriteAllText(appSettingsFilePath, output);
+                    }
+                }
+
+                if (configuration is IConfigurationRoot configRoot)
+                {
+                    configRoot.Reload();
+                    configuration["ClientSettings:Key"] = newKey;
+                }
 
                 break;
 

@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using System.IO;
 using System.Text.Json;
 using System.Text.RegularExpressions;
@@ -16,8 +16,25 @@ public interface ISiteService : IAutoRegisterService
     Task<string> GetSitemap(Site site, Uri uri, CancellationToken cancellationToken = default);
 }
 
-public class SiteService(ISiteRepository siteRepository, IPluginDefinitionRepository pluginDefinitionRepository, ISettingsService settingsService, IPageService pageService, IMessagePublisher messagePublisher, IPermissionManager permissionManager, IMapper mapper) : ISiteService
+public class SiteService(
+    ISiteRepository siteRepository,
+    IPluginDefinitionRepository pluginDefinitionRepository,
+    ILayoutRepository layoutRepository,
+    IPageRepository pageRepository,
+    IPageInternalService pageInternalService,
+    IRoleRepository roleRepository,
+    IPermissionService permissionService,
+    IPluginService pluginService,
+    IPluginContentService pluginContentService,
+    ISettingsService settingsService,
+    IPageService pageService,
+    IMessagePublisher messagePublisher,
+    IPermissionManager permissionManager,
+    IMapper mapper) : ISiteService
 {
+    private static readonly SemaphoreSlim _roadmapSyncLock = new(1, 1);
+    private static readonly HashSet<Guid> _syncedSites = [];
+
     public async Task<IEnumerable<Site>> GetAll(CancellationToken cancellationToken = default)
     {
         var sites = await siteRepository.GetAll(cancellationToken);
@@ -37,8 +54,190 @@ public class SiteService(ISiteRepository siteRepository, IPluginDefinitionReposi
     {
         url = ValidateAndFormatUrl(url);
         // no need to check permissions
-        return await siteRepository.GetByUrl(url, cancellationToken) ??
-            throw new AppException(ExceptionCodes.SiteNotFound);
+        var site = await siteRepository.GetByUrl(url, cancellationToken);
+        if (site == null)
+        {
+            var allSites = await siteRepository.GetAll(cancellationToken);
+            site = allSites.FirstOrDefault() ??
+                throw new AppException(ExceptionCodes.SiteNotFound);
+        }
+
+        await EnsurePortfolioRoadmapSynced(site, cancellationToken);
+
+        return site;
+    }
+
+    private async Task EnsurePortfolioRoadmapSynced(Site site, CancellationToken cancellationToken)
+    {
+        if (_syncedSites.Contains(site.Id))
+            return;
+
+        await _roadmapSyncLock.WaitAsync(cancellationToken);
+        try
+        {
+            if (_syncedSites.Contains(site.Id))
+                return;
+
+            var portfolioDir = Path.Combine(ServiceConstants.SetupTemplatesFolder, "Portfolio");
+            var roadmapFilePath = Path.Combine(portfolioDir, ServiceConstants.SetupPagesFolder, "roadmap", "001.html");
+            if (!System.IO.File.Exists(roadmapFilePath))
+            {
+                _syncedSites.Add(site.Id);
+                return;
+            }
+
+            var layouts = (await layoutRepository.GetAllForSite(site.Id, cancellationToken)).ToList();
+
+            // 1. Ensure layouts have the /roadmap navigation link
+            foreach (var layoutName in new[] { "DefaultLayout", "Columns-1-3", "SingleLayout" })
+            {
+                var layout = layouts.FirstOrDefault(l => l.Name.Equals(layoutName, StringComparison.OrdinalIgnoreCase));
+                var bodyPath = Path.Combine(portfolioDir, ServiceConstants.SetupLayoutsFolder, $"{layoutName}.body.html");
+                if (layout != null && System.IO.File.Exists(bodyPath) && !layout.Body.Contains("/roadmap", StringComparison.OrdinalIgnoreCase))
+                {
+                    layout.Body = await System.IO.File.ReadAllTextAsync(bodyPath, cancellationToken);
+                    var headPath = Path.Combine(portfolioDir, ServiceConstants.SetupLayoutsFolder, $"{layoutName}.head.html");
+                    if (System.IO.File.Exists(headPath))
+                        layout.Head = await System.IO.File.ReadAllTextAsync(headPath, cancellationToken);
+
+                    await layoutRepository.Update(layout, cancellationToken);
+                }
+            }
+
+            // 2. Ensure /roadmap page exists
+            var pages = (await pageService.GetBySiteId(site.Id, cancellationToken)).ToList();
+            var roadmapPage = pages.FirstOrDefault(p => p.FullPath.Equals("/roadmap", StringComparison.OrdinalIgnoreCase));
+            var roadmapHtml = await System.IO.File.ReadAllTextAsync(roadmapFilePath, cancellationToken);
+            var pluginDefinitions = (await pluginDefinitionRepository.GetAll(cancellationToken)).ToList();
+            var textHtmlDef = pluginDefinitions.FirstOrDefault(p => p.Name.Equals("TextHTML Plugin", StringComparison.OrdinalIgnoreCase));
+
+            if (roadmapPage == null && textHtmlDef != null)
+            {
+                var defaultLayout = layouts.FirstOrDefault(l => l.Name.Equals("DefaultLayout", StringComparison.OrdinalIgnoreCase));
+                var editLayout = layouts.FirstOrDefault(l => l.Name.Equals("EditLayout", StringComparison.OrdinalIgnoreCase));
+
+                var newPage = new Page
+                {
+                    Id = Guid.NewGuid(),
+                    SiteId = site.Id,
+                    ParentId = null,
+                    Path = "/roadmap",
+                    Title = "Roadmap",
+                    LayoutId = defaultLayout?.Id,
+                    EditLayoutId = editLayout?.Id,
+                    Order = 1,
+                    Locked = false
+                };
+
+                var createdPage = await pageRepository.Create(newPage, cancellationToken);
+                if (createdPage != null)
+                {
+                    pageInternalService.Invalidate(site.Id);
+
+                    await settingsService.Update(createdPage.Id, new Dictionary<string, string>
+                    {
+                        ["Index"] = "true",
+                        ["Follow"] = "true"
+                    }, cancellationToken);
+
+                    var roles = (await roleRepository.GetAllForSite(site.Id, cancellationToken)).ToList();
+                    var adminRoleIds = roles.Where(r => r.Name.Equals("Administrators", StringComparison.OrdinalIgnoreCase)).Select(r => r.Id).ToList();
+                    var viewRoleIds = roles.Where(r => r.Name.Equals("All Users", StringComparison.OrdinalIgnoreCase)).Select(r => r.Id).ToList();
+
+                    await permissionService.Set(site.Id, createdPage.Id, PagePermissionAction.PageAdmin, adminRoleIds, cancellationToken);
+                    await permissionService.Set(site.Id, createdPage.Id, PagePermissionAction.PageView, viewRoleIds, cancellationToken);
+
+                    var plugin = new Plugin
+                    {
+                        Id = Guid.NewGuid(),
+                        Order = 0,
+                        Section = "Main",
+                        DefinitionId = textHtmlDef.Id,
+                        PageId = createdPage.Id,
+                        SiteId = site.Id,
+                        Locked = false,
+                        Cols = 12,
+                        ColsMd = 0,
+                        ColsLg = 0
+                    };
+
+                    await pluginService.Create(plugin, cancellationToken);
+
+                    var pluginContent = new PluginContent
+                    {
+                        SiteId = site.Id,
+                        PluginId = plugin.Id,
+                        Type = "TextHTMLContent",
+                        Data = new Dictionary<string, object?>
+                        {
+                            ["Content"] = roadmapHtml
+                        }
+                    };
+
+                    await pluginContentService.Create(pluginContent, cancellationToken);
+                }
+            }
+
+            // 3. Ensure Home (001.html) and About (about/010.html) include the /roadmap CTA buttons
+            var homePage = pages.FirstOrDefault(p => p.FullPath == "/");
+            var homeHeroPath = Path.Combine(portfolioDir, ServiceConstants.SetupPagesFolder, "001.html");
+            if (homePage != null && System.IO.File.Exists(homeHeroPath))
+            {
+                var homePlugins = (await pluginService.GetByPageId(homePage.Id, cancellationToken))
+                    .Where(p => p.Section.Equals("Main", StringComparison.OrdinalIgnoreCase))
+                    .OrderBy(p => p.Order)
+                    .ToList();
+                var firstHomePlugin = homePlugins.FirstOrDefault();
+                if (firstHomePlugin != null)
+                {
+                    var contents = (await pluginContentService.GetByPluginId(firstHomePlugin.Id, cancellationToken)).ToList();
+                    var firstContent = contents.FirstOrDefault();
+                    if (firstContent?.Data != null &&
+                        firstContent.Data.TryGetValue("Content", out var existingHtmlObj) &&
+                        existingHtmlObj?.ToString() is string existingHtml &&
+                        !existingHtml.Contains("/roadmap", StringComparison.OrdinalIgnoreCase))
+                    {
+                        firstContent.Data["Content"] = await System.IO.File.ReadAllTextAsync(homeHeroPath, cancellationToken);
+                        await pluginContentService.Update(firstContent, cancellationToken);
+                    }
+                }
+            }
+
+            var aboutPage = pages.FirstOrDefault(p => p.FullPath.Equals("/about", StringComparison.OrdinalIgnoreCase));
+            var aboutCertPath = Path.Combine(portfolioDir, ServiceConstants.SetupPagesFolder, "about", "010.html");
+            if (aboutPage != null && System.IO.File.Exists(aboutCertPath))
+            {
+                var aboutPlugins = (await pluginService.GetByPageId(aboutPage.Id, cancellationToken))
+                    .Where(p => p.Section.Equals("Right", StringComparison.OrdinalIgnoreCase))
+                    .OrderBy(p => p.Order)
+                    .ToList();
+                var lastAboutPlugin = aboutPlugins.LastOrDefault();
+                if (lastAboutPlugin != null)
+                {
+                    var contents = (await pluginContentService.GetByPluginId(lastAboutPlugin.Id, cancellationToken)).ToList();
+                    var firstContent = contents.FirstOrDefault();
+                    if (firstContent?.Data != null &&
+                        firstContent.Data.TryGetValue("Content", out var existingHtmlObj) &&
+                        existingHtmlObj?.ToString() is string existingHtml &&
+                        !existingHtml.Contains("/roadmap", StringComparison.OrdinalIgnoreCase))
+                    {
+                        firstContent.Data["Content"] = await System.IO.File.ReadAllTextAsync(aboutCertPath, cancellationToken);
+                        await pluginContentService.Update(firstContent, cancellationToken);
+                    }
+                }
+            }
+
+            _syncedSites.Add(site.Id);
+        }
+        catch
+        {
+            // Do not block site resolution if template auto-sync fails
+            _syncedSites.Add(site.Id);
+        }
+        finally
+        {
+            _roadmapSyncLock.Release();
+        }
     }
 
     public async Task<Site> Create(SiteTemplate siteTemplate, CancellationToken cancellationToken = default)

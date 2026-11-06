@@ -1,4 +1,4 @@
-﻿namespace JT_CMS.Repositories.Caching;
+namespace JT_CMS.Repositories.Caching;
 
 public class SetupRepository(ISetupRepository setupRepository, ICacheProvider cacheProvider) : ISetupRepository
 {
@@ -12,17 +12,19 @@ public class SetupRepository(ISetupRepository setupRepository, ICacheProvider ca
     public async Task<bool> InitializeDb(CancellationToken cancellationToken = default)
     {
         var result = await setupRepository.InitializeDb(cancellationToken);
-        cacheProvider.Set(CacheKey, result);
+        cacheProvider.Remove(CacheKey);
         return result;
     }
 
     private async Task<bool> GetCached(CancellationToken cancellationToken = default)
     {
-        if (!cacheProvider.TryGetValue(CacheKey, out bool isInitiliazed))
+        if (!cacheProvider.TryGetValue(CacheKey, out bool isInitiliazed) || !isInitiliazed)
         {
             isInitiliazed = await setupRepository.Initialized(cancellationToken);
-            // cache the entities
-            cacheProvider.Set(CacheKey, isInitiliazed);
+            if (isInitiliazed)
+            {
+                cacheProvider.Set(CacheKey, true);
+            }
         }
         return isInitiliazed;
     }

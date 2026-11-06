@@ -1,4 +1,5 @@
 using JT_CMS.Providers.FileStorageProviders;
+using System.Collections.Concurrent;
 using System.Text.RegularExpressions;
 
 namespace JT_CMS.Services;
@@ -18,6 +19,8 @@ public interface IFileService : IAutoRegisterService
 
 public class FileService(IFileRepository fileRepository, IFolderRepository folderRepository, IFolderService folderService, IFileStorageProvider fileStorageProvider) : IFileService
 {
+    private static readonly ConcurrentDictionary<Guid, bool> _syncedTemplateAssets = new();
+
     public async Task<File> Create(File file, System.IO.Stream fileContent, CancellationToken cancellationToken = default)
     {
         var folder = await folderRepository.GetById(file.FolderId, cancellationToken) ??
@@ -92,6 +95,18 @@ public class FileService(IFileRepository fileRepository, IFolderRepository folde
 
     public async Task<System.IO.Stream> GetStream(Guid id, CancellationToken cancellationToken = default)
     {
+        if (!_syncedTemplateAssets.ContainsKey(id))
+        {
+            var checkFile = await fileRepository.GetById(id, cancellationToken);
+            if (checkFile != null && (checkFile.NormalizedName == "app.css" || checkFile.NormalizedName == "app.js"))
+            {
+                _syncedTemplateAssets[id] = true;
+                var syncedStream = await TryRestoreFromTemplate(checkFile, cancellationToken);
+                if (syncedStream != null)
+                    return syncedStream;
+            }
+        }
+
         var stream = await fileStorageProvider.Download(id.ToString(), cancellationToken);
         if (stream != null)
             return stream;
@@ -99,31 +114,42 @@ public class FileService(IFileRepository fileRepository, IFolderRepository folde
         var file = await fileRepository.GetById(id, cancellationToken);
         if (file != null)
         {
-            var relativePath = await GetFilePath(file, cancellationToken);
-            const string rootPrefix = ServiceConstants.ROOT_FOLDER_PATH + "/";
-            if (relativePath.StartsWith(rootPrefix, StringComparison.OrdinalIgnoreCase))
-                relativePath = relativePath[rootPrefix.Length..];
+            var restoredStream = await TryRestoreFromTemplate(file, cancellationToken);
+            if (restoredStream != null)
+                return restoredStream;
+        }
 
-            var templatesDir = ServiceConstants.SetupTemplatesFolder;
-            if (System.IO.Directory.Exists(templatesDir))
+        throw new AppException(ExceptionCodes.FileNotFound);
+    }
+
+    private async Task<System.IO.Stream?> TryRestoreFromTemplate(File file, CancellationToken cancellationToken)
+    {
+        var relativePath = await GetFilePath(file, cancellationToken);
+        const string rootPrefix = ServiceConstants.ROOT_FOLDER_PATH + "/";
+        if (relativePath.StartsWith(rootPrefix, StringComparison.OrdinalIgnoreCase))
+            relativePath = relativePath[rootPrefix.Length..];
+
+        var templatesDir = ServiceConstants.SetupTemplatesFolder;
+        if (System.IO.Directory.Exists(templatesDir))
+        {
+            var preferredDirs = System.IO.Directory.GetDirectories(templatesDir)
+                .OrderByDescending(d => System.IO.Path.GetFileName(d).Equals("Portfolio", StringComparison.OrdinalIgnoreCase));
+
+            foreach (var templateDir in preferredDirs)
             {
-                foreach (var templateDir in System.IO.Directory.GetDirectories(templatesDir))
+                var candidate = System.IO.Path.Combine(templateDir, ServiceConstants.SetupFilesFolder, relativePath.Replace('/', System.IO.Path.DirectorySeparatorChar));
+                if (System.IO.File.Exists(candidate))
                 {
-                    var candidate = System.IO.Path.Combine(templateDir, ServiceConstants.SetupFilesFolder, relativePath.Replace('/', System.IO.Path.DirectorySeparatorChar));
-                    if (System.IO.File.Exists(candidate))
+                    await using (var sourceStream = System.IO.File.OpenRead(candidate))
                     {
-                        await using (var sourceStream = System.IO.File.OpenRead(candidate))
-                        {
-                            await fileStorageProvider.Upload(file.Id.ToString(), sourceStream, cancellationToken);
-                        }
-                        return await fileStorageProvider.Download(id.ToString(), cancellationToken) ??
-                            throw new AppException(ExceptionCodes.FileNotFound);
+                        await fileStorageProvider.Upload(file.Id.ToString(), sourceStream, cancellationToken);
                     }
+                    return await fileStorageProvider.Download(file.Id.ToString(), cancellationToken);
                 }
             }
         }
 
-        throw new AppException(ExceptionCodes.FileNotFound);
+        return null;
     }
 
     public async Task<File> Rename(Guid id, string name, CancellationToken cancellationToken = default)
