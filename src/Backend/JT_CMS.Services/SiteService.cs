@@ -290,16 +290,17 @@ public class SiteService(
         var site = mapper.Map<Site>(siteTemplate);
 
         site.Urls = [ValidateAndFormatUrl(siteTemplate.Url)];
-        site.LayoutId = layouts.Where(x => x.Name == siteTemplate.Layout).Single().Id;
-        site.EditLayoutId = layouts.Where(x => x.Name == siteTemplate.EditLayout).Single().Id;
-        site.DetailLayoutId = layouts.Where(x => x.Name == siteTemplate.DetailLayout).Single().Id;
+        site.LayoutId = layouts.Where(x => x.Name == siteTemplate.Layout).First().Id;
+        site.EditLayoutId = layouts.Where(x => x.Name == siteTemplate.EditLayout).First().Id;
+        site.DetailLayoutId = layouts.Where(x => x.Name == siteTemplate.DetailLayout).First().Id;
 
         ValidateAndFormatUrls(site);
 
         // check if site url are unique
         var allSites = await siteRepository.GetAll(cancellationToken);
-        if (allSites.Any(x => x.Urls.Any(y => site.Urls.Contains(y))))
-            throw new AppException(ExceptionCodes.SiteUrlMustBeUnique);
+        var existingSite = allSites.FirstOrDefault(x => x.Urls.Any(y => site.Urls.Contains(y)));
+        if (existingSite != null)
+            return existingSite;
 
         // create the site or throw an exception if it fails
         var newSite = await siteRepository.Create(site, cancellationToken) ??
@@ -440,7 +441,7 @@ public class SiteService(
         foreach (var plugin in page.Plugins)
         {
             plugin.Id = Guid.NewGuid();
-            plugin.DefinitionId = pluginDefinitions.Where(p => p.Name.Equals(plugin.Definition, StringComparison.InvariantCultureIgnoreCase)).Single().Id;
+            plugin.DefinitionId = pluginDefinitions.Where(p => p.Name.Equals(plugin.Definition, StringComparison.InvariantCultureIgnoreCase)).First().Id;
         }
         foreach (var childPage in page.Children)
         {

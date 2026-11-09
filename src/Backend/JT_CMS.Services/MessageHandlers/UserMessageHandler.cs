@@ -1,4 +1,4 @@
-﻿namespace JT_CMS.Services.MessageHandlers;
+namespace JT_CMS.Services.MessageHandlers;
 
 public class UserMessageHandler(IUserService userService) : IMessageHandler<SetupTemplate>
 {
@@ -8,6 +8,10 @@ public class UserMessageHandler(IUserService userService) : IMessageHandler<Setu
         {
             case ActionNames.SetupStarted:
                 var setupTemplate = notification.Payload;
+                var existingUsers = await userService.GetAll(cancellationToken);
+                if (existingUsers.Any(u => string.Equals(u.UserName, setupTemplate.Username, StringComparison.OrdinalIgnoreCase)))
+                    break;
+
                 var user = new User
                 {
                     UserName = setupTemplate.Username,

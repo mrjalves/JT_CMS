@@ -12,9 +12,9 @@ public class SetupRepository(ILiteDBContext liteDbContext) : ISetupRepository
         if (!System.IO.File.Exists(dbFilePath))
             return false; // Database file does not exist
 
-        // Check if both GlobalSettings and Site collections exist so a partial setup never locks out /setup
+        // Check if the GlobalSettings and sites collections exist
         if (!await liteDbContext.Database.CollectionExistsAsync(nameof(GlobalSettings)) ||
-            !await liteDbContext.Database.CollectionExistsAsync(nameof(Site)))
+            !await liteDbContext.Database.CollectionExistsAsync("sites"))
             return false;
 
         return await Task.FromResult(true);

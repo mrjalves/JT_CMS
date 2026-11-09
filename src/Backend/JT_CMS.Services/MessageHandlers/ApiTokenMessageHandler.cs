@@ -12,6 +12,13 @@ public class ApiTokenMessageHandler(IApiTokenService apiTokenService, IConfigura
         switch (notification.Action)
         {
             case ActionNames.SetupStarted:
+                var existingTokens = await apiTokenService.GetAll(cancellationToken);
+                var existingDefault = existingTokens.FirstOrDefault(x => x.Name == "Full Access");
+                if (existingDefault != null)
+                {
+                    await apiTokenService.Delete(existingDefault.Id, cancellationToken);
+                }
+
                 var apiToken = await apiTokenService.Create(GetDefaultApiToken(), cancellationToken);
                 var newKey = apiToken.Key + ":" + apiToken.Secret;
 
