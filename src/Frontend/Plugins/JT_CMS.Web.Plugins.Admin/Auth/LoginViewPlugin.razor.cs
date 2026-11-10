@@ -1,4 +1,4 @@
-﻿using JT_CMS.Web.ApiClients.Services;
+using JT_CMS.Web.ApiClients.Services;
 
 namespace JT_CMS.Web.Plugins.Admin.Auth;
 
@@ -17,7 +17,23 @@ public partial class LoginViewPlugin
 
     private async Task OnSubmit()
     {
-        await AuthManager.Login(HttpContext, Model.Username, Model.Password, Model.RememberMe);
-        NavigateTo("/");
+        var httpContext = HttpContext ?? HttpContextAccessor?.HttpContext;
+        if (httpContext != null)
+        {
+            await AuthManager.Login(httpContext, Model.Username, Model.Password, Model.RememberMe);
+        }
+
+        var uri = new Uri(NavigationManager.Uri);
+        var query = System.Web.HttpUtility.ParseQueryString(uri.Query);
+        var redirectTo = query["redirectTo"];
+
+        if (!string.IsNullOrEmpty(redirectTo))
+        {
+            NavigateTo(Uri.UnescapeDataString(redirectTo), true);
+        }
+        else
+        {
+            NavigateTo("/", true);
+        }
     }
 }

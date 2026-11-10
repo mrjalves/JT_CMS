@@ -1,4 +1,4 @@
-﻿namespace JT_CMS.Web.Plugins;
+namespace JT_CMS.Web.Plugins;
 
 public partial class PluginForm
 {
@@ -27,6 +27,10 @@ public partial class PluginForm
         try
         {
             await OnSubmit.InvokeAsync(editContext);
+        }
+        catch (NavigationException)
+        {
+            throw;
         }
         catch (ApiClientException ex)
         {

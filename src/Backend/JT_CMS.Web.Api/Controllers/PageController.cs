@@ -1,4 +1,4 @@
-﻿using JT_CMS.Services.Permissions;
+using JT_CMS.Services.Permissions;
 using JT_CMS.Web.Api.Filters;
 
 namespace JT_CMS.Web.Api.Controllers;
@@ -149,8 +149,8 @@ public class PageController(ISiteService siteService, IPageService pageService, 
 
         // setting super admin flag
         var globalSettings = await globalSettingsService.Get(cancellationToken);
-        if (globalSettings != null)
-            pageResponse.User.IsSuperAdmin = globalSettings.SuperAdmins.Contains(pageResponse.User.Username);
+        if (globalSettings != null && !string.IsNullOrEmpty(pageResponse.User.Username))
+            pageResponse.User.IsSuperAdmin = globalSettings.SuperAdmins.Contains(pageResponse.User.Username, StringComparer.OrdinalIgnoreCase);
 
         // setting the plugin details
         var pluginSettingsDict = (await settingsService.GetByIds(plugins.Select(x => x.Id), cancellationToken)).ToDictionary(x => x.Id, x => x.Values);

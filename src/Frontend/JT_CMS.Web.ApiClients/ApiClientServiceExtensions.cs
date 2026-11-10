@@ -1,4 +1,4 @@
-﻿using JT_CMS.Web.ApiClients;
+using JT_CMS.Web.ApiClients;
 using JT_CMS.Web.ApiClients.Services;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -80,6 +80,14 @@ public static class ApiClientServiceExtensions
     {
         try
         {
+            var httpContextUser = sp.GetService<IHttpContextAccessor>()?.HttpContext?.User;
+            if (httpContextUser?.Identity?.IsAuthenticated == true)
+            {
+                var token = httpContextUser.FindFirstValue("jwt");
+                if (!string.IsNullOrEmpty(token))
+                    return token;
+            }
+
             var authStateProvider = sp.GetRequiredService<AuthenticationStateProvider>();
             var authStateTask = authStateProvider.GetAuthenticationStateAsync();
             var authState = authStateTask.GetAwaiter().GetResult();

@@ -1,4 +1,4 @@
-﻿namespace JT_CMS.Web.Plugins;
+namespace JT_CMS.Web.Plugins;
 
 public abstract class BasePlugin : ComponentBase
 {
@@ -43,10 +43,21 @@ public abstract class BasePlugin : ComponentBase
     // https://github.com/dotnet/aspnetcore/issues/53996
     protected virtual void NavigateTo(string path, bool forceLoad = false)
     {
-        if (HttpContextAccessor?.HttpContext != null && !HttpContextAccessor.HttpContext.Response.HasStarted)
-            HttpContextAccessor.HttpContext.Response.Redirect(path);
+        var httpContext = HttpContextAccessor?.HttpContext;
+        if (httpContext != null && !httpContext.Response.HasStarted)
+        {
+            if (httpContext.Request.Headers.ContainsKey("blazor-enhanced-nav"))
+            {
+                httpContext.Response.Headers["blazor-enhanced-nav-redirect-location"] = path;
+                httpContext.Response.StatusCode = StatusCodes.Status200OK;
+                return;
+            }
+            httpContext.Response.Redirect(path);
+        }
         else
+        {
             NavigationManager.NavigateTo(path, forceLoad);
+        }
     }
 
     protected virtual string GetUrl(string viewName, object? parameters = null, bool redirectToCurrentPage = true)
@@ -54,8 +65,8 @@ public abstract class BasePlugin : ComponentBase
         var uri = new Uri(NavigationManager.Uri);
         var oldQueryParams = HttpUtility.ParseQueryString(uri.Query);
 
-        // this gets the page path from root without QueryString
-        var pagePathWithoutQueryString = uri.GetLeftPart(UriPartial.Path);
+        // this gets the relative page path from root without QueryString
+        var pagePathWithoutQueryString = uri.LocalPath;
 
         var newQueryParams = new Dictionary<string, string?>()
         {

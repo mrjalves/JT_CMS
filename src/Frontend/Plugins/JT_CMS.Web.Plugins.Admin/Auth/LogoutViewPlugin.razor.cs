@@ -1,4 +1,4 @@
-﻿using JT_CMS.Web.ApiClients.Services;
+using JT_CMS.Web.ApiClients.Services;
 
 namespace JT_CMS.Web.Plugins.Admin.Auth;
 
@@ -12,8 +12,9 @@ public partial class LogoutViewPlugin
 
     protected override async Task OnInitializedAsync()
     {
-        if (HttpContext != null)
-            await AuthManager.Logout(HttpContext);
+        var httpContext = HttpContext ?? HttpContextAccessor?.HttpContext;
+        if (httpContext != null)
+            await AuthManager.Logout(httpContext);
 
         NavigateTo("/", true);
     }

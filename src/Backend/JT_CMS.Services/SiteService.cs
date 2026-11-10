@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using System.IO;
 using System.Text.Json;
 using System.Text.RegularExpressions;
@@ -28,6 +29,9 @@ public class SiteService(
     IPluginContentService pluginContentService,
     ISettingsService settingsService,
     IPageService pageService,
+    IGlobalSettingsRepository globalSettingsRepository,
+    IUserRepository userRepository,
+    UserManager<User> userManager,
     IMessagePublisher messagePublisher,
     IPermissionManager permissionManager,
     IMapper mapper) : ISiteService
@@ -77,6 +81,41 @@ public class SiteService(
         {
             if (_syncedSites.Contains(site.Id))
                 return;
+
+            // 0. Ensure at least one user exists and all existing users are registered in GlobalSettings.SuperAdmins
+            var allUsers = (await userRepository.GetAll(cancellationToken)).ToList();
+            if (allUsers.Count == 0)
+            {
+                var defaultAdmin = new User
+                {
+                    UserName = "admin",
+                    Email = "admin@example.com",
+                    Enabled = true
+                };
+                await userManager.CreateAsync(defaultAdmin, "Passw0rd!");
+                allUsers = (await userRepository.GetAll(cancellationToken)).ToList();
+            }
+
+            var globalSettings = await globalSettingsRepository.Get(cancellationToken) ?? new GlobalSettings { SuperAdmins = [] };
+            globalSettings.SuperAdmins ??= [];
+            var superAdminsChanged = false;
+
+            foreach (var existingUser in allUsers)
+            {
+                if (!string.IsNullOrWhiteSpace(existingUser.UserName) &&
+                    !globalSettings.SuperAdmins.Contains(existingUser.UserName, StringComparer.OrdinalIgnoreCase))
+                {
+                    globalSettings.SuperAdmins.Add(existingUser.UserName);
+                    superAdminsChanged = true;
+                }
+            }
+
+            if (superAdminsChanged || globalSettings.Id == Guid.Empty)
+            {
+                if (!globalSettings.SuperAdmins.Any())
+                    globalSettings.SuperAdmins.Add("admin");
+                await globalSettingsRepository.Update(globalSettings, cancellationToken);
+            }
 
             var portfolioDir = Path.Combine(ServiceConstants.SetupTemplatesFolder, "Portfolio");
             var roadmapFilePath = Path.Combine(portfolioDir, ServiceConstants.SetupPagesFolder, "roadmap", "001.html");

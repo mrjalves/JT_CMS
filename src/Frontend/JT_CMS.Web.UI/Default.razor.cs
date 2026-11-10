@@ -1,6 +1,7 @@
-﻿using JT_CMS.Web.ApiClients.Services;
+using JT_CMS.Web.ApiClients.Services;
 using JT_CMS.Web.UI.DynamicRendering;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.AspNetCore.Http;
 
 namespace JT_CMS.Web.UI;
 
@@ -21,6 +22,9 @@ public partial class Default
     [Inject]
     public SetupManager SetupManager { set; get; } = default!;
 
+    [Inject]
+    public IHttpContextAccessor? HttpContextAccessor { get; set; }
+
     protected override async Task OnInitializedAsync()
     {
         // check if setup is not done
@@ -28,8 +32,44 @@ public partial class Default
         // if you see and exception here in development time, continue running! it's a known issue in Blazor
         if (!await SetupManager.IsInitialized() && !NavigationManager.Uri.ToLower().EndsWith("/setup"))
         {
-            NavigationManager.NavigateTo("/setup", true);
+            RedirectTo("/setup");
             return;
+        }
+
+        var currentUri = new Uri(NavigationManager.Uri);
+        var currentPath = currentUri.LocalPath;
+
+        if (!currentPath.StartsWith("/auth/", StringComparison.OrdinalIgnoreCase) &&
+            !currentPath.Equals("/setup", StringComparison.OrdinalIgnoreCase))
+        {
+            var requiresAuth = !ViewState.Page.HasViewAccess ||
+                               (ViewState.Type == ViewStateType.PageEdit && !ViewState.Page.HasAdminAccess);
+
+            if (requiresAuth && string.IsNullOrEmpty(ViewState.User?.Username))
+            {
+                var returnUrl = Uri.EscapeDataString(currentUri.PathAndQuery);
+                RedirectTo($"/auth/login?redirectTo={returnUrl}");
+                return;
+            }
+        }
+    }
+
+    private void RedirectTo(string path)
+    {
+        var httpContext = HttpContextAccessor?.HttpContext;
+        if (httpContext != null && !httpContext.Response.HasStarted)
+        {
+            if (httpContext.Request.Headers.ContainsKey("blazor-enhanced-nav"))
+            {
+                httpContext.Response.Headers["blazor-enhanced-nav-redirect-location"] = path;
+                httpContext.Response.StatusCode = StatusCodes.Status200OK;
+                return;
+            }
+            httpContext.Response.Redirect(path);
+        }
+        else
+        {
+            NavigationManager.NavigateTo(path, true);
         }
     }
 

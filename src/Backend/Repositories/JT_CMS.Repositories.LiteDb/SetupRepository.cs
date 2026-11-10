@@ -13,8 +13,12 @@ public class SetupRepository(ILiteDBContext liteDbContext) : ISetupRepository
             return false; // Database file does not exist
 
         // Check if the GlobalSettings and sites collections exist
-        if (!await liteDbContext.Database.CollectionExistsAsync(nameof(GlobalSettings)) ||
-            !await liteDbContext.Database.CollectionExistsAsync("sites"))
+        var hasGlobalSettings = await liteDbContext.Database.CollectionExistsAsync("globalsettings") ||
+                                await liteDbContext.Database.CollectionExistsAsync(nameof(GlobalSettings));
+        var hasSites = await liteDbContext.Database.CollectionExistsAsync("sites") ||
+                       await liteDbContext.Database.CollectionExistsAsync(nameof(Site));
+
+        if (!hasGlobalSettings || !hasSites)
             return false;
 
         return await Task.FromResult(true);

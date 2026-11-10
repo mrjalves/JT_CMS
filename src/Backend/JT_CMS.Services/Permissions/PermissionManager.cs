@@ -1,4 +1,4 @@
-﻿namespace JT_CMS.Services.Permissions;
+namespace JT_CMS.Services.Permissions;
 
 public class PermissionManager : IPermissionManager
 {
@@ -29,7 +29,7 @@ public class PermissionManager : IPermissionManager
         {
             // check for current user if is super admin
             var globalSettings = _globalSettingsRepository.Get().GetAwaiter().GetResult();
-            if (globalSettings != null && globalSettings.SuperAdmins.Contains(_apiExecutionContext.Username))
+            if (globalSettings != null && !string.IsNullOrEmpty(_apiExecutionContext.Username) && globalSettings.SuperAdmins.Contains(_apiExecutionContext.Username, StringComparer.OrdinalIgnoreCase))
                 _isSuperAdmin = true;
         }
     }

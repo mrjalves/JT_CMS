@@ -125,7 +125,7 @@
     </div>
     <div class="f-page-editor-iframe-wrapper">
         <div class="f-page-editor-iframe-resizer" />
-        <iframe class="f-page-editor-iframe" src="@(NavigationManager.Uri.Replace("pageEdit", "pagePreview"))">
+        <iframe class="f-page-editor-iframe" src="@(new Uri(NavigationManager.Uri).PathAndQuery.Replace("pageEdit", "pagePreview"))">
         </iframe>
     </div>
 </div>

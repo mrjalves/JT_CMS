@@ -1,4 +1,4 @@
-﻿namespace JT_CMS.Services.MessageHandlers;
+namespace JT_CMS.Services.MessageHandlers;
 
 public class GlobalSettingsMessageHandler(IGlobalSettingsService globalSettingsService) : IMessageHandler<SetupTemplate>
 {
@@ -7,9 +7,27 @@ public class GlobalSettingsMessageHandler(IGlobalSettingsService globalSettingsS
         switch (notification.Action)
         {
             case ActionNames.SetupStarted:
+                var superAdmins = new List<string> { notification.Payload.Username };
+                try
+                {
+                    var existing = await globalSettingsService.Get(cancellationToken);
+                    if (existing?.SuperAdmins != null)
+                    {
+                        foreach (var admin in existing.SuperAdmins)
+                        {
+                            if (!string.IsNullOrWhiteSpace(admin) && !superAdmins.Contains(admin, StringComparer.OrdinalIgnoreCase))
+                                superAdmins.Add(admin);
+                        }
+                    }
+                }
+                catch
+                {
+                    // GlobalSettings does not exist yet
+                }
+
                 var globalSettings = new GlobalSettings
                 {
-                    SuperAdmins = [notification.Payload.Username]
+                    SuperAdmins = superAdmins
                 };
                 await globalSettingsService.Update(globalSettings, cancellationToken);
                 break;
