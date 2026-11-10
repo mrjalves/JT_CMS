@@ -45,7 +45,7 @@ public partial class Default
             var requiresAuth = !ViewState.Page.HasViewAccess ||
                                (ViewState.Type == ViewStateType.PageEdit && !ViewState.Page.HasAdminAccess);
 
-            if (requiresAuth && string.IsNullOrEmpty(ViewState.User?.Username))
+            if (requiresAuth && string.IsNullOrEmpty(ViewState.User?.UserName))
             {
                 var returnUrl = Uri.EscapeDataString(currentUri.PathAndQuery);
                 RedirectTo($"/auth/login?redirectTo={returnUrl}");
